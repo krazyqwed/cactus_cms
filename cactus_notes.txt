@@ -1,0 +1,99 @@
+#################################
+#   Cactus CMS change log       #
+#################################
+#   Creator: Kocsis Dávid       #
+#   Date: 2014.01.07            #
+#   Last mod.: 2014.02.14       #
+#################################
+
+---------------------------------
+2014.02.14 - v0.8.7
+---------------------------------
++ Markdown editor
+
+* Datepicker fix
+
+---------------------------------
+
+---------------------------------
+2014.02.12 - v0.8.6
+---------------------------------
++ File upload
++ Basic model cache
+
+* Lot of bug fixed
+
+---------------------------------
+
+---------------------------------
+2014.01.29 - v0.8.5
+---------------------------------
++ Datepicker
++ JS/CSS load optimizer on admin
+
+* Image crop tweaks
+* Admin menu fixes
+* Font awesome update (4.0)
+
+---------------------------------
+
+---------------------------------
+2014.01.14 - v0.8.3
+---------------------------------
++ User settings
+
+* Lot of bug fixed
+---------------------------------
+
+---------------------------------
+2014.01.09 - v0.8.2
+---------------------------------
++ Admin block dependencities
+
+^ - File upload
+^ - Table paging/sort/filter
+---------------------------------
+
+---------------------------------
+2014.01.09 - v0.8.1
+---------------------------------
+* Elfinder fix
+* Remove unused/old files
+
+WiP - Admin block dependencities
+
+^ File upload
+^ Table paging/sort/filter
+---------------------------------
+
+---------------------------------
+2014.01.09 - v0.8.0
+---------------------------------
++ Multi layout management
++ Relations for select and
+  multiselect fields
++ Index page improvements
+
+* Multiselect json_encode fixed
+* URL lang dropped from lang
+  tables
+* Elfinder fix
+* Remove unused/old files
+
+WiP - Admin block dependencities
+
+^ File upload
+---------------------------------
+
+---------------------------------
+2014.01.07 - v0.7.1
+---------------------------------
++ Image handler finished
++ Layout management updated
++ Change log on index page
+
+* Fixed a bug where empty tables
+  only has header
+
+WiP - Multi layout management
+---------------------------------
