@@ -17,8 +17,7 @@ class _Tag extends MY_Controller {
 
 	public function index($action = null, $id = null){
 		$this->load->model('tag/tag_model');
-		$model = $this->tag_model;
 
-		$this->_action($this->_config['_in_menu_path'], $model, $action, $id);
+		$this->_action($this->_config['_in_menu_path'], $this->tag_model, $action, $id);
 	}
 }

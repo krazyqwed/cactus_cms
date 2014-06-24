@@ -19,4 +19,8 @@ class Seo_model extends MY_Model {
 
 		parent::_post_actions();
 	}
+
+	public function _create_table(){
+		
+	}
 }

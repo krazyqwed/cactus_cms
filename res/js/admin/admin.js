@@ -165,7 +165,12 @@ if ($('.datepicker').length){
 		todayBtn: "linked",
 		language: "hu",
 		autoclose: true,
-		todayHighlight: true
+		todayHighlight: true,
+		beforeShow: function(){
+	        setTimeout(function(){
+	            $('.ui-datepicker').css('z-index', 2);
+	        }, 0);
+	    }
 	});
 }
 

@@ -38,9 +38,9 @@ class Main extends MX_Controller {
 		
 		$data['settings'] = $settings;
 		$data['settings'] = part_get_lang_table($data['settings'], 1, $settings_model);
+		$data['settings_model'] = $settings_model;
 
 		$data['parts'] = $this->parts;
-
 		$this->load->view($this->active_layout['folder'].'/_layout', $data);
 	}
 

@@ -54,4 +54,8 @@ class User_model extends MY_Model{
 		else
 			return false;
 	}
+
+	public function _create_table(){
+		
+	}
 }
