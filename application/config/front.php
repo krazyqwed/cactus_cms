@@ -15,7 +15,7 @@ $config['admin_default_styles'] = array(
 	'res/css/admin/override.css'
 );
 
-$config['main_default_styles'] = array(
+$config['main_default_scripts'] = array(
 	'res/js/jquery-1.10.2.min.js',
 	'res/js/jquery-ui-1.10.4.min.js',
 	'res/js/main/foundation/foundation.min.js',

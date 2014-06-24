@@ -19,13 +19,17 @@ class Front{
 	}
 
 	public function display_scripts(){
-		foreach ($this->scripts as $script)
-			echo '<script type="text/javascript" src="'.base_url($script).'"></script>';
+		if (!empty($this->scripts)){
+			foreach ($this->scripts as $script)
+				echo '<script type="text/javascript" src="'.base_url($script).'"></script>';
+		}
 	}
 	
 	public function display_styles(){
-		foreach ($this->styles as $style)
-			echo '<link rel="stylesheet" type="text/css" href="'.base_url($style).'" />';
+		if (!empty($this->styles)){
+			foreach ($this->styles as $style)
+				echo '<link rel="stylesheet" type="text/css" href="'.base_url($style).'" />';
+		}
 	}
 
 	public function autoload_by_field($fields){
