@@ -10,7 +10,6 @@ class MY_Controller extends MX_Controller {
 			$this->_user = $this->session->userdata('user');
 		}
 
-		$this->load->config('front');
 		$this->load->helper('permission_helper');
 	}
 

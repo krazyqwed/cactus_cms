@@ -111,7 +111,7 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 <?php if ((isset($field['_Block_dependencity']) && $field['_Block_dependencity']) || !isset($field['_Block_dependencity'])): ?>
 <?php if (permission_check('field', $db_table, $field['Field'])): ?>
 <?php if ((!isset($content[$db_primary]) && ((isset($field['_On_new']) && $field['_On_new']) || !isset($field['_On_new']))) || isset($content[$db_primary])): ?>
-		<tr class="<?php echo preg_replace('/\(|\)|[0-9]+/', '', $field['Type']) ?>">
+		<tr class="<?php echo (isset($field['Type'])) ? preg_replace('/\(|\)|[0-9]+/', '', $field['Type']) : 'custom'?>">
 	<?php if ((!isset($content[$db_primary])) || (isset($content[$db_primary]))): ?>
 			<td><?php echo isset($field['_Alias'])?$field['_Alias']:$field['Field'] ?><?php echo isset($field['_Description'])?'<label>'.$field['_Description'].'</label>':'' ?></td>
 	<?php endif; ?>

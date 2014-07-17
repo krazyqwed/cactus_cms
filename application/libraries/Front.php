@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Front{
-	protected $scripts = array();
-	protected $styles = array();
+	public $scripts = array();
+	public $styles = array();
 
 	public function add_script($url){
 		if (is_array($url))
@@ -19,17 +19,24 @@ class Front{
 	}
 
 	public function display_scripts(){
+		$scripts = '';
+
 		if (!empty($this->scripts)){
 			foreach ($this->scripts as $script)
-				echo '<script type="text/javascript" src="'.base_url($script).'"></script>';
+				$scripts .= '<script type="text/javascript" src="'.base_url($script).'"></script>';
 		}
+
+		return $scripts;
 	}
 	
 	public function display_styles(){
+		$styles = '';
 		if (!empty($this->styles)){
 			foreach ($this->styles as $style)
-				echo '<link rel="stylesheet" type="text/css" href="'.base_url($style).'" />';
+				$styles .= '<link rel="stylesheet" type="text/css" href="'.base_url($style).'" />';
 		}
+
+		return $styles;
 	}
 
 	public function autoload_by_field($fields){

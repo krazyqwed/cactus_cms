@@ -24,5 +24,12 @@ $hook['display_override'][] = array(
 	'filepath' => 'hooks'
 );
 
+$hook['pre_controller'][] = array(
+    'class'    => 'Front_hook',
+    'function' => 'res',
+    'filename' => 'Front.php',
+    'filepath' => 'hooks'
+);
+
 /* End of file hooks.php */
 /* Location: ./application/config/hooks.php */

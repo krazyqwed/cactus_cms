@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<title>CMS</title>
 
-	<?php $this->front->display_styles(); ?>
+	{display_styles}
 </head>
 <body>
 	<div id="container">

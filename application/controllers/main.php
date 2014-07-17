@@ -27,9 +27,6 @@ class Main extends MX_Controller {
 		$parts = part_get_lang_table($parts, null, $model);
 
 		$this->parts = layout_order_parts($parts);
-
-		$this->front->add_script($this->config->item('main_default_scripts'));
-		$this->front->add_style($this->config->item('main_default_styles'));
 	}
 
 	public function index(){

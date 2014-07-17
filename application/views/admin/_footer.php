@@ -24,6 +24,7 @@
 	<script type="text/javascript">
 		base_url = '<?php echo base_url() ?>';
 	</script>
-	<?php $this->front->display_scripts(); ?>
+	
+	{display_scripts}
 </body>
 </html>

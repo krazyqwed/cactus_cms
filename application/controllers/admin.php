@@ -9,9 +9,6 @@ class Admin extends MY_Controller {
 	public function __construct(){
 		parent::__construct();
 
-		$this->front->add_script($this->config->item('admin_default_scripts'));
-		$this->front->add_style($this->config->item('admin_default_styles'));
-
 		$this->load->model('user_model');
 
 		$this->_user = $this->session->userdata('user');

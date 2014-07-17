@@ -7,7 +7,9 @@ class Output{
 
 		$output = str_replace('{seo_title}', $CI->seo->display_title(), $output);
 		$output = str_replace('{seo_description}', $CI->seo->display_description(), $output);
-
+		$output = str_replace('{display_styles}', $CI->front->display_styles(), $output);
+		$output = str_replace('{display_scripts}', $CI->front->display_scripts(), $output);
+		
 		$CI->output->set_output($output);
 	}
 

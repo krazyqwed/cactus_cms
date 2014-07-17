@@ -41,6 +41,11 @@ class Menu_model extends MY_Model {
 
 		$data['data'] = $data;
 
+		$this->front->add_script(array(
+			'res/js/admin/sortable/jquery.mjs.nestedSortable.js',
+			'res/js/admin/menu.js'
+		));
+
 		$this->load->view('admin/menus/menu_item_list', $data);
 	}
 }
