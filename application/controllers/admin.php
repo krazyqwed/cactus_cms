@@ -521,9 +521,27 @@ class Admin extends MY_Controller {
 		$this->_action('routes', $model, $action, $id);
 	}
 
-	public function documentation(){
-		$data['v'] = 'admin/documentation';
-		$this->load->view('admin/_layout', $data);
+	public function documentation($action = null, $id = null){
+		$model = $this->load->model('documentation_model');
+
+		if ($action == 'view'){
+			$this->load->library('Markdown');
+			
+			$this->front->add_style(array(
+				'res/css/admin/highlight/monokai_sublime.css',
+				'res/css/admin/documentation.css'
+			));
+			$this->front->add_script('res/js/admin/highlight/highlight.min.js');
+
+			$data['entries'] = $this->db->where('active', 1)->get($model->_db_table)->result_array();
+
+			$data['v'] = 'admin/documentation';
+			$this->load->view('admin/_layout', $data);
+		}else{
+			$this->_action('documentation', $model, $action, $id);
+		}
+
+
 	}
 
 	public function elfinder_html($type = 'file'){

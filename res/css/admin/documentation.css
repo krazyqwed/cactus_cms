@@ -1,0 +1,8 @@
+pre {
+    font-size: 16px;
+}
+
+code.hljs {
+    background-color: #47493E;
+    background-image: url("../../img/admin/hex.png");
+}

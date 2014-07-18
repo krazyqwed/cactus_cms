@@ -512,7 +512,20 @@ $('form.ajax-post').on('submit', function(e){
 
 /* Admin left menu */
 $activeMenu = $('#site-menu li[rel="'+$('#site-menu .input-site-menu').val()+'"]');
+
 $activeMenu.addClass('active');
+
+$activeMenu.each(function(){
+	var actual_action = $('#site-menu .input-site-menu').data('action');
+	var li_action = $(this).data('action');
+	var li_or_action = $(this).data('or-action');
+
+	if ((li_action == actual_action) || (li_or_action == actual_action)){
+		$activeMenu.removeClass('active');
+		$(this).addClass('active');
+	}
+});
+
 $activeMenu.closest('li.multi').addClass('sub-active');
 $activeMenu.closest('.submenu').show();
 $activeMenu.closest('li.multi').removeClass('s-close').addClass('s-open');

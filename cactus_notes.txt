@@ -11,6 +11,7 @@
 ---------------------------------
 * CSS and JS loading fixes
 * Admin fixes
+* Basic documentation system
 
 ---------------------------------
 2014.02.14 - v0.8.7

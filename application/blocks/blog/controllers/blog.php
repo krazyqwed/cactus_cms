@@ -14,6 +14,14 @@ class Blog extends MX_Controller {
 
 			$this->load->view('index', $data);
 		}else{
+			$this->load->library('Markdown');
+
+			$this->front->add_style(array(
+				'res/css/main/highlight/monokai_sublime.css',
+				'res/css/main/blog.css'
+			));
+			$this->front->add_script('res/js/main/highlight.min.js');
+
 			/* Join lang table because of the URL */
 			if (isset($model->db_table_lang) && $model->db_table_lang)
 				$entry = $this->db->join($model->_db_table.'_lang', $model->_db_table.'_lang.'.$model->_primary.' = '.$model->_db_table.'.'.$model->_primary, 'left')->where($model->_db_table.'.entry_id', $id)->or_where($model->_db_table.'.url', $id)->or_where($model->_db_table.'_lang.url', $id)->get($model->_db_table)->row_array();

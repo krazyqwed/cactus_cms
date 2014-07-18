@@ -8,7 +8,7 @@
 		<a href="<?php echo site_url('admin/logout'); ?>" class="btn btn-danger"><i class="fa fa-sign-out"></i></a>
 	</div>
 	<div id="site-menu">
-		<input type="hidden" class="input-site-menu" value="<?php echo $this->router->fetch_method() ?>" />
+		<input type="hidden" class="input-site-menu" value="<?php echo $this->router->fetch_method() ?>" <?php echo ($this->uri->segment(3))?"data-action=".$this->uri->segment(3): '' ?> />
 
 		<ul class="nav nav-list">
 			<li rel="index">
@@ -73,6 +73,25 @@
 					<i class="fa fa-flask"></i>
 					<span class="menu-text">SEO</span>
 				</a>
+			</li>
+			<li class="multi s-close">
+				<a href="javascript:void(0)" class="dropdown-toggle">
+					<i class="fa fa-list"></i>
+					<span class="menu-text">Dokumentáció</span>
+					<b class="arrow fa fa-angle-down"></b>
+				</a>
+				<ul class="submenu" style="display: none;">
+					<li rel="documentation" data-action="view">
+						<a href="<?php echo site_url('admin/documentation/view') ?>">
+							<span class="menu-text">Tartalomjegyzék</span>
+						</a>
+					</li>
+					<li rel="documentation" data-or-action="edit">
+						<a href="<?php echo site_url('admin/documentation') ?>">
+							<span class="menu-text">Bejegyzések</span>
+						</a>
+					</li>
+				</ul>
 			</li>
 			
 <?php

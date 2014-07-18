@@ -10,9 +10,6 @@ class _Tag extends MY_Controller {
 
 	public function __construct(){
 		parent::__construct();
-
-		$this->front->add_script($this->config->item('admin_default_scripts'));
-		$this->front->add_style($this->config->item('admin_default_styles'));
 	}
 
 	public function index($action = null, $id = null){
