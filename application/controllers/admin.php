@@ -19,7 +19,10 @@ class Admin extends MY_Controller {
 			}else{
 				$data['v'] = 'admin/login';
 				$this->load->view('admin/_layout', $data);
-				$this->output->_display(); exit();
+
+				$hook =& load_class('Hooks', 'core');
+				$hook->_call_hook('display_override');
+				exit();
 			}
 		}elseif ($this->session->userdata('user') && in_array($this->uri->segment(2), $this->_public_actions)){
 			redirect('admin');

@@ -10,25 +10,32 @@
 |
 */
 
+$hook['pre_controller'][] = array(
+    'class'    => 'Front_hook',
+    'function' => 'res',
+    'filename' => 'Front.php',
+    'filepath' => 'hooks'
+);
+
 $hook['display_override'][] = array(
-	'class'    => 'Output',
+	'class'    => 'Output_hook',
 	'function' => 'seo',
 	'filename' => 'Output.php',
 	'filepath' => 'hooks'
 );
 
 $hook['display_override'][] = array(
-	'class'    => 'Output',
+    'class'    => 'Output_hook',
+    'function' => 'res',
+    'filename' => 'Output.php',
+    'filepath' => 'hooks'
+);
+
+$hook['display_override'][] = array(
+	'class'    => 'Output_hook',
 	'function' => 'display',
 	'filename' => 'Output.php',
 	'filepath' => 'hooks'
-);
-
-$hook['pre_controller'][] = array(
-    'class'    => 'Front_hook',
-    'function' => 'res',
-    'filename' => 'Front.php',
-    'filepath' => 'hooks'
 );
 
 /* End of file hooks.php */

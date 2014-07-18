@@ -48,7 +48,7 @@
 	<div class="col-md-4">
 		<div id="page-header"><h1>Fejlesztési napló</h1></div>
 		<div class="change-note-wrap">
-			<span class="label label-info">Rendszer verziója: v<?php echo CMS_VERSION ?></span>
+			<span class="label label-info">Telepített rendszer verziója: v<?php echo CMS_VERSION ?></span>
 			<pre class="change-note"><?php echo $change_note; ?></pre>
 		</div>
 	</div>
