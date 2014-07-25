@@ -37,8 +37,11 @@ public $allowedExtensions = array();
     /**
      * Get the mime-type of the uploaded file
      */
-    public function getUploadMime(){
-        return file_get_mime($this->uploadFolder.'/'.$this->uploadName);
+    public function getUploadMime($by_extension = false){
+        if ($by_extension)
+            return get_mime_by_extension($this->uploadFolder.'/'.$this->uploadName);
+        else
+            return file_get_mime($this->uploadFolder.'/'.$this->uploadName);
     }
 
     /**

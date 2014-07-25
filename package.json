@@ -1,0 +1,10 @@
+{
+  "name": "GruntProject",
+  "title": "test",
+  "version": "1.0.0",
+  "devDependencies": {
+    "grunt": "0.4.x",
+    "grunt-contrib-sass": "0.7.x",
+    "grunt-contrib-watch": "0.6.x"
+  }
+}

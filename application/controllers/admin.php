@@ -609,7 +609,7 @@ class Admin extends MY_Controller {
 
 		    // To return a name used for uploaded file you can use the following line.
 		    $result["uploadName"] = $this->upload->getUploadName();
-		    $result["uploadMime"] = $this->upload->getUploadMime();
+		    $result["uploadMime"] = $this->upload->getUploadMime(true);
 
 		    echo json_encode($result);
 		}else{
