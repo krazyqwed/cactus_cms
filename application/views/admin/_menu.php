@@ -25,7 +25,7 @@
 			</li>
 			<li rel="blocks">
 				<a href="<?php echo site_url('admin/blocks') ?>">
-					<i class="fa fa-th"></i>
+					<i class="fa fa-cubes"></i>
 					<span class="menu-text">Blokkok</span>
 				</a>
 			</li>
@@ -38,7 +38,7 @@
 
 			<li class="multi s-close">
 				<a href="javascript:void(0)" class="dropdown-toggle">
-					<i class="fa fa-list"></i>
+					<i class="fa fa-users"></i>
 					<span class="menu-text">Felhasználók</span>
 					<b class="arrow fa fa-angle-down"></b>
 				</a>
@@ -70,13 +70,13 @@
 			</li>
 			<li rel="seo">
 				<a href="<?php echo site_url('admin/seo') ?>">
-					<i class="fa fa-flask"></i>
+					<i class="fa fa-google"></i>
 					<span class="menu-text">SEO</span>
 				</a>
 			</li>
 			<li class="multi s-close">
 				<a href="javascript:void(0)" class="dropdown-toggle">
-					<i class="fa fa-list"></i>
+					<i class="fa fa-file-code-o"></i>
 					<span class="menu-text">Dokumentáció</span>
 					<b class="arrow fa fa-angle-down"></b>
 				</a>

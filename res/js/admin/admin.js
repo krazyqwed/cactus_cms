@@ -57,6 +57,7 @@ if ($('.tinymce').length){
 		convert_urls: false,
 		menubar:false,
 		height: 500,
+		skin : 'light',
 		force_p_newlines : false,
 		force_br_newlines : false,
 		forced_root_block : false,

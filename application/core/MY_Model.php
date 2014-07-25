@@ -52,30 +52,6 @@ class MY_model extends CI_Model {
 		$this->front->autoload_by_field($this->_fields);
 	}
 
-	/* Example:
-		$this->block_instance_model->getWithRelation(array($this->block_model->_db_table => 'block_id' ));
-	*/
-	public function getWithRelation($relations, $query_string = null){
-		if (is_null($query_string))
-			$query = $this->db->query("SELECT * FROM `".$this->_db_table."`");
-		else
-			$query = $this->db->query($query_string);
-
-		$result = $query->result_array();
-		
-		foreach ($result as $row => $value){
-			foreach ($relations as $relation => $field){
-				if ($value[$field] != NULL){
-					$query = $this->db->query("SELECT * FROM `".$relation."` WHERE `".$field."` = ".$value[$field]);
-					$row_result = $query->row_array();
-					$result[$row][$field.'.relation'] = $row_result;
-				}
-			}
-		}
-
-		return $result;
-	}
-
 	public function save($id = null){
 		$data = $this->input->post();
 

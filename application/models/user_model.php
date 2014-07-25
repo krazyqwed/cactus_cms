@@ -22,6 +22,7 @@ class User_model extends MY_Model{
 		$this->_fields['role_id']['Type'] = '_select';
 		$this->_fields['role_id']['_Alias'] = 'Szerepkör';
 		$this->_fields['role_id']['_Select_options'] = $roles;
+		$this->_fields['role_id']['_Override_list_values'] = $roles;
 
 		$this->_fields['remember_token']['_Alias'] = 'Cookie token';
 		$this->_fields['remember_token']['_On_list'] = false;
