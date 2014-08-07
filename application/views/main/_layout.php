@@ -13,57 +13,42 @@
 </head>
 
 <body>
-    <div class="row">
-        <div class="large-12 columns">
-            <div class="nav-bar right">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1>Blog <small><?php echo $settings['slogen'] ?></small></h1>
+            </div>
+            <div class="col-sm-6">
                 <?php layout_render_parts('header', $parts) ?>
             </div>
-            <h1>Blog <small><?php echo $settings['slogen'] ?></small></h1>
+
             <hr />
         </div>
-    </div>
 
-    <div class="row">
-        <div class="large-9 columns" role="content">
-            <?php layout_render_parts('content', $parts) ?>
+        <div class="row">
+            <div class="col-sm-9" role="content">
+                <?php layout_render_parts('content', $parts) ?>
+            </div>
+
+            <aside class="col-sm-3">
+                <h5>Címkék</h5>
+
+                <div class="panel">
+                    
+                </div>
+            </aside>
         </div>
 
-        <aside class="large-3 columns">
-            <h5>Címkék</h5>
-            <ul class="side-nav">
-                <li><a href="#">News</a></li>
-                <li><a href="#">Code</a></li>
-                <li><a href="#">Design</a></li>
-                <li><a href="#">Fun</a></li>
-                <li><a href="#">Weasels</a></li>
-            </ul>
-
-            <div class="panel">
-                <h5>Featured</h5>
-                <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon nulla pork belly cupidatat meatloaf cow.</p>
-                <a href="#">Read More →</a>
-            </div>
-        </aside>
-    </div>
-
-    <footer class="row">
-        <div class="large-12 columns">
+        <footer class="row">
             <hr />
             <div class="row">
-                <div class="large-6 columns">
+                <div class="col-sm-12">
                     <p><?php echo $settings['footer'] ?></p>
                 </div>
-                <div class="large-6 columns">
-                    <ul class="inline-list right">
-                        <li><a href="#">Link 1</a></li>
-                        <li><a href="#">Link 2</a></li>
-                        <li><a href="#">Link 3</a></li>
-                        <li><a href="#">Link 4</a></li>
-                    </ul>
-                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
+
 
     <script type="text/javascript">
         base_url = '<?php echo base_url() ?>';

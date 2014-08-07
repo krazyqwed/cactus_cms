@@ -15,7 +15,7 @@ foreach ($parts as $part)
 <?php endforeach; ?>
 </ul>
 
-<a class="btn btn-info" href="<?php echo site_url('admin/layout_overrides') ?>">Elrendezés felülbírálása</a>
+<a class="btn btn-info" href="<?php echo site_url('admin/layout_overrides') ?>">Elrendezés felülbírálása URI szerint</a>
 
 <div id="page-header">
 	<h1>Részecskék listája</h1>

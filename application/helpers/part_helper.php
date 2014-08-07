@@ -38,7 +38,7 @@ function part_render($part){
 function part_get_lang_table($result, $part_id = null, $model){
 	$CI =& get_instance();
 
-	if (isset($model->db_table_lang) && $model->db_table_lang){
+	if (isset($model->_db_table_lang) && $model->_db_table_lang){
 		if ($CI->session->userdata('krazy_language') != $CI->config->item('default_language')){
 			if($CI->db->query("SHOW TABLES LIKE '".$model->_db_table."_lang'")->num_rows() == 1){
 				if ($part_id === null){
