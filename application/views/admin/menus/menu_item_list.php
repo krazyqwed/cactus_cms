@@ -1,6 +1,3 @@
-<script type="text/javascript" src="<?php echo base_url('res/js/admin/sortable/jquery.mjs.nestedSortable.js') ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('res/js/admin/menu.js') ?>"></script>
-
 <div class="row">
 	<div class="col-md-4">
 		<div class="panel panel-default">

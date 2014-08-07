@@ -1009,7 +1009,8 @@ class Markdown {
     # Create a code span markup for $code. Called from handleSpanToken.
     #
     $code = htmlspecialchars(trim($code), ENT_NOQUOTES);
-    return $this->hashPart("<code>$code</code>");
+    
+    return $this->hashPart("<pre><code>$code</code></pre>");
   }
 
   private function prepareItalicsAndBold() {
