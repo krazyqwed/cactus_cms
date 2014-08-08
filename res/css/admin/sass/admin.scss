@@ -712,25 +712,20 @@ body li{ list-style-type: none; }
 
 
 /* Blog CSS */
-
-.blog__markdown{
+.markdown{
+	display: flex;
 	background-color: #FFF;
+	border: 1px solid #ccc;
 
 	&.fullscreen{
 		position: fixed; z-index: 100;
 		left: 0; right: 0; top: 0; bottom: 0;
 
-		.CodeMirror{
-			float: left;
-			width: 50%; height: 100%;
-		}
+		.CodeMirror{ height: 100%; }
 
-		.rendered-markdown{
-			float: right;
-			width: 50%; height: 100%;
-		}
+		.rendered-markdown{ height: 100%; }
 
-		.blog__markdown_full{
+		.markdown_full{
 			display: block;
 			position: fixed;
 			right: 24px; top: 8px;
@@ -747,23 +742,21 @@ body li{ list-style-type: none; }
 	}
 
 	.CodeMirror{
-		display: inline-block;
-		width: 49%; height: 300px;
+		flex: 1 50%;
+		height: 300px;
 		padding: 8px;
 		border-right: 4px solid #CCC;
 		cursor: text;
 	}
 
 	.rendered-markdown{
+		flex: 1 50%;
 		overflow: auto;
-		float: right;
-		width: 49%; height: 300px;
+		height: 300px;
 		padding: 8px 12px;
 	}
 
-	.blog__markdown_full{
-		display: none;
-	}
+	.markdown_full{ display: none; }
 }
 
 /* Markdown style */
@@ -772,4 +765,12 @@ body li{ list-style-type: none; }
 	h2 { padding: 0; }
 
 	li { list-style-type: initial; }
+}
+
+/* Variable content */
+._variable .variable-field-select{
+	margin-bottom: 8px;
+}
+._variable textarea.common{
+	height: 300px;
 }

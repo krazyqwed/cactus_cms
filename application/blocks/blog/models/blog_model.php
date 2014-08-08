@@ -20,8 +20,8 @@ class Blog_model extends MY_Model {
 		$this->_fields['content']['Type'] = '_markdown';
 		$this->_fields['content']['_Alias'] = 'Tartalom';
 		$this->_fields['content']['_On_list'] = false;
-		$this->_fields['content']['_Function'] = 'blog_field';
-		$this->_fields['content']['_Description'] = '<a href="javascript:void(0);" class="blog__markdown_full">Teljes képernyő</a>';
+		//$this->_fields['content']['_Function'] = 'blog_field';
+		$this->_fields['content']['_Description'] = '<a href="javascript:void(0);" class="markdown_full">Teljes képernyő</a>';
 
 		$this->_fields['date']['_Alias'] = 'Dátum';
 
@@ -64,7 +64,7 @@ class Blog_model extends MY_Model {
 			) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 		");
 	}
-
+/*
 	public function blog_field($content, $field){
 		$data = array(
 			'field_name' => $field,
@@ -77,4 +77,5 @@ class Blog_model extends MY_Model {
 
 		$this->load->view('blog/admin/blog_field', $data);
 	}
+*/
 }

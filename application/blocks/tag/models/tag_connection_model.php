@@ -17,7 +17,7 @@ class Tag_connection_model extends MY_Model {
 			  `tag_connection_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
 			  `tag_id` int(10) unsigned NOT NULL,
 			  `table` varchar(64) NOT NULL,
-			  `key` int(64) NOT NULL,
+			  `remote_id` int(10) unsigned NOT NULL,
 			  PRIMARY KEY (`tag_connection_id`),
 			  KEY `tag_id` (`tag_id`)
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8;

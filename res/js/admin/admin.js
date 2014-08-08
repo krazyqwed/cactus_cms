@@ -176,12 +176,28 @@ if ($('.datepicker').length){
 }
 
 /* Markdown */
-if ($('.blog__markdown').length){
-    $('.blog__markdown').ghostDown();
+if ($('.markdown').length){
+    $('.markdown').ghostDown();
 
-    $('.blog__markdown_full').click(function(){
-    	$('.blog__markdown').toggleClass('fullscreen');
+    $('.markdown_full').click(function(){
+    	$('.markdown').toggleClass('fullscreen');
     	$('body').toggleClass('disable-scroll');
+    });
+}
+
+/* Variable type */
+if ($('._variable').length){
+    $(document).on('change', '._variable select.content-type', function(){
+    	$(this).closest('._variable').find('.editor-panel').addClass('hidden');
+    	$(this).closest('._variable').find('.editor-panel:eq('+$(this).val()+')').removeClass('hidden');
+    	
+    	$(this).closest('._variable').find('.editor-panel textarea, .editor-panel input, .editor-panel select').attr('name', '');
+
+    	$input = $(this).closest('._variable').find('.editor-panel:eq('+$(this).val()+') textarea, .editor-panel:eq('+$(this).val()+') input, .editor-panel:eq('+$(this).val()+') select').filter(function(){
+    		return typeof $(this).data('name') != 'undefined';
+    	});
+
+    	$input.attr('name', $input.data('name'));
     });
 }
 
