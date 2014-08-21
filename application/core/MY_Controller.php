@@ -52,6 +52,12 @@ class MY_Controller extends MX_Controller {
 			'options' => $options
 		);
 
+		$this->front->add_style('res/js/admin/datatables/jquery.dataTables.min.css');
+		$this->front->add_script(array(
+			'res/js/admin/datatables/jquery.dataTables.min.js',
+			'res/js/admin/datatables/dataTables.bootstrap.min.js'
+		));
+
 		$this->load->view('admin/_layout', $data);
 	}
 

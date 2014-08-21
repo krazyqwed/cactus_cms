@@ -19,7 +19,8 @@ function permission_check($type, $tc, $fa){
 	}elseif ($permission_role !== null){
 		$permission = $permission_role;
 	}else{
-		$permission = true;
+		$permission_row = permission_get_by_id($permission_id);
+		$permission = (bool)$permission_row['enabled'];
 	}
 
 	return $permission;
@@ -52,6 +53,17 @@ function permission_get_id($type, $tc, $fa){
 	}
 
 	return $permission['permission_id'];
+}
+
+
+function permission_get_by_id($id){
+	$CI =& get_instance();
+
+	$permission = $CI->db->get_where('permissions', array(
+		'permission_id' => $id
+	))->row_array();
+
+	return $permission;
 }
 
 function permission_role($permission_id, $role_id = null){

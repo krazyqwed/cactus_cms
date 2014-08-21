@@ -1,0 +1,23 @@
+{
+    "emptyTable":     "Nincs adat vagy nem elérhetõ",
+    "info":           "Bejegyzések _START_ - _END_-ig (Összesen: _TOTAL_)",
+    "infoEmpty":      "Bejegyzések 0 - 0-ig (Összesen: 0)",
+    "infoFiltered":   "(Szûrve _MAX_ bejegyzés)",
+    "infoPostFix":    "",
+    "thousands":      ",",
+    "lengthMenu":     "Mutass _MENU_ bejegyzést",
+    "loadingRecords": "Töltés...",
+    "processing":     "Feldolgozás...",
+    "search":         "Keresés:",
+    "zeroRecords":    "Nem található egyezés",
+    "paginate": {
+        "first":      "Elsõ",
+        "last":       "Utolsó",
+        "next":       "Következõ",
+        "previous":   "Elõzõ"
+    },
+    "aria": {
+        "sortAscending":  ": activate to sort column ascending",
+        "sortDescending": ": activate to sort column descending"
+    }
+}

@@ -6,7 +6,7 @@
 	<h1><?php echo $title ?></h1>
 </div>
 
-<table>
+<table class="datatable">
 	<thead>
 <?php foreach ($db_fields as $key => $field): ?>
 	<?php if ($key[0] !== '_'): ?>
@@ -18,7 +18,7 @@
 	<?php endif; ?>
 <?php endforeach; ?>
 	<?php if (!isset($options['disable_edit']) || (isset($options['disable_edit']) && !$options['disable_edit'])): ?>
-		<th>Műveletek</th>
+		<th class="disable-sort disable-search">Műveletek</th>
 	<?php endif; ?>
 	</thead>
 	<tbody>
@@ -62,9 +62,6 @@
 		}
 	}
 	?>
-		<tr>
-			<td colspan="<?php echo $count ?>" style="text-align: center; font-style: italic;">Nincs bejegyzés</td>
-		</tr>
 <?php endif; ?>
 	</tbody>
 </table>

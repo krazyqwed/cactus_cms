@@ -53,6 +53,11 @@
 							<span class="menu-text">Szerepkörök</span>
 						</a>
 					</li>
+					<li rel="permissions">
+						<a href="<?php echo site_url('admin/permissions') ?>">
+							<span class="menu-text">Jogosultságok</span>
+						</a>
+					</li>
 				</ul>
 			</li>
 

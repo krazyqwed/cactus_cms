@@ -16,6 +16,7 @@ class Content_model extends MY_Model {
 		$this->_fields['title']['_Alias'] = 'Cím';
 
 		$this->_fields['content_type']['_On_edit'] = false;
+		$this->_fields['content_type']['_On_list'] = false;
 
 		$this->_fields['content']['_Alias'] = 'Tartalom';
 		$this->_fields['content']['Type'] = '_variable';

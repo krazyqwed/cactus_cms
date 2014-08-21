@@ -170,11 +170,78 @@ class Admin extends MY_Controller {
 		$this->_action('users', $model, $action, $id);
 	}
 
+	public function permissions($action = null, $id = null){
+		$this->load->model('permission_model');
+		$model = $this->permission_model;
+
+		$this->_action('permissions', $model, $action, $id);
+	}
+
 	public function roles($action = null, $id = null){
 		$this->load->model('role_model');
 		$model = $this->role_model;
 
-		$this->_action('roles', $model, $action, $id);
+		if ($action == 'save'){
+			$data = $this->input->post();
+
+			if (isset($data['enabled'])){
+				$permissions_res = $this->db->get('permissions')->result_array();
+				$permissions = array();
+
+				foreach ($permissions_res as $key => $val){
+					$permissions[$val['permission_id']] = $val;
+				}
+
+				$role_permissions_res = $this->db->get_where('role_permissions', array('role_id' => $id))->result_array();
+				$role_permissions = array();
+
+				foreach ($role_permissions_res as $key => $val){
+					$role_permissions[$val['permission_id']] = $val;
+				}
+
+				foreach ($data['enabled'] as $key => $val){
+					if (isset($role_permissions[$key]) && $role_permissions[$key]['enabled'] != $val){ // Checking if there's a role with this key
+						if ($permissions[$key]['enabled'] != $val){ // Checking differences with defaults
+							$insert_data = array(
+								'role_id' => $id,
+								'permission_id' => $key,
+								'enabled' => $val
+							);
+
+							$this->db->insert('role_permissions', $insert_data);
+						}else{
+							$this->db->delete('role_permissions', array('role_permission_id' => $role_permissions[$key]['role_permission_id']));
+						}
+					}elseif (isset($role_permissions[$key]) && $permissions[$key]['enabled'] == $val){
+						$this->db->delete('role_permissions', array('role_permission_id' => $role_permissions[$key]['role_permission_id']));
+					}elseif (!isset($role_permissions[$key]) && $permissions[$key]['enabled'] != $val){
+						$insert_data = array(
+							'role_id' => $id,
+							'permission_id' => $key,
+							'enabled' => $val
+						);
+
+						$this->db->insert('role_permissions', $insert_data);
+					}
+				}
+
+				foreach($_POST as $key => $val){
+					if ($key != 'key' && $key != 'name'){
+						unset($_POST[$key]);
+					}
+				}
+			}
+			$this->_action('roles', $model, $action, $id);
+		}else{
+			$this->_action('roles', $model, $action, $id);
+		}
+	}
+
+	public function role_permissions($action = null, $id = null){
+		$this->load->model('role_permission_model');
+		$model = $this->role_permission_model;
+
+		$this->_action('role_permissions', $model, $action, $id);
 	}
 
 	public function user_settings($action = null, $id = null){

@@ -112,36 +112,45 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 <?php if (permission_check('field', $db_table, $field['Field'])): ?>
 <?php if ((!isset($content[$db_primary]) && ((isset($field['_On_new']) && $field['_On_new']) || !isset($field['_On_new']))) || isset($content[$db_primary])): ?>
 		<tr class="<?php echo (isset($field['Type'])) ? preg_replace('/\(|\)|[0-9]+/', '', $field['Type']) : 'custom'?>">
-	<?php if ((!isset($content[$db_primary])) || (isset($content[$db_primary]))): ?>
+	<?php if ((!isset($field['_Show_title'])) || (isset($field['_Show_title']) && $field['_Show_title'] != false)): ?>
+		<?php $td_colspan = false; ?>
 			<td><?php echo isset($field['_Alias'])?$field['_Alias']:$field['Field'] ?><?php echo isset($field['_Description'])?'<label>'.$field['_Description'].'</label>':'' ?></td>
+	<?php else: ?>
+		<?php $td_colspan = 2; ?>
 	<?php endif; ?>
 
 	<?php if ($key[0] !== '_' && !isset($field['_Function'])): ?>
 		<?php if (($field['Key'] == 'PRI' && $field['Extra'] == 'auto_increment') || (isset($field['_Editable']) && !$field['_Editable'])): ?>
-			<td><?php echo isset($content[$field['Field']])?$content[$field['Field']]:'' ?></td>
+			<td <?php echo is_numeric($td_colspan)?'colspan="'.$td_colspan.'"':'' ?>>
+			<?php if (isset($field['_Override_list_values'])): ?>
+				<?php echo $field['_Override_list_values'][$content[$field['Field']]]; ?>
+			<?php else: ?>
+				<?php echo isset($content[$field['Field']])?$content[$field['Field']]:'' ?>
+			<?php endif; ?>
+			</td>
 		<?php elseif (strstr($field['Type'], 'int')): ?>
-			<td><input name="<?php echo $field['Field'] ?>" class="form-control" type="text" value="<?php echo isset($content[$field['Field']])?$content[$field['Field']]:'' ?>" /></td>
+			<td <?php echo is_numeric($td_colspan)?'colspan="'.$td_colspan.'"':'' ?>><input name="<?php echo $field['Field'] ?>" class="form-control" type="text" value="<?php echo isset($content[$field['Field']])?$content[$field['Field']]:'' ?>" /></td>
 		<?php elseif (strstr($field['Type'], 'varchar')): ?>
 			<?php $max_length = str_replace(array('varchar', '(', ')'), '', $field['Type']) ?>
-			<td>
+			<td <?php echo is_numeric($td_colspan)?'colspan="'.$td_colspan.'"':'' ?>>
 				<div class="input-group">
 					<input name="<?php echo $field['Field'] ?>" class="form-control" type="text" value="<?php echo isset($content[$field['Field']])?$content[$field['Field']]:'' ?>" maxlength="<?php echo $max_length ?>" />
 					<span class="input-group-addon"><?php echo $max_length ?></span>
 				</div>
 			</td>
 		<?php elseif (strstr($field['Type'], 'text')): ?>
-			<td><textarea class="form-control" name="<?php echo $field['Field'] ?>"><?php echo isset($content[$field['Field']])?$content[$field['Field']]:'' ?></textarea></td>
+			<td <?php echo is_numeric($td_colspan)?'colspan="'.$td_colspan.'"':'' ?>><textarea class="form-control" name="<?php echo $field['Field'] ?>"><?php echo isset($content[$field['Field']])?$content[$field['Field']]:'' ?></textarea></td>
 		<?php elseif (strstr($field['Type'], 'date')): ?>
-			<td><input name="<?php echo $field['Field'] ?>" class="datepicker form-control" readonly="readonly" type="text" value="<?php echo isset($content[$field['Field']])?$content[$field['Field']]:'' ?>" /></td>
+			<td <?php echo is_numeric($td_colspan)?'colspan="'.$td_colspan.'"':'' ?>><input name="<?php echo $field['Field'] ?>" class="datepicker form-control" readonly="readonly" type="text" value="<?php echo isset($content[$field['Field']])?$content[$field['Field']]:'' ?>" /></td>
 		<?php elseif ($field['Type'] == '_spinner'): ?>
-			<td><input name="<?php echo $field['Field'] ?>" class="spinner" type="text" value="<?php echo isset($content[$field['Field']])?$content[$field['Field']]:'' ?>" /></td>
+			<td <?php echo is_numeric($td_colspan)?'colspan="'.$td_colspan.'"':'' ?>><input name="<?php echo $field['Field'] ?>" class="spinner" type="text" value="<?php echo isset($content[$field['Field']])?$content[$field['Field']]:'' ?>" /></td>
 		<?php elseif ($field['Type'] == '_checkbox'): ?>
-			<td>
+			<td <?php echo is_numeric($td_colspan)?'colspan="'.$td_colspan.'"':'' ?>>
 				<input name="<?php echo $field['Field'] ?>" type="hidden" value="0" />
 				<input name="<?php echo $field['Field'] ?>" type="checkbox" value="1" <?php echo (isset($content[$field['Field']]) && $content[$field['Field']] == 1)?'checked="checked"':'' ?> />
 			</td>
 		<?php elseif ($field['Type'] == '_select'): ?>
-			<td>
+			<td <?php echo is_numeric($td_colspan)?'colspan="'.$td_colspan.'"':'' ?>>
 				<select class="selectpicker" name="<?php echo $field['Field'] ?>" <?php echo (isset($field['_Select_ajax']) && $field['_Select_ajax'] && isset($field['_Select_ajax_method']))?'data-ajax="1"':'' ?> <?php echo (isset($field['_Select_ajax']) && $field['_Select_ajax'] && isset($field['_Select_ajax_method']))?'data-ajax-method="'.$field['_Select_ajax_method'].'"':'' ?>  <?php echo (isset($field['_Select_ajax']) && $field['_Select_ajax'] && isset($field['_Select_ajax_field']))?'data-ajax-field="'.$field['_Select_ajax_field'].'"':'' ?> <?php echo (isset($content[$field['Field']]) && isset($field['_Select_ajax']) && $field['_Select_ajax'] && isset($field['_Select_ajax_field'])) ? 'data-ajax-selected="'.$content[$field['Field']].'"' : '' ?>>
 				<?php
 				if (isset($field['_Select_inner_relation']) && is_array($field['_Select_inner_relation'])){
@@ -164,7 +173,7 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 				</select>
 			</td>
 		<?php elseif ($field['Type'] == '_multiselect'): ?>
-			<td>
+			<td <?php echo is_numeric($td_colspan)?'colspan="'.$td_colspan.'"':'' ?>>
 				<input name="<?php echo $field['Field'] ?>" type="hidden" value="" />
 				<select class="multiselect" multiple name="<?php echo $field['Field'] ?>[]" <?php echo (isset($field['_Select_ajax']) && $field['_Select_ajax'] && isset($field['_Select_ajax_method']))?'data-ajax="1"':'' ?> <?php echo (isset($field['_Select_ajax']) && $field['_Select_ajax'] && isset($field['_Select_ajax_method']))?'data-ajax-method="'.$field['_Select_ajax_method'].'"':'' ?>  <?php echo (isset($field['_Select_ajax']) && $field['_Select_ajax'] && isset($field['_Select_ajax_field']))?'data-ajax-field="'.$field['_Select_ajax_field'].'"':'' ?> <?php echo (isset($content[$field['Field']]) && isset($field['_Select_ajax']) && $field['_Select_ajax'] && isset($field['_Select_ajax_field'])) ? 'data-ajax-selected="'.$content[$field['Field']].'"' : '' ?>>
 				<?php
@@ -191,16 +200,16 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 				</select>
 			</td>
 		<?php elseif ($field['Type'] == '_date'): ?>
-			<td><input name="<?php echo $field['Field'] ?>" class="form-control" type="text" value="<?php echo isset($content[$field['Field']])?$content[$field['Field']]:date('Y-m-d') ?>" /></td>
+			<td <?php echo is_numeric($td_colspan)?'colspan="'.$td_colspan.'"':'' ?>><input name="<?php echo $field['Field'] ?>" class="form-control" type="text" value="<?php echo isset($content[$field['Field']])?$content[$field['Field']]:date('Y-m-d') ?>" /></td>
 		<?php elseif ($field['Type'] == '_datetime'): ?>
-			<td><input name="<?php echo $field['Field'] ?>" class="form-control" type="text" value="<?php echo isset($content[$field['Field']])?$content[$field['Field']]:date('Y-m-d H:i:s') ?>" /></td>
+			<td <?php echo is_numeric($td_colspan)?'colspan="'.$td_colspan.'"':'' ?>><input name="<?php echo $field['Field'] ?>" class="form-control" type="text" value="<?php echo isset($content[$field['Field']])?$content[$field['Field']]:date('Y-m-d H:i:s') ?>" /></td>
 		<?php elseif ($field['Type'] == '_wysiwyg'): ?>
-			<td class="wysiwyg-field" rel="<?php echo $code_editor_count ?>">
+			<td class="wysiwyg-field" rel="<?php echo $code_editor_count ?>" <?php echo is_numeric($td_colspan)?'colspan="'.$td_colspan.'"':'' ?>>
 				<textarea class="tinymce form-control" name="<?php echo $field['Field'] ?>"><?php echo isset($content[$field['Field']])?$content[$field['Field']]:'' ?></textarea>
 			</td>
 			<?php $code_editor_count++ ?>
 		<?php elseif ($field['Type'] == '_markdown'): ?>
-			<td>
+			<td <?php echo is_numeric($td_colspan)?'colspan="'.$td_colspan.'"':'' ?>>
 				<div class="markdown">
 					<textarea class="code" name="<?php echo $field['Field'] ?>"><?php echo isset($content[$field['Field']])?$content[$field['Field']]:'' ?></textarea>
 					<div class="rendered-markdown"></div>
@@ -209,7 +218,7 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 				</div>
 			</td>
 		<?php elseif ($field['Type'] == '_variable'): ?>
-			<td class="variable-field" rel="<?php echo $code_editor_count ?>">
+			<td class="variable-field" rel="<?php echo $code_editor_count ?>" <?php echo is_numeric($td_colspan)?'colspan="'.$td_colspan.'"':'' ?>>
 				<div class="variable-field-select">
 					<select class="selectpicker content-type" name="<?php echo $field['_Content_type_name'] ?>" rel="<?php echo $content['content_type'] ?>">
 					<?php foreach ($field['_Select_options'] as $key => $option): ?>
@@ -241,7 +250,7 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 					$y = base64_encode($x);
 				}
 			?>
-			<td>
+			<td <?php echo is_numeric($td_colspan)?'colspan="'.$td_colspan.'"':'' ?>>
 				<?php echo (isset($content[$field['Field']]) && $content[$field['Field']] != '')?'<img class="image-tmb" src="data:image/jpg;base64,'.$y.'" />':'' ?>
 
 				<input class="filename" name="<?php echo $field['Field'] ?>" type="hidden" value="<?php echo isset($content[$field['Field']])?$content[$field['Field']]:'' ?>" />
@@ -273,7 +282,7 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 				}
 			?>
 
-			<td>
+			<td <?php echo is_numeric($td_colspan)?'colspan="'.$td_colspan.'"':'' ?>>
 				<input class="js-crop-tmb-width" type="hidden" value="<?php echo isset($field['_Image_size'])?$thumbsize[0]:'150' ?>" />
 				<input class="js-crop-tmb-height" type="hidden" value="<?php echo isset($field['_Image_size'])?$thumbsize[1]:'150' ?>" />
 
@@ -324,7 +333,7 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 				</div>
 			</td>
 		<?php elseif ($field['Type'] == '_file'): ?>
-			<td>
+			<td <?php echo is_numeric($td_colspan)?'colspan="'.$td_colspan.'"':'' ?>>
 				<input class="field-name" type="hidden" value="<?php echo $field['Field'] ?>" />
 
 			<?php if (isset($content[$field['Field']]) && $content[$field['Field']]): ?>
@@ -352,7 +361,7 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 			</td>
 		<?php endif; ?>
 	<?php else: ?>
-		<td>
+		<td <?php echo is_numeric($td_colspan)?'colspan="'.$td_colspan.'"':'' ?>>
 			<?php echo isset($field['_Content'])?$field['_Content']:'' ?>
 			<?php echo isset($field['_Function'])?$model->{$field['_Function']}($content, $field['Field']):'' ?>
 		</td>

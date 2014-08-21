@@ -3,15 +3,32 @@
 #################################
 #   Creator: Kocsis Dávid       #
 #   Date: 2014.01.07            #
-#   Last mod.: 2014.07.18       #
+#   Last mod.: 2014.08.21       #
 #################################
+
+---------------------------------
+2014.08.21 - v0.9.0
+---------------------------------
++ Access management for roles
++ Sortable/Filterable list views
+
+* Small fixes
+
+^ Access management for individual
+  users
+
+---------------------------------
 
 ---------------------------------
 2014.07.18 - v0.8.8
 ---------------------------------
++ Variable content type
+
 * CSS and JS loading fixes
 * Admin fixes
 * Basic documentation system
+
+---------------------------------
 
 ---------------------------------
 2014.02.14 - v0.8.7
@@ -57,8 +74,8 @@
 ---------------------------------
 + Admin block dependencities
 
-^ - File upload
-^ - Table paging/sort/filter
+^ File upload
+^ Table paging/sort/filter
 ---------------------------------
 
 ---------------------------------
