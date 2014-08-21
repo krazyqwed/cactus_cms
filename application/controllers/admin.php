@@ -174,7 +174,10 @@ class Admin extends MY_Controller {
 		$this->load->model('permission_model');
 		$model = $this->permission_model;
 
-		$this->_action('permissions', $model, $action, $id, array('disable_add' => true));
+		$this->_action('permissions', $model, $action, $id, array(
+			'disable_add' => true,
+			'top_notification' => 'Figyelem! Az egyes bejegyzések a különböző admin oldalak meglátogatásával, maguktól kerlülnek ide!'
+		));
 	}
 
 	public function roles($action = null, $id = null){

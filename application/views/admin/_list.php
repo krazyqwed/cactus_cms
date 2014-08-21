@@ -1,3 +1,7 @@
+<?php if (isset($options['top_notification']) && mb_strlen($options['top_notification']) > 0): ?>
+	<div class="alert alert-warning force-show" role="alert"><?php echo $options['top_notification'] ?></div>
+<?php endif; ?>
+
 <div id="page-header">
 <?php if (isset($options['has_export']) && $options['has_export']): ?>
 	<a class="btn btn-info" style="float: right;" href="<?php echo site_url('admin/'.$module.'/export') ?>">Exportálás</a>
