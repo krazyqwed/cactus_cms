@@ -174,7 +174,7 @@ class Admin extends MY_Controller {
 		$this->load->model('permission_model');
 		$model = $this->permission_model;
 
-		$this->_action('permissions', $model, $action, $id);
+		$this->_action('permissions', $model, $action, $id, array('disable_add' => true));
 	}
 
 	public function roles($action = null, $id = null){
