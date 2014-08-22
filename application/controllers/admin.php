@@ -86,6 +86,10 @@ class Admin extends MY_Controller {
 		}
 	}
 
+	public function lockscreen(){
+		$this->load->view('admin/lockscreen');
+	}
+
 	public function logout(){
 		$cookie = array(
 			'name'   => 'krazy_remember_token',
