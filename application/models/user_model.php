@@ -9,8 +9,11 @@ class User_model extends MY_Model{
 
 		$this->_fields['username']['_Alias'] = 'Felhasználónév';
 
+		$this->front->add_script('res/js/admin/misc/md5.js');
+
 		$this->_fields['password']['_Alias'] = 'Jelszó';
 		$this->_fields['password']['_On_list'] = false;
+		$this->_fields['password']['_Function'] = 'user_field_password';
 		
 		$query = $this->db->get('roles')->result_array();
 
@@ -37,6 +40,17 @@ class User_model extends MY_Model{
 		$this->_fields['_settings']['_On_new'] = false;
 
 		parent::_post_actions();
+	}
+
+	public function user_field_password($content, $field){
+		return '
+			<div class="input-group">
+				<span class="input-group-btn">
+					<span class="btn btn-default" type="button" onclick="$(this).closest(\'.input-group\').find(\'input\').val(md5($(this).closest(\'.input-group\').find(\'input\').val()))">MD5</span>
+				</span>
+				<input name="'.$field.'" class="form-control" type="text" value="'.(isset($content['password'])?$content['password']:'').'">
+			</div>
+		';
 	}
 
 	public function user_field_settings($content, $field){

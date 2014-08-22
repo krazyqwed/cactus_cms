@@ -20,6 +20,8 @@ class Documentation_model extends MY_Model {
 
 		$this->_fields['active']['_Alias'] = 'Aktív';
 		$this->_fields['active']['Type'] = '_checkbox';
+
+		parent::_post_actions();
 	}
 
 	public function _create_table(){

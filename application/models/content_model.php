@@ -43,6 +43,8 @@ class Content_model extends MY_Model {
 		$this->_fields['categories']['_Block_dependencity'] = block_is_exists('category');
 
 		$this->_fields['description']['_Alias'] = 'Leírás';
+
+		parent::_post_actions();
 	}
 
 	public function _create_table(){

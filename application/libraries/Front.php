@@ -6,22 +6,48 @@ class Front{
 
 	public function add_script($url){
 		if (is_array($url))
-			$this->scripts = array_unique(array_merge($this->scripts, $url));
+			$this->scripts = array_merge($this->scripts, $url);
 		else
-			$this->scripts = array_unique(array_merge($this->scripts, array($url)));
+			$this->scripts = array_merge($this->scripts, array($url));
 	}
 
 	public function add_style($url){
 		if (is_array($url))
-			$this->styles = array_unique(array_merge($this->styles, $url));
+			$this->styles = array_merge($this->styles, $url);
 		else
-			$this->styles = array_unique(array_merge($this->styles, array($url)));
+			$this->styles = array_merge($this->styles, array($url));
+	}
+
+	private function make_unique($input){
+		$res = array();
+		$res_z = array();
+
+		foreach ($input as $key => $value){
+
+			if (is_array($value)){
+				$res_z['z_'.$value[1].'_'.md5(serialize($value[0]))] = $value;
+			}else{
+				$res[md5(serialize($value))] = $value;
+			}
+		}
+
+		uksort($res_z, "strnatcmp");
+
+		return array_merge($res, $res_z);
 	}
 
 	public function display_scripts(){
+		$this->scripts = $this->make_unique($this->scripts);
 		$scripts = '';
 
 		if (!empty($this->scripts)){
+			foreach ($this->scripts as $key => $script) {
+				if (is_array($script)){
+					unset($this->scripts[$key]);
+					$this->scripts['z_'.$script[1].'_'.$key] = $script[0];
+				}
+			}
+
 			foreach ($this->scripts as $script)
 				$scripts .= '<script type="text/javascript" src="'.base_url($script).'"></script>';
 		}
@@ -30,8 +56,17 @@ class Front{
 	}
 	
 	public function display_styles(){
+		$this->styles = $this->make_unique($this->styles);
 		$styles = '';
+
 		if (!empty($this->styles)){
+			foreach ($this->styles as $key => $style) {
+				if (is_array($style)){
+					unset($this->styles[$key]);
+					$this->styles['z_'.$style[1].'_'.$key] = $style[0];
+				}
+			}
+
 			foreach ($this->styles as $style)
 				$styles .= '<link rel="stylesheet" type="text/css" href="'.base_url($style).'" />';
 		}

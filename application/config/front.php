@@ -4,7 +4,7 @@ $config['admin_default_scripts'] = array(
 	'res/js/jquery-1.10.2.min.js',
 	'res/js/jquery-ui-1.10.4.min.js',
 	'res/js/admin/bootstrap/bootstrap.min.js',
-	'res/js/admin/admin.js'
+	array('res/js/admin/admin.js', 9999)
 );
 
 $config['admin_default_styles'] = array(
@@ -19,7 +19,7 @@ $config['main_default_scripts'] = array(
 	'res/js/jquery-1.10.2.min.js',
 	'res/js/jquery-ui-1.10.4.min.js',
 	'res/js/main/foundation/foundation.min.js',
-	'res/js/main/main.js'
+	array('res/js/main/main.js', 9999)
 );
 
 $config['main_default_styles'] = array(
