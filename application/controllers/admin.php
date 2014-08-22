@@ -31,7 +31,6 @@ class Admin extends MY_Controller {
 
 	public function login(){
 		if ($this->input->post('username')){
-			//$this->load->library('user_agent');
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
 		}
@@ -122,7 +121,8 @@ class Admin extends MY_Controller {
 					));
 
 					$this->session->set_flashdata('registration_successful', true);
-					redirect('admin/login');
+
+					redirect('admin');
 				}else{
 					$data['v'] = 'admin/registration';
 					$data['post'] = $post;
