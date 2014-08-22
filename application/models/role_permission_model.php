@@ -31,7 +31,7 @@ class Role_permission_model extends MY_Model {
 
 	public function _create_table(){
 		$this->db->query("
-			CREATE TABLE IF NOT EXISTS `".$_db_table."` (
+			CREATE TABLE IF NOT EXISTS `".$this->_db_table."` (
 			  `role_permission_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
 			  `role_id` int(10) unsigned NOT NULL,
 			  `permission_id` int(10) unsigned NOT NULL,

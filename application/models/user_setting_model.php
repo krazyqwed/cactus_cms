@@ -24,7 +24,7 @@ class User_setting_model extends MY_Model{
 
 	public function _create_table(){
 		$this->db->query("
-			CREATE TABLE IF NOT EXISTS `user_settings` (
+			CREATE TABLE IF NOT EXISTS `".$this->_db_table."` (
 			  `user_setting_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
 			  `user_id` int(10) unsigned NOT NULL,
 			  `full_name` varchar(128) NOT NULL,
