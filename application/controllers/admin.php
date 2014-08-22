@@ -29,9 +29,9 @@ class Admin extends MY_Controller {
 		}
 	}
 
-	public function login($username, $password){
+	public function login(){
 		if ($this->input->post('username')){
-			$this->load->library('user_agent');
+			//$this->load->library('user_agent');
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
 		}
@@ -42,20 +42,17 @@ class Admin extends MY_Controller {
 		));
 
 		if ($data->num_rows() > 0){
-			$this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
-			$this->cache->clean();
-
 			$this->session->set_userdata('user', $data->row());
 
 			if ($this->input->post('remember')){
 				$random = md5($username.date('Y-m-d H:i:s').$password.rand(1, 10000));
 
 				$cookie = array(
-				    'name'   => 'krazy_remember_token',
-				    'value'  => $random,
-				    'expire' => '1209600', //Two weeks
-				    'domain' => '',
-				    'path'   => '/'
+					'name'   => 'krazy_remember_token',
+					'value'  => $random,
+					'expire' => '1209600', //Two weeks
+					'domain' => '',
+					'path'   => '/'
 				);
 
 				$this->input->set_cookie($cookie);
@@ -65,11 +62,11 @@ class Admin extends MY_Controller {
 					'last_login' => date('Y-m-d H:i:s')
 				));
 			}
-
-			redirect('admin');
 		}else{
-			return false;
+			$this->session->set_flashdata('user_failed_login', true);
 		}
+
+		redirect('admin');
 	}
 
 	private function login_check_stored_session(){
@@ -79,9 +76,6 @@ class Admin extends MY_Controller {
 			$data = $this->db->join('user_settings', 'user_settings.user_id = users.user_id', 'inner')->get_where('users', array( 'remember_token' => $remember_token ));
 
 			if ($data->num_rows() > 0){
-				$this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
-				$this->cache->clean();
-
 				$this->session->set_userdata('user', $data->row());
 
 				return true;
@@ -94,6 +88,16 @@ class Admin extends MY_Controller {
 	}
 
 	public function logout(){
+		$cookie = array(
+			'name'   => 'krazy_remember_token',
+			'value'  => '',
+			'expire' => '0',
+			'domain' => '',
+			'path'   => '/'
+		);
+
+		$this->input->set_cookie($cookie);
+
 		$this->db->update('users', array(
 			'remember_token' => ''
 		));
@@ -115,11 +119,6 @@ class Admin extends MY_Controller {
 						'username' => $post['username'],
 						'password' => md5($post['password']),
 						'role_id' => 2
-					));
-
-					$this->db->insert('user_settings', array(
-						'user_id' => $this->db->insert_id(),
-						'full_name' => $post['username']
 					));
 
 					$this->session->set_flashdata('registration_successful', true);

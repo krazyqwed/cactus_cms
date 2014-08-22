@@ -1,6 +1,11 @@
 <div id="content-login">
 	<h1>Bejelentkezés</h1>
-
+	
+<?php if ($this->session->flashdata('user_failed_login')): ?>
+	<div class="alert alert-danger force-show">
+		Hibás felhasználónév vagy jelszó!
+	</div>
+<?php endif; ?>
 <?php if ($this->session->flashdata('registration_successful')): ?>
 	<div class="alert alert-success force-show">
 		A regisztráció sikeres volt!
