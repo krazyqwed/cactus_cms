@@ -7,12 +7,16 @@ class MY_model extends CI_Model {
 	public $_db_table = false;
 
 	public function __construct($db_table = null){
+		$this->load->driver('cache', array('adapter' => 'file', 'backup' => 'file'));
+
+		if (!is_null($db_table) && !$this->cache->get('table_cache__'.$db_table)){
+			$this->_create_table();
+		}
+
 		parent::__construct();
 
 		if (!is_null($db_table)){
 			$this->_db_table = $db_table;
-
-			$this->load->driver('cache', array('adapter' => 'file', 'backup' => 'file'));
 			$table_cache = $this->cache->get('table_cache__'.$db_table);
 
 			if (!$table_cache){
@@ -35,7 +39,7 @@ class MY_model extends CI_Model {
 					'fields' => $this->_fields,
 					'primary' => $this->_primary,
 					'indexes' => $this->_indexes
-				), 0);
+				), 3600);
 			}else{
 				$this->_fields = $table_cache['fields'];
 				$this->_primary = $table_cache['primary'];
@@ -43,6 +47,8 @@ class MY_model extends CI_Model {
 			}
 		}
 	}
+
+	protected function _create_table(){}
 
 	protected function _post_actions(){
 		// You can do anything here with eg.: model fields

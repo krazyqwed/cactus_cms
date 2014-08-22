@@ -22,4 +22,15 @@ class System_setting_model extends MY_Model {
 	
 		parent::_post_actions();
 	}
+
+	public function _create_table(){
+		$this->db->query("
+			CREATE TABLE IF NOT EXISTS `".$this->_db_table."` (
+			  `system_setting_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+			  `multi_language_enabled` tinyint(1) NOT NULL,
+			  `site_default_language` varchar(2) NOT NULL,
+			  PRIMARY KEY (`system_setting_id`)
+			) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+		");
+	}
 }

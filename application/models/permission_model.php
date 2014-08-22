@@ -23,7 +23,6 @@ class Permission_model extends MY_Model {
 		$this->_fields['enabled']['Type'] = '_checkbox';
 		$this->_fields['enabled']['_Alias'] = 'Engedélyezve';
 
-
 		parent::_post_actions();
 	}
 

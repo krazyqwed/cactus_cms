@@ -4,10 +4,6 @@ class Documentation_model extends MY_Model {
 	public $_db_table = 'documentation';
 
 	public function __construct(){
-		if (!$this->cache->get('table_cache__'.$this->_db_table)){
-			$this->_create_table();
-		}
-
 		parent::__construct($this->_db_table);
 
 		$this->_fields['entry_id']['_Alias'] = 'ID';

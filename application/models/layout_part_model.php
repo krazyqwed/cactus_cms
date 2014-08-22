@@ -44,4 +44,25 @@ class Layout_part_model extends MY_Model {
 
 		parent::_post_actions();
 	}
+
+	public function _create_table(){
+		$this->db->query("
+			CREATE TABLE IF NOT EXISTS `".$this->_db_table."` (
+			  `layout_part_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+			  `layout_id` int(10) unsigned NOT NULL,
+			  `position` varchar(64) NOT NULL,
+			  `url` varchar(64) NOT NULL,
+			  `css_id` varchar(64) NOT NULL,
+			  `css_class` varchar(128) NOT NULL,
+			  `part_type` varchar(64) NOT NULL,
+			  `part_id` int(10) unsigned NOT NULL,
+			  `weight` int(10) unsigned NOT NULL,
+			  `name` varchar(64) NOT NULL,
+			  `description` text NOT NULL,
+			  `active` int(11) NOT NULL,
+			  PRIMARY KEY (`layout_part_id`),
+			  KEY `layout` (`layout_id`)
+			) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+		");
+	}
 }

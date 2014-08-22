@@ -27,6 +27,19 @@ class Menu_model extends MY_Model {
 		parent::_post_actions();
 	}
 
+	public function _create_table(){
+		$this->db->query("
+			CREATE TABLE IF NOT EXISTS `".$this->_db_table."` (
+			  `menu_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+			  `css_class` varchar(128) NOT NULL,
+			  `template` text NOT NULL,
+			  `name` varchar(64) NOT NULL,
+			  `description` text NOT NULL,
+			  PRIMARY KEY (`menu_id`)
+			) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+		");
+	}
+
 	public function menu_item_list($content, $field){
 		$this->load->model('menu_item_model');
 		

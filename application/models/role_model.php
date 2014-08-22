@@ -52,12 +52,21 @@ class Role_model extends MY_Model {
 
 	public function _create_table(){
 		$this->db->query("
-			CREATE TABLE IF NOT EXISTS `".$_db_table."` (
+			CREATE TABLE IF NOT EXISTS `".$this->_db_table."` (
 			  `role_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
 			  `key` varchar(32) NOT NULL,
 			  `name` varchar(64) NOT NULL,
 			  PRIMARY KEY (`role_id`)
 			) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+		");
+
+		$this->db->simple_query("
+			DROP TRIGGER IF EXISTS `delete_role`;
+			DELIMITER ;;
+			CREATE TRIGGER `delete_role` AFTER DELETE ON `".$this->_db_table."` FOR EACH ROW BEGIN
+				DELETE FROM role_permissions WHERE role_id = OLD.role_id;
+			END;;
+			DELIMITER ;
 		");
 	}
 }

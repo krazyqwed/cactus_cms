@@ -23,4 +23,15 @@ class Layout_override_model extends MY_Model {
 
 		parent::_post_actions();
 	}
+
+	public function _create_table(){
+		$this->db->query("
+			CREATE TABLE IF NOT EXISTS `".$this->_db_table."` (
+			  `layout_override_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+			  `layout_id` int(10) unsigned NOT NULL,
+			  `url_pattern` varchar(128) NOT NULL,
+			  PRIMARY KEY (`layout_override_id`)
+			) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+		");
+	}
 }

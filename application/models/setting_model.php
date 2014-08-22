@@ -39,4 +39,28 @@ class Setting_model extends MY_Model {
 
 		parent::_post_actions();
 	}
+
+	public function _create_table(){
+		$this->db->query("
+			CREATE TABLE IF NOT EXISTS `".$this->_db_table."` (
+			  `setting_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+			  `slogen` text NOT NULL,
+			  `footer` text NOT NULL,
+			  `banner_image` text NOT NULL,
+			  `logo_image` text NOT NULL,
+			  `file_sandbox` text NOT NULL,
+			  `content_image` text NOT NULL,
+			  PRIMARY KEY (`setting_id`)
+			) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+		");
+
+		$this->db->query("
+			CREATE TABLE IF NOT EXISTS `".$this->_db_table."_lang` (
+		  	  `setting_id` int(10) unsigned NOT NULL,
+			  `lang` varchar(2) NOT NULL,
+			  `slogen` text NOT NULL,
+			  `footer` text NOT NULL
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+		");
+	}
 }

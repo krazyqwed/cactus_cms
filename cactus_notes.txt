@@ -16,6 +16,9 @@
 
 ^ Access management for individual
   users
+^ Creating users
+^ md5() type password field with
+  random generator
 
 ---------------------------------
 
