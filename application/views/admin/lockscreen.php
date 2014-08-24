@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" style="height: 100%;">
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<title>CMS</title>
 
 	{display_styles}
 </head>
-<body style="background-image: url('<?php echo image_display($this->_user->lockscreen_image); ?>'); background-size: cover; background-position: center; margin: 0; height: 100%;">
+<body onload="startTime();" style="background-image: url('<?php echo image_display($this->_user->lockscreen_image); ?>'); background-size: cover; background-position: center;">
 	<div id="lockscreen">
+
 		<div class="clock">
-			15:32:43
+			<div class="date"></div>
+			<div class="time"></div>
 		</div>
 
 		<div class="center">
@@ -32,5 +34,33 @@
 	</script>
 	
 	{display_scripts}
+	
+	<script>
+        function startTime(){
+            var today=new Date();
+            var y=today.getFullYear();
+            var mon = today.getMonth() + 1;
+            var d = today.getDate();
+            var h=today.getHours();
+            var m=today.getMinutes();
+            var s=today.getSeconds();
+            // add a zero in front of numbers<10
+            mon=checkTime(mon);
+            d=checkTime(d);
+            m=checkTime(m);
+            s=checkTime(s);
+            $('.clock .date').text(y+"-"+mon+"-"+d);
+            $('.clock .time').text(h+":"+m+":"+s);
+            t=setTimeout(function(){startTime()},500);
+        }
+
+        function checkTime(i){
+            if (i<10)
+            {
+                i="0" + i;
+            }
+            return i;
+        }
+    </script>
 </body>
 </html>

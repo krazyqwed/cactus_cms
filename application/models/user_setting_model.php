@@ -28,6 +28,7 @@ class User_setting_model extends MY_Model{
 
 		$this->_fields['lockscreen_image']['Type'] = '_image';
 		$this->_fields['lockscreen_image']['_Alias'] = 'Automatikus lezárás háttere';
+		$this->_fields['lockscreen_image']['_Description'] = 'Minimális méret 1920x1080';
 		$this->_fields['lockscreen_image']['_Image_size'] = array(1920, 1080);
 		$this->_fields['lockscreen_image']['_Image_manual_crop'] = false;
 
