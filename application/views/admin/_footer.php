@@ -23,6 +23,8 @@
 
 	<script type="text/javascript">
 		base_url = '<?php echo base_url() ?>';
+		lockscreen_enable = <?php echo $this->_user->lockscreen_enable ?>;
+		lockscreen_timeout = <?php echo $this->_user->lockscreen_timeout ?>;
 	</script>
 	
 	{display_scripts}

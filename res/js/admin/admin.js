@@ -32,6 +32,23 @@ function elFinderBrowser (field_name, url, type, win) {
     });
 })(jQuery);
 
+/* Lockscreen functions */
+var lockscreen_tick = 0;
+
+function lockscreen_reset(){
+    lockscreen_tick = 0;
+}
+
+function lockscreen_check(){
+    lockscreen_tick++;
+
+    if (lockscreen_tick >= lockscreen_timeout * 60){
+        window.location.href = base_url + 'admin/lockscreen';
+    }
+
+    setTimeout(lockscreen_check, 1000);
+}
+
 $().ready(function(){
 /* Prevent body scroll */
 $(document).on('mouseover', '.disable-body-scroll', function(){
@@ -41,7 +58,16 @@ $(document).on('mouseout', '.disable-body-scroll', function(){
     $('body').removeClass('disable-scroll-visible');
     $(document).scrollTop(Math.abs(parseInt($('body').css('top'))));
 });
-    
+
+/* Lockscreen events */
+if (lockscreen_enable == 1){
+    lockscreen_check();
+
+    $(document).on('mousemove keydown', function(){
+        lockscreen_reset();
+    });
+}
+
 
 /* Input maxlength */
 $('input[type=text]').each(function(){

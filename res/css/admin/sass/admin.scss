@@ -780,10 +780,26 @@ body li{ list-style-type: none; }
 }
 
 /* Lockscreen */
+html.admin-lockscreen {
+	min-height: 500px;
+	height: 100%;
+}
+
+html.admin-lockscreen body {
+	position: absolute;
+	top: 0; bottom: 0;
+	margin: 0;
+	width: 100%; min-height: 500px;
+	background-size: cover;
+	background-position: center;
+}
+
 #lockscreen {
-	position: relative;
-	margin: 10% auto 0 auto;
+	position: absolute;
+	top: 40%;
+	-webkit-transform: translateY(-40%);
 	text-align: center;
+	width: 100%; height: 500px;
 
 	.center, .clock {
 		position: relative;
@@ -839,6 +855,15 @@ body li{ list-style-type: none; }
 			font-weight: 300;
 			color: #666;
 		}
+	}
+	
+	.alert {
+		padding: 0;
+		line-height: 2em;
+		border: 6px solid rgba(255,255,255,.5);
+		border-radius: 24px;
+		background-clip: content-box;
+		box-shadow: 0 0 10px -6px #000;
 	}
 
 	.login {

@@ -13,6 +13,18 @@ class Admin extends MY_Controller {
 
 		$this->_user = $this->session->userdata('user');
 
+		/* Store current url if not lockscreen */
+		if ($this->router->fetch_method() != 'lockscreen'){
+			if ($this->session->userdata('lockscreen') && $this->router->fetch_method() != 'logout'){
+				redirect('admin/lockscreen');
+			}
+
+			$url = site_url($this->uri->uri_string());
+    		$url = $_SERVER['QUERY_STRING'] ? $url.'?'.$_SERVER['QUERY_STRING'] : $url;
+
+			$this->session->set_userdata('last_page_url', $url);
+		}
+		
 		if (!$this->session->userdata('user') && !in_array($this->uri->segment(2), $this->_public_actions)){
 			if ($this->login_check_stored_session()){
 				redirect('admin');
@@ -27,6 +39,29 @@ class Admin extends MY_Controller {
 		}elseif ($this->session->userdata('user') && in_array($this->uri->segment(2), $this->_public_actions)){
 			redirect('admin');
 		}
+	}
+
+	public function lockscreen(){
+		// Set lock
+		$this->session->set_userdata('lockscreen', true);
+
+		if ($this->input->post('password')){
+			$data = $this->db->get_where('users', array(
+				'user_id' => $this->_user->user_id,
+				'password' => md5($this->input->post('password'))
+			));
+
+			if ($data->num_rows() > 0){
+				$this->session->set_userdata('lockscreen', false);
+				redirect($this->session->userdata('last_page_url'));
+			}else{
+				$this->session->set_userdata('lockscreen_error', true);
+			}
+		}
+
+		$this->front->add_script('res/js/admin/lockscreen.js');
+
+		$this->load->view('admin/lockscreen');
 	}
 
 	public function login(){
@@ -84,10 +119,6 @@ class Admin extends MY_Controller {
 		}else{
 			return false;
 		}
-	}
-
-	public function lockscreen(){
-		$this->load->view('admin/lockscreen');
 	}
 
 	public function logout(){
