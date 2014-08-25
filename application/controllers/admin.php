@@ -14,7 +14,7 @@ class Admin extends MY_Controller {
 		$this->_user = $this->session->userdata('user');
 
 		/* Store current url if not lockscreen */
-		if ($this->router->fetch_method() != 'lockscreen'){
+		if ($this->router->fetch_method() != 'lockscreen' && !$this->input->is_ajax_request()){
 			if ($this->session->userdata('lockscreen') && $this->router->fetch_method() != 'logout'){
 				redirect('admin/lockscreen');
 			}
