@@ -37,7 +37,7 @@
 			</div>
 			<div class="logout-wrap">
 				<a class="logout btn btn-danger" href="<?php echo site_url('admin/logout'); ?>">
-					<i class="fa fa-sign-out fa-2x"></i>
+					<i class="fa fa-sign-out fa-2x fa-flip-horizontal"></i>
 				</a>
 			</div>
 			<div class="avatar"><img src="<?php echo image_display($this->_user->profile_image, array(200,200)); ?>" alt="Avatar"></div>
