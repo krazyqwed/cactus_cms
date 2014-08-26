@@ -9,7 +9,7 @@ html{
 	min-height: 100%;
 }
 body{
-	margin: 0 0 45px; /* bottom = footer height */
+	margin: 0;
 	font-family: "Open Sans", sans-serif;
 	background-color: #f2f0ef;
 
@@ -96,14 +96,14 @@ textarea{ resize: none; }
 
 /* Login */
 #content-login{
-	width: 40%;
+	width: 40%; max-width: 620px;
 	min-width: 320px;
 	margin: auto; margin-top: 86px;
 	border: 6px solid rgba(0,0,0,.1);
 	
 	.widget {
 		margin: 0;
-		border: 1px solid rgba(0,0,0,.6);
+		border: 1px solid rgba(0,0,0,.5);
 	}
 
 	form{
@@ -188,9 +188,9 @@ textarea{ resize: none; }
 }
 
 #content{
-	overflow: hidden;
 	vertical-align: top;
-	min-height: 100vh;
+	height: calc(100vh - 64px);
+	overflow: auto;
 	background-color: $c-lightergray;
 }
 

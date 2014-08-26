@@ -40,7 +40,7 @@
 		  $().ready(function() {
 		    var elf = $('#elfinder').elfinder({
 		      // set your elFinder options here
-		      url: base_url + '/admin/elfinder_init',  // connector URL
+		      url: base_url + 'admin/elfinder_init',  // connector URL
 		      uiOptions: {
                     toolbar : [
                     	['upload'],

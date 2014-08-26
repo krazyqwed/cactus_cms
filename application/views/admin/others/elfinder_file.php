@@ -26,7 +26,7 @@
 
 		  $().ready(function() {
 		    var elf = $('#elfinder').elfinder({
-		      url: base_url + '/admin/elfinder_init',
+		      url: base_url + 'admin/elfinder_init',
 		      uiOptions: {
                     toolbar : [
                     	['upload'],
