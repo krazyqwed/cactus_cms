@@ -208,7 +208,10 @@ textarea{ resize: none; }
 	& > a{ color: #4C8FBD; }
 }
 
-#view-content{ padding: 15px; }
+#view-content{
+	overflow: hidden;
+	padding: 15px;
+}
 
 #page-header {
 	margin: 0 0 16px 0;
