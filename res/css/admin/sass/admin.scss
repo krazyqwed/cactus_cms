@@ -252,6 +252,7 @@ textarea{ resize: none; }
 	color: #333;
 	background-color: #FFF;
 	border-collapse: collapse;
+	border: 1px solid #e7e3e1;
 	border-bottom: 3px solid $c-lightgray;
 
 	th{
@@ -353,7 +354,7 @@ a [class^="fa-"], a [class*=" fa-"] {
 #widget-features .list-group-item {
 	color: $c-text-dark;
 	background-color: $c-lightergray;
-	border: 0; border-top: 1px solid $c-lightgray; border-bottom: 1px solid $c-lightgray;
+	border: 1px solid $c-lightgray;
 }
 
 /* WYSIWYG */

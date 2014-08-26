@@ -26,7 +26,17 @@ $c-menu-text-hover: #E6E9ED;
 
     a {
         float: left;
-        width: 50%;
+        width: 75%;
+
+        &:hover {
+            color: $c-menu-text-hover;
+            background-color: $c-darkergray;
+        }
+
+        &:last-child {
+            width: 25%;
+            border-left: 1px solid $c-darkergray;
+        }
     }
 }
 

@@ -3,7 +3,7 @@
 		<table class="datatable">
 			<thead>
 				<?php foreach ($db_fields as $key => $field): ?>
-					<?php if ($key[0] !== '_'): ?>
+					<?php if ($key[0] !== '_' && $field['Field'] != 'enabled'): ?>
 						<?php if (!isset($field['_On_list']) || (isset($field['_On_list']) && $field['_On_list'])): ?>
 							<th><?php echo isset($field['_Alias'])?$field['_Alias']:$field['Field'] ?></th>
 						<?php endif; ?>
@@ -15,7 +15,7 @@
 				<?php foreach ($permissions as $content): ?>
 						<tr>
 					<?php foreach ($db_fields as $key => $field): ?>
-						<?php if ($key[0] !== '_'): ?>
+						<?php if ($key[0] !== '_' && $field['Field'] != 'enabled'): ?>
 							<?php if (!isset($field['_On_list']) || (isset($field['_On_list']) && $field['_On_list'])): ?>
 								<td><?php echo $content[$field['Field']] ?></td>
 							<?php endif; ?>

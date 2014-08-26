@@ -4,8 +4,8 @@
 		<a href="#" class="btn btn-success"><i class="fa fa-envelope-alt"></i></a>
 		<a href="#" class="btn btn-warning"><i class="fa fa-cogs"></i></a>-->
 		<!--<a href="<?php echo site_url('admin/documentation'); ?>" class="btn btn-info"><i class="fa fa-book"></i></a>-->
-		<a href="<?php echo site_url('admin/system_settings'); ?>" class="btn btn-warning"><i class="fa fa-cogs"></i></a>
-		<a href="<?php echo site_url('admin/logout'); ?>" class="btn btn-danger"><i class="fa fa-sign-out"></i></a>
+		<a href="<?php echo site_url('admin/system_settings'); ?>" class="btn"><i class="fa fa-cogs"></i></a>
+		<a href="<?php echo site_url('admin/logout'); ?>" class="btn"><i class="fa fa-sign-out"></i></a>
 	</div>
 	<div id="site-menu">
 		<input type="hidden" class="input-site-menu" value="<?php echo $this->router->fetch_method() ?>" <?php echo ($this->router->fetch_module())?'data-module="'.$this->router->fetch_module().'"':'' ?> <?php echo ($this->uri->segment(3))?"data-action=".$this->uri->segment(3): '' ?> />

@@ -20,6 +20,12 @@ class MY_Controller extends MX_Controller {
 	}
 
 	protected function _action($module, $model, $action, $content_id = null, $options = null){
+		/* Set permissions for actions */
+		permission_check('action', $module, '_list');
+		permission_check('action', $module, '_edit');
+		permission_check('action', $module, '_save');
+		permission_check('action', $module, '_delete');
+
 		if (is_array($content_id)){
 			$content = $this->db->get_where($model->_db_table, array($content_id[0] => $content_id[1]))->row_array();
 			$content_id = $content[$model->_primary];
