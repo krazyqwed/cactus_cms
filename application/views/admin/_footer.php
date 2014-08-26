@@ -1,5 +1,4 @@
 	</div>
-	<div id="footer"></div>
 
 <?php if (isset($db_primary) && isset($content[$db_primary])): ?>
 	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">

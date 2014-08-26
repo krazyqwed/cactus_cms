@@ -267,7 +267,7 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 					</div>
 				</div>
 
-				<button type="button" class="btn btn-info modal-elfinder">Kép tallózása</button>
+				<button type="button" class="btn btn-primary modal-elfinder">Kép tallózása</button>
 				<button type="button" class="btn btn-danger delete-elfinder" <?php echo (isset($content[$field['Field']]) && $content[$field['Field']] != '')?'':'style="display: none;"' ?>>Kép törlése</button>
 			</td>
 		<?php elseif ($field['Type'] == '_image'): ?>
