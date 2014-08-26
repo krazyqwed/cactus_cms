@@ -15,7 +15,7 @@ class Tag_model extends MY_Model {
 		$this->_fields['name']['_Alias'] = 'Név';
 	}
 
-	private function _create_table(){
+	public function _create_table(){
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `".$this->_db_table."` (
 			  `tag_id` int(10) unsigned NOT NULL AUTO_INCREMENT,

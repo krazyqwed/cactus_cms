@@ -1,0 +1,136 @@
+$c-menu-text: #AAB2BD;
+$c-menu-text-hover: #E6E9ED;
+
+#menu {
+    float: left;
+    vertical-align: top;
+    margin-bottom: 45px;
+    width: 250px;
+    background-color: $c-darkgray;
+    border-right: 1px solid $c-darkergray;
+
+    &:before {
+        content: "";
+        position: absolute;
+        bottom: 0; top: 0;
+        width: 250px;
+        z-index: -1;
+        background-color: $c-darkgray;
+        border-right: 1px solid $c-darkergray;
+    }
+}
+
+#system-menu {
+    text-align: center;
+    border-bottom: 1px solid $c-darkergray;
+
+    a {
+        float: left;
+        width: 50%;
+    }
+}
+
+#site-menu{
+    ul { list-style: none; }
+
+    li { border-bottom: 1px solid $c-darkergray; }
+
+    li.active {
+        div {
+            position: relative;
+            display: block;
+            padding: 10px 15px;
+            color: #428BCA;
+            border-left: 4px solid $c-darkergray;
+        }
+    }
+
+    .fa { font-size: 14px; }
+    
+    li.sub-active.s-open li.active > a:after {
+        top: 4px;
+        border-width: 14px 6px;
+    }
+
+    li.separator {
+        padding: 8px 8px 8px 18px;
+        font-size: 16px;
+        color: $c-menu-text;
+        background-color: $c-darkergray;
+    }
+
+    .nav-list > li {
+        & > a {
+            font-size: 12px;
+            color: $c-menu-text;
+            border-left: 4px solid $c-darkergray;
+        }
+
+        & > a:hover {
+            color: $c-menu-text-hover;
+            background-color: inherit;
+        }
+        
+        &.active > a, &.sub-active > a{ color: $c-menu-text-hover; }
+
+        &.active:nth-of-type(4n) > a, &.sub-active:nth-of-type(4n) > a { border-left: 4px solid $c-danger; }
+        &.active:nth-of-type(4n+1) > a, &.sub-active:nth-of-type(4n+1) > a { border-left: 4px solid $c-success; }
+        &.active:nth-of-type(4n+2) > a, &.sub-active:nth-of-type(4n+2) > a { border-left: 4px solid $c-primary; }
+        &.active:nth-of-type(4n+3) > a, &.sub-active:nth-of-type(4n+3) > a { border-left: 4px solid $c-warning; }
+
+        &:not(.active):nth-of-type(4n) > a:hover { border-left: 4px solid $c-danger; }
+        &:not(.active):nth-of-type(4n+1) > a:hover { border-left: 4px solid $c-success; }
+        &:not(.active):nth-of-type(4n+2) > a:hover { border-left: 4px solid $c-primary; }
+        &:not(.active):nth-of-type(4n+3) > a:hover { border-left: 4px solid $c-warning; }
+    }
+    
+    li .arrow {
+        float: right;
+        font-size: 18px;
+    }
+
+    .submenu{
+        position: relative;
+        border-top: 1px solid $c-darkergray;
+
+        &:before {
+            content: "";
+            position: absolute;
+            left: 20px; top: 0; bottom: 16px;
+            border-left: 1px solid $c-menu-text;
+        }
+        
+        li {
+            position: relative;
+            border: 0;
+
+            &:before {
+                content: "";
+                position: absolute;
+                display: block;
+                left: -20px; top: 16px;
+                width: 12px;
+                border-top: 1px solid $c-menu-text;
+            }
+
+            &.active:before {
+                border-top: 1px solid $c-menu-text-hover;
+            }
+        }
+
+        a {
+            display: block;
+            padding: 8px 8px 8px 0;
+            font-size: 12px;
+            color: $c-menu-text;
+        }
+
+        li.active > a {
+            display: block;
+            padding: 8px 8px 8px 0;
+            font-size: 12px;
+            color: $c-menu-text-hover;
+            text-decoration: underline;
+        }
+    }
+}

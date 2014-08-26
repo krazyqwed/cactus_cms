@@ -586,7 +586,12 @@ $('form.ajax-post').on('submit', function(e){
 });
 
 /* Admin left menu */
-$activeMenu = $('#site-menu li[rel="'+$('#site-menu .input-site-menu').val()+'"]');
+if ($('#site-menu .input-site-menu').data('module')){
+    $activeMenu = $('#site-menu li[rel="'+$('#site-menu .input-site-menu').data('module')+'"]');
+}else{
+    $activeMenu = $('#site-menu li[rel="'+$('#site-menu .input-site-menu').val()+'"]');
+}
+
 
 $activeMenu.addClass('active');
 

@@ -6,7 +6,7 @@
 
 	{display_styles}
 </head>
-<body onload="startTime();" style="background-image: url('<?php echo image_display($this->_user->lockscreen_image); ?>');">
+<body onload="startTime();" style="background-image: url('<?php echo image_display($this->_user->lockscreen_image, null, null, base_url('res/img/admin/bg.jpg')); ?>');">
 	<div id="lockscreen">
 
 		<div class="clock">

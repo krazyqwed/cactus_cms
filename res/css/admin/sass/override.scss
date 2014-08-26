@@ -1,14 +1,23 @@
 .mce-panel{ border-color: #CCC !important; }
 
-/* Bootstrap */
-.dropdown-menu{ border-radius: 0; }
-
 /* Fine uploader */
 li.uploaded._file{
 	display: inline-block;
 	width: 49%;
 
 	&:nth-of-type(2n){ float: right; }
+}
+
+.qq-uploader {  margin-bottom: 4px; }
+
+.qq-upload-button {
+    background-color: #3bafda;
+    border-color: #28a5d4;
+
+    &:hover {
+        background-color: #2494be;
+        border-color: #1e7da0;
+    }
 }
 
 .qq-thumbnail-wrap-outer.file{ border: 0; }

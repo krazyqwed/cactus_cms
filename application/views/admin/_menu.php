@@ -8,7 +8,7 @@
 		<a href="<?php echo site_url('admin/logout'); ?>" class="btn btn-danger"><i class="fa fa-sign-out"></i></a>
 	</div>
 	<div id="site-menu">
-		<input type="hidden" class="input-site-menu" value="<?php echo $this->router->fetch_method() ?>" <?php echo ($this->uri->segment(3))?"data-action=".$this->uri->segment(3): '' ?> />
+		<input type="hidden" class="input-site-menu" value="<?php echo $this->router->fetch_method() ?>" <?php echo ($this->router->fetch_module())?'data-module="'.$this->router->fetch_module().'"':'' ?> <?php echo ($this->uri->segment(3))?"data-action=".$this->uri->segment(3): '' ?> />
 
 		<ul class="nav nav-list">
 			<li rel="index">
@@ -112,7 +112,7 @@ if ($blocks){
 	foreach($blocks as $block){
 		if ($block['_in_menu']){
 			echo '
-				<li rel="'.$block['_in_menu_path'].'">
+				<li class="module" rel="'.$block['_module_name'].'">
 					<a href="'.site_url('admin/'.$block['_in_menu_path']).'">
 						<i class="fa fa-'.$block['_in_menu_icon'].'"></i>
 						<span class="menu-text">'.$block['_in_menu_name'].'</span>

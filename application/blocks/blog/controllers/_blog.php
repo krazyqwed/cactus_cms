@@ -2,6 +2,7 @@
 
 class _Blog extends MY_Controller {
 	private $_config = array(
+		'_module_name' => 'blog',
 		'_in_menu' => true,
 		'_in_menu_path' => 'blog',
 		'_in_menu_name' => 'Blog bejegyzések',

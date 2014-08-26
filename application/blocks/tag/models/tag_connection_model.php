@@ -11,7 +11,7 @@ class Tag_connection_model extends MY_Model {
 		parent::__construct($this->_db_table);
 	}
 
-	private function _create_table(){
+	public function _create_table(){
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `".$this->_db_table."` (
 			  `tag_connection_id` int(10) unsigned NOT NULL AUTO_INCREMENT,

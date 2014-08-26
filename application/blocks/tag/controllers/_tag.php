@@ -2,6 +2,7 @@
 
 class _Tag extends MY_Controller {
 	private $_config = array(
+		'_module_name' => 'tag',
 		'_in_menu' => true,
 		'_in_menu_path' => 'tags',
 		'_in_menu_name' => 'Címkék',

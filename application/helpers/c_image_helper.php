@@ -130,7 +130,7 @@ function image_save_final($image){
 	return $CI->db->insert_id();
 }
 
-function image_display($image, $dim = null, $show_cropped = null){
+function image_display($image, $dim = null, $show_cropped = null, $custom_placeholder = null){
 	$CI =& get_instance();	
 
 	if (!is_array($image) && file_exists('./'.urldecode($image)) && $image != ''){
@@ -191,9 +191,13 @@ function image_display($image, $dim = null, $show_cropped = null){
 
 		return base_url($url);
 	}else{
-		if (is_array($dim))
-			return 'http://placehold.it/'.$dim[0].'x'.$dim[1];
-		else
-			return 'http://placehold.it/150x75';
+		if ($custom_placeholder == null){
+			if (is_array($dim))
+				return 'http://placehold.it/'.$dim[0].'x'.$dim[1];
+			else
+				return 'http://placehold.it/150x75';
+		}else{
+			return $custom_placeholder;
+		}
 	}
 }

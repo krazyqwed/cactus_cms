@@ -23,7 +23,7 @@
 				<span class="qq-upload-file-selector qq-upload-file"></span>
 
 				<a class="btn btn-danger btn-sm qq-upload-delete-selector qq-upload-delete" href="#"><i class="qq-upload-cancel-selector fa fa-times fa-fw fa-fixed-height"></i></a>
-				<a class="btn btn-info btn-sm qq-upload-crop" href="javascript:void(0)"><i class="fa fa-crop fa-fw fa-fixed-height"></i></a>
+				<a class="btn btn-primary btn-sm qq-upload-crop" href="javascript:void(0)"><i class="fa fa-crop fa-fw fa-fixed-height"></i></a>
 
 				<span class="qq-upload-status-text-selector qq-upload-status-text"></span>
 			</li>
@@ -316,7 +316,7 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 					<a class="btn btn-danger btn-sm qq-upload-delete-selector qq-upload-delete" href="#"><i class="qq-upload-cancel-selector fa fa-times fa-fw fa-fixed-height qq-hide"></i></a>
 				
 				<?php if (isset($field['_Image_manual_crop']) && $field['_Image_manual_crop']): ?>
-					<a class="btn btn-info btn-sm qq-upload-crop" href="javascript:void(0)"><i class="fa fa-crop fa-fw fa-fixed-height"></i></a>
+					<a class="btn btn-primary btn-sm qq-upload-crop" href="javascript:void(0)"><i class="fa fa-crop fa-fw fa-fixed-height"></i></a>
 				<?php endif; ?>
 
 					<span class="qq-upload-status-text-selector qq-upload-status-text"></span>
@@ -332,7 +332,7 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 					</div>
 					
 					<button type="button" class="btn btn-danger crop-erase">Kivágás törlése</button>
-					<button type="button" class="btn btn-info crop-close">Bezárás</button>
+					<button type="button" class="btn btn-primary crop-close">Bezárás</button>
 				</div>
 			</td>
 		<?php elseif ($field['Type'] == '_file'): ?>

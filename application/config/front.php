@@ -11,8 +11,8 @@ $config['admin_default_styles'] = array(
 	'res/css/admin/bootstrap.min.css',
 	'res/css/admin/font-awesome.min.css',
 	'res/css/admin/smoothness/jquery-ui-1.10.4.custom.min.css',
-	'res/css/admin/admin.css',
-	'res/css/admin/override.css'
+	array('res/css/admin/admin.css', 9998),
+	array('res/css/admin/override.css', 9999)
 );
 
 $config['main_default_scripts'] = array(

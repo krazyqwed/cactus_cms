@@ -15,9 +15,9 @@ foreach ($parts as $part)
 <?php endforeach; ?>
 </ul>
 
-<a class="btn btn-info" href="<?php echo site_url('admin/layout_overrides') ?>">Elrendezés felülbírálása URI szerint</a>
+<a class="btn btn-primary" href="<?php echo site_url('admin/layout_overrides') ?>">Elrendezés felülbírálása URI szerint</a>
 
-<div id="page-header">
+<div id="page-header" class="inner">
 	<h1>Részecskék listája</h1>
 </div>
 
@@ -27,9 +27,9 @@ foreach ($parts as $part)
 
 <div class="row">
 	<div class="col-md-4">
-		<div class="panel panel-primary">
-			<div class="panel-heading"><i class="fa fa-list"></i> Menük</div>
-			<div class="panel-body layout-panel">
+		<div class="widget">
+			<div class="widget-header"><h1><i class="fa fa-list"></i> Menük</h1></div>
+			<div class="widget-body layout-panel">
 				<ul>
 			<?php foreach ($menus as $menu): ?>
 					<li class="draggable" data-part-type="menu" data-part-name="<?php echo $menu['name'] ?>" data-part-id="<?php echo $menu['menu_id'] ?>" data-active="0">
@@ -42,9 +42,9 @@ foreach ($parts as $part)
 	</div>
 	
 	<div class="col-md-4">
-		<div class="panel panel-primary">
-			<div class="panel-heading"><i class="fa fa-book"></i> Tartalmak</div>
-			<div class="panel-body layout-panel">
+		<div class="widget">
+			<div class="widget-header"><h1><i class="fa fa-book"></i> Tartalmak</h1></div>
+			<div class="widget-body layout-panel">
 				<ul>
 			<?php foreach ($contents as $content): ?>
 					<li class="draggable" data-part-type="content" data-part-name="<?php echo $content['name'] ?>" data-part-id="<?php echo $content['content_id'] ?>" data-active="0">
@@ -57,9 +57,9 @@ foreach ($parts as $part)
 	</div>
 
 	<div class="col-md-4">
-		<div class="panel panel-primary">
-			<div class="panel-heading"><i class="fa fa-th"></i> Blokkok</div>
-			<div class="panel-body layout-panel">
+		<div class="widget">
+			<div class="widget-header"><h1><i class="fa fa-th"></i> Blokkok</h1></div>
+			<div class="widget-body layout-panel">
 				<ul>
 			<?php foreach ($blocks as $block): ?>
 					<li class="draggable" data-part-type="block" data-part-name="<?php echo $block['name'] ?>" data-part-id="<?php echo $block['block_id'] ?>" data-active="0">
@@ -73,7 +73,7 @@ foreach ($parts as $part)
 </div>
 
 <div class="section">
-	<div id="page-header">
+	<div id="page-header" class="inner">
 		<h1>Elemek elrendezése <i>[<?php echo $layout['name'] ?>]</i></h1>
 	</div>
 	<div class="well well-sm t-italic"><?php echo $layout['description'] ?></div>
@@ -89,9 +89,9 @@ foreach ($parts as $part)
 			<div class="row">
 		<?php endif; ?>
 		<div class="col-md-<?php echo $position['width'] ?>">
-			<div class="panel panel-primary">
-				<div class="panel-heading"><?php echo $position['name'] ?></div>
-				<div class="panel-body layout-panel-part">
+			<div class="widget">
+				<div class="widget-header"><h1><?php echo $position['name'] ?></h1></div>
+				<div class="widget-body layout-panel-part">
 					<ul name="<?php echo $position['key'] ?>" class="sortable-position-<?php echo $position['key'] ?> connected droppable">
 					<?php foreach($on_site[$position['key']] as $item): ?>
 						<?php
@@ -129,7 +129,7 @@ foreach ($parts as $part)
 <?php endif; ?>
 </div>
 
-<div id="page-header">
+<div id="page-header" class="inner">
 	<h1>Elemek listája <i>[<?php echo $layout['name'] ?>]</i></h1>
 </div>
 
