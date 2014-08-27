@@ -21,11 +21,11 @@
 				</li>
 				<li class="list-group-item">
 					<span class="pull-right"><i class="fa fa-heart"></i></span>
-					Tiszta URL-ek
+					Szép URL-ek
 				</li>
 				<li class="list-group-item">
 					<span class="pull-right"><i class="fa fa-heart"></i></span>
-					Fejlett képkezelés
+					Kép -és fájlkezelés
 				</li>
 				<li class="list-group-item">
 					<span class="pull-right"><i class="fa fa-heart"></i></span>
