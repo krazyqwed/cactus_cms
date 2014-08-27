@@ -33,11 +33,18 @@
 		<?php if ($key[0] !== '_'): ?>
 			<?php if (!isset($field['_On_list']) || (isset($field['_On_list']) && $field['_On_list'])): ?>
 			<?php if ((isset($field['_Block_dependencity']) && $field['_Block_dependencity']) || !isset($field['_Block_dependencity'])): ?>
-				<?php if (!isset($field['_Override_list_values'])): ?>
-				<td><?php echo $content[$field['Field']] ?></td>
+				<?php if ($field['Type'] == '_checkbox'): ?>
+					<td class="text-center">
+						<span class="hide"><?php echo $content[$field['Field']] ?></span>
+						<input disabled type="checkbox" value="1" <?php echo ($content[$field['Field']] == 1)?'checked="checked"':''; ?> />
+					</td>
 				<?php else: ?>
-				<td><?php echo $field['_Override_list_values'][$content[$field['Field']]] ?></td>
-				<?php endif; ?>
+					<?php if (!isset($field['_Override_list_values'])): ?>
+						<td><?php echo $content[$field['Field']] ?></td>
+					<?php else: ?>
+						<td><?php echo $field['_Override_list_values'][$content[$field['Field']]] ?></td>
+					<?php endif; ?>
+				<?php endif;?>
 			<?php endif; ?>
 			<?php endif; ?>
 		<?php endif; ?>

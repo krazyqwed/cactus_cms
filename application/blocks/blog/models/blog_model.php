@@ -28,16 +28,10 @@ class Blog_model extends MY_Model {
 		$this->_fields['url']['_Alias'] = 'URL';
 		$this->_fields['url']['_Description'] = 'blog/';
 
-		if (block_is_exists('tag')){
-			$result = $this->db->get('tags')->result_array();
-			foreach ($result as $option)
-				$options[$option['tag_id']] = $option['name'];
-		}
-
-		$this->_fields['tags']['_Alias'] = 'Tagek';
 		$this->_fields['tags']['Type'] = '_multiselect';
-		$this->_fields['tags']['_Select_options'] = $options;
+		$this->_fields['tags']['_Alias'] = 'Tagek';
 		$this->_fields['tags']['_On_list'] = false;
+		$this->_fields['tags']['_Select_options'] = block_get_values('tag', 'tags', 'tag_id', 'name');
 		$this->_fields['tags']['_Block_dependencity'] = block_is_exists('tag');
 
 		$this->_fields['seo_title']['_Alias'] = 'SEO cím';

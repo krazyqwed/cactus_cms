@@ -3,14 +3,64 @@
 class MY_Controller extends MX_Controller {
 	public $_user;
 
+	protected $_public_actions = array(
+		'login',
+		'registration'
+	);
+
 	public function __construct(){
 		parent::__construct();
 
 		if ($this->is_admin()){
 			$this->_user = $this->session->userdata('user');
-		}
 
-		$this->load->helper('permission_helper');
+			/* Store current url if not lockscreen */
+			if ($this->router->fetch_method() != 'lockscreen' && !$this->input->is_ajax_request()){
+				if ($this->session->userdata('lockscreen') && $this->router->fetch_method() != 'logout'){
+					redirect('admin/lockscreen');
+				}
+
+				$url = site_url($this->uri->uri_string());
+	    		$url = $_SERVER['QUERY_STRING'] ? $url.'?'.$_SERVER['QUERY_STRING'] : $url;
+
+				$this->session->set_userdata('last_page_url', $url);
+			}
+
+			$this->load->helper('permission_helper');
+
+			if (!$this->session->userdata('user') && !in_array($this->uri->segment(2), $this->_public_actions)){
+				if ($this->login_check_stored_session()){
+					redirect('admin');
+				}else{
+					$data['v'] = 'admin/login';
+					$this->load->view('admin/_layout', $data);
+
+					$hook =& load_class('Hooks', 'core');
+					$hook->_call_hook('display_override');
+					exit();
+				}
+			}elseif ($this->session->userdata('user') && in_array($this->uri->segment(2), $this->_public_actions)){
+				redirect('admin');
+			}
+		}
+	}
+
+	private function login_check_stored_session(){
+		if ($this->input->cookie('krazy_remember_token')){
+			$remember_token = $this->input->cookie('krazy_remember_token');
+
+			$data = $this->db->join('user_settings', 'user_settings.user_id = users.user_id', 'inner')->get_where('users', array( 'remember_token' => $remember_token ));
+
+			if ($data->num_rows() > 0){
+				$this->session->set_userdata('user', $data->row());
+
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
 	}
 
 	private function is_admin(){
@@ -44,10 +94,10 @@ class MY_Controller extends MX_Controller {
 	private function _list($module, $model, $options = null){
 		if (!permission_check('action', $module, '_list')) redirect('admin');
 
-		$contents = $this->db->get($model->_db_table);
+		$contents = $this->db->get($model->_db_table)->result_array();
 
 		$data = array(
-			'contents' => $contents->result_array(),
+			'contents' => $contents,
 			'v' => 'admin/_list',
 			'title' => 'Lista',
 			'db_table' => $model->_db_table,

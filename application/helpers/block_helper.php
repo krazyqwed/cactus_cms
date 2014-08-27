@@ -61,3 +61,19 @@ function block_is_exists($block_folder){
 
 	return !empty($block);
 }
+
+function block_get_values($block_name = null, $block_table, $primary_key, $field){
+	$CI =& get_instance();
+
+	$options = array();
+
+	if ($block_name != null && block_is_exists($block_name)){
+		$result = $CI->db->get($block_table)->result_array();
+		
+		foreach ($result as $option){
+			$options[$option[$primary_key]] = $option[$field];
+		}
+	}
+
+	return $options;
+}

@@ -119,8 +119,8 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 		<?php $td_colspan = 2; ?>
 	<?php endif; ?>
 
-	<?php if ($key[0] !== '_' && !isset($field['_Function'])): ?>
-		<?php if (($field['Key'] == 'PRI' && $field['Extra'] == 'auto_increment') || (isset($field['_Editable']) && !$field['_Editable'])): ?>
+	<?php if (!isset($field['_Content']) && !isset($field['_Function'])): ?>
+		<?php if ((isset($field['Key']) && $field['Key'] == 'PRI' && isset($field['Extra']) && $field['Extra'] == 'auto_increment') || (isset($field['_Editable']) && !$field['_Editable'])): ?>
 			<td <?php echo is_numeric($td_colspan)?'colspan="'.$td_colspan.'"':'' ?>>
 			<?php if (isset($field['_Override_list_values'])): ?>
 				<?php echo $field['_Override_list_values'][$content[$field['Field']]]; ?>
