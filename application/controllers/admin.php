@@ -48,7 +48,7 @@ class Admin extends MY_Controller {
 				$random = md5($username.date('Y-m-d H:i:s').$password.rand(1, 10000));
 
 				$cookie = array(
-					'name'   => 'krazy_remember_token',
+					'name'   => 'cactus_remember_token',
 					'value'  => $random,
 					'expire' => '1209600', //Two weeks
 					'domain' => '',
@@ -71,7 +71,7 @@ class Admin extends MY_Controller {
 
 	public function logout(){
 		$cookie = array(
-			'name'   => 'krazy_remember_token',
+			'name'   => 'cactus_remember_token',
 			'value'  => '',
 			'expire' => '0',
 			'domain' => '',

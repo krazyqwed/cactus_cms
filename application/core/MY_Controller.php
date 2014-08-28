@@ -30,7 +30,7 @@ class MY_Controller extends MX_Controller {
 
 			if (!$this->session->userdata('user') && !in_array($this->uri->segment(2), $this->_public_actions)){
 				if ($this->login_check_stored_session()){
-					redirect('admin');
+					redirect('admin/lockscreen');
 				}else{
 					$data['v'] = 'admin/login';
 					$this->load->view('admin/_layout', $data);
@@ -46,8 +46,8 @@ class MY_Controller extends MX_Controller {
 	}
 
 	private function login_check_stored_session(){
-		if ($this->input->cookie('krazy_remember_token')){
-			$remember_token = $this->input->cookie('krazy_remember_token');
+		if ($this->input->cookie('cactus_remember_token')){
+			$remember_token = $this->input->cookie('cactus_remember_token');
 
 			$data = $this->db->join('user_settings', 'user_settings.user_id = users.user_id', 'inner')->get_where('users', array( 'remember_token' => $remember_token ));
 
