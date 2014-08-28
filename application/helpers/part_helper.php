@@ -10,8 +10,15 @@ function part_check_visibility($part){
 		$uri = str_replace('[num]', '\[num\]', $uri);
 	}
 
-	if ((isset($part['view']) || ($part['url'] == '*' || preg_match($uri, $actual_uri)) && $part['active'] == 1))
-		return true;
+	if (isset($part['url']) && $uri[2] == '!'){
+		$uri = str_replace('!', '', $uri);
+
+		if ((isset($part['view']) || ($part['url'] == '*' || !preg_match($uri, $actual_uri)) && $part['active'] == 1))
+			return true;
+	}else{
+		if ((isset($part['view']) || ($part['url'] == '*' || preg_match($uri, $actual_uri)) && $part['active'] == 1))
+			return true;
+	}
 
 	return false;
 }
