@@ -11,10 +11,10 @@ class Main extends MX_Controller {
 		if (!$this->config->item('multi_language_enabled')){
 			$this->load->model('system_setting_model');
 			$settings = $this->db->where('system_setting_id', 1)->get($this->system_setting_model->_db_table)->row_array();
-			$this->session->set_userdata('krazy_language', $settings['site_default_language']);
+			$this->session->set_userdata('cactus_language', $settings['site_default_language']);
 		}else{
-			if (!$this->session->userdata('krazy_language'))
-				$this->session->set_userdata('krazy_language', $this->config->item('default_language'));
+			if (!$this->session->userdata('cactus_language'))
+				$this->session->set_userdata('cactus_language', $this->config->item('default_language'));
 		}
 
 		$this->load->model('layout_model');
@@ -42,7 +42,7 @@ class Main extends MX_Controller {
 	}
 
 	public function language($lang){
-		$this->session->set_userdata('krazy_language', $lang);
+		$this->session->set_userdata('cactus_language', $lang);
 
 		if ($this->config->item('multi_language_enabled'))
 			$this->index();

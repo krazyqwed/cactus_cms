@@ -120,7 +120,7 @@
 
         /* Add language to the site if enabled */
         if ($CI->config->item('multi_language_enabled') && $CI->uri->segment(1) != $CI->config->item('admin_path'))
-            $uri = $CI->session->userdata('krazy_language') . '/' . $uri;
+            $uri = $CI->session->userdata('cactus_language') . '/' . $uri;
 
         return $CI->config->site_url($uri);
     }

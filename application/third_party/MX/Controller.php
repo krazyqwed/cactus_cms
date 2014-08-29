@@ -53,7 +53,8 @@ class MX_Controller
 		/* autoload module items */
 		$this->load->_autoloader($this->autoload);
 
-		/* Krazy CMS mod */
+		/* Cactus CMS mod */
+		$this->load->helper('debug_helper');
 		$this->load->library('seo');
 		$this->load->config('front');
 	}

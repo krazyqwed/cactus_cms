@@ -131,16 +131,7 @@ class Admin extends MY_Controller {
 	public function index(){
 		$data['v'] = 'admin/index';
 
-		if ($this->session->userdata('change_note')){
-			$data['change_note'] = $this->session->userdata('change_note');
-		}else{
-			if ($_SERVER['SERVER_NAME'] == 'cactus.shima.hu')
-				$data['change_note'] = file_get_contents('cactus_notes.txt');
-			else
-				$data['change_note'] = file_get_contents('http://cactus.shima.hu/cactus_notes.txt');
-
-			$this->session->set_userdata('change_note', $data['change_note']);
-		}
+		$data['change_note'] = file_get_contents('cactus_notes.txt');
 
 		$this->load->view('admin/_layout', $data);
 	}
@@ -391,36 +382,44 @@ class Admin extends MY_Controller {
 		if ($action == 'save' && $this->input->post('url') != '*' && $this->input->post('url') != ''){
 			$model = $this->load->model('route_model');
 
-			$exists = $this->db->where('slug', str_replace(array('[num]', '[any]'), array('(:num)', '(:any)'), $this->input->post('url')))->get($this->route_model->_db_table)->row_array();
+			$url = explode('|', $this->input->post('url'));
 
-			if (empty($exists)){
-				$data = array(
-					'slug' => str_replace(array('[num]', '[any]'), array('(:num)', '(:any)'), $this->input->post('url')),
-					'controller' => 'main/index'
-				);
+			foreach ($url as $url_part){
+				$exists = $this->db->where('slug', str_replace(array('[num]', '[any]'), array('(:num)', '(:any)'), $url_part))->get($this->route_model->_db_table)->row_array();
 
-				$this->db->insert($this->route_model->_db_table, $data);
-			}
+				if (empty($exists)){
+					$data = array(
+						'slug' => str_replace(array('[num]', '[any]'), array('(:num)', '(:any)'), $url_part),
+						'controller' => 'main/index'
+					);
 
-			$exists = $this->db->where('slug', str_replace(array('/[num]', '/[any]'), '', $this->input->post('url')))->get($this->route_model->_db_table)->row_array();
+					$this->db->insert($this->route_model->_db_table, $data);
+				}
 
-			if (empty($exists)){
-				$data = array(
-					'slug' => str_replace(array('/[num]', '/[any]'), '', $this->input->post('url')),
-					'controller' => 'main/index'
-				);
+				$exists = $this->db->where('slug', str_replace(array('/[num]', '/[any]'), '', $url_part))->get($this->route_model->_db_table)->row_array();
 
-				$this->db->insert($this->route_model->_db_table, $data);
+				if (empty($exists)){
+					$data = array(
+						'slug' => str_replace(array('/[num]', '/[any]'), '', $url_part),
+						'controller' => 'main/index'
+					);
+
+					$this->db->insert($this->route_model->_db_table, $data);
+				}
 			}
 		}elseif ($action == 'delete'){
 			$this->load->model('route_model');
 			$part = $this->db->where('layout_part_id', $id)->get($this->layout_part_model->_db_table)->row_array();
 			
 			if ($part['url'] != '*' && $part['url'] != ''){
-				$exists = $this->db->where('url', $part['url'])->get($this->layout_part_model->_db_table)->num_rows();
+				$url = explode('|', $part['url']);
 
-				if ($exists == 1)
-					$this->db->where('slug', $part['url'])->delete($this->route_model->_db_table);
+				foreach ($url as $url_part){
+					$exists = $this->db->where('url', $url_part)->get($this->layout_part_model->_db_table)->num_rows();
+
+					if ($exists == 1)
+						$this->db->where('slug', $url_part)->delete($this->route_model->_db_table);
+				}
 			}
 		}
 
