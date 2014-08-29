@@ -133,6 +133,17 @@ class Admin extends MY_Controller {
 
 		$data['change_note'] = file_get_contents('cactus_notes.txt');
 
+		$session_files = glob(session_save_path()."/sess_*");
+		$session_count = 0;
+
+		foreach ($session_files as $key => $value) {
+			if (filemtime($value) > strtotime('-5 minutes')) {
+				$session_count++;
+			}
+		}
+
+		$data['active_users'] = $session_count;
+
 		$this->load->view('admin/_layout', $data);
 	}
 

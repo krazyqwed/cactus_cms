@@ -43,8 +43,15 @@
 		</div>
 	</div>
 
-	<div class="col-md-4 index-documentation">
+	<div class="col-md-4">
 		<div class="widget">
+			<div class="widget-header"><h1>Fejlesztési napló</h1></div>
+			
+			Aktív felhasználók száma:
+			<h1><?php echo $active_users ?></h1>
+		</div>
+
+		<div class="widget index-documentation">
 			<div class="widget-header"><h1>Dokumentáció</h1></div>
 
 			<p>
@@ -56,6 +63,7 @@
 			<p>A dokumentáció készítés alatt áll...</p>
 		</div>
 	</div>
+
 	<div class="col-md-4">
 		<div class="widget">
 			<div class="widget-header"><h1>Fejlesztési napló</h1></div>
