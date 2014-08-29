@@ -13,6 +13,8 @@
                 lineWrapping: true
             });
 
+        $(this).data('CodeMirrorInstance', editor);
+
         // Really not the best way to do things as it includes Markdown formatting along with words
         function updateWordCount() {
             var wordCount = self.find('.entry-word-count'),

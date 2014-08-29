@@ -207,7 +207,9 @@ if ($('.markdown').length){
 
     $('.markdown_full').click(function(){
         $('.markdown').toggleClass('fullscreen');
-        $('body').toggleClass('disable-scroll');
+        //$('body').toggleClass('disable-scroll');
+
+        $(this).closest('tr').find('.markdown').data('CodeMirrorInstance').refresh();
     });
 }
 

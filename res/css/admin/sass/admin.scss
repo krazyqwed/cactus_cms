@@ -13,11 +13,11 @@ body{
 	font-family: "Open Sans", sans-serif;
 	background-color: #f2f0ef;
 
-	&.disable-scroll{ overflow: hidden; }
+	/*&.disable-scroll{ overflow: hidden; }
 	&.disable-scroll-visible{
 		position: fixed;
 		overflow-y: scroll;
-	}
+	}*/
 }
 
 body.b-admin-login {
@@ -26,6 +26,35 @@ body.b-admin-login {
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	font-family: "Open Sans",Helvetica,Arial,sans-serif;
+}
+
+/* Webkit */
+::-webkit-scrollbar {
+    width: 12px;
+}
+#menu::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: rgba(0,0,0,.1);
+}
+#menu::-webkit-scrollbar-track {
+	background: $c-darkgray;
+	border: 1px solid $c-darkergray;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,.5);
+    border: 1px solid rgba(0,0,0,.2);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0,0,0,.6);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(0,0,0,.3);
 }
 
 /* Custom things */
