@@ -228,18 +228,26 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 				</div>
 
 				<div class="editor-panel <?php echo ((isset($content[$field['_Content_type_name']]) && $content[$field['_Content_type_name']] == 0) || !isset($content[$field['_Content_type_name']]))? '' : 'hidden' ?>">
-					<textarea class="tinymce form-control" <?php echo ((isset($content[$field['_Content_type_name']]) && $content[$field['_Content_type_name']] == 0) || !isset($content[$field['_Content_type_name']]))? 'name="'.$field['Field'].'"' : '' ?> data-name="<?php echo $field['Field'] ?>"><?php echo isset($content[$field['Field']])?$content[$field['Field']]:'' ?></textarea>
+					<textarea class="tinymce form-control" <?php echo ((isset($content[$field['_Content_type_name']]) && $content[$field['_Content_type_name']] == 0) || !isset($content[$field['_Content_type_name']]))? 'name="'.$field['Field'].'"' : '' ?> data-name="<?php echo $field['Field'] ?>"><?php echo (isset($content[$field['Field']]) && isset($content[$field['_Content_type_name']]) && $content[$field['_Content_type_name']] != 3)?$content[$field['Field']]:'' ?></textarea>
 				</div>
 
 				<div class="editor-panel markdown <?php echo ((isset($content[$field['_Content_type_name']]) && $content[$field['_Content_type_name']] == 1))? '' : 'hidden' ?>">
-					<textarea class="code" <?php echo (isset($content[$field['_Content_type_name']]) && $content[$field['_Content_type_name']] == 1)? 'name="'.$field['Field'].'"' : '' ?> data-name="<?php echo $field['Field'] ?>"><?php echo isset($content[$field['Field']])?$content[$field['Field']]:'' ?></textarea>
+					<textarea class="code" <?php echo (isset($content[$field['_Content_type_name']]) && $content[$field['_Content_type_name']] == 1)? 'name="'.$field['Field'].'"' : '' ?> data-name="<?php echo $field['Field'] ?>"><?php echo (isset($content[$field['Field']]) && isset($content[$field['_Content_type_name']]) && $content[$field['_Content_type_name']] != 3)?$content[$field['Field']]:'' ?></textarea>
 					<div class="rendered-markdown"></div>
 
 					<div class="markdown_full"><i class="fa fa-toggle-down fa-2x"></i></div>
 				</div>
 
 				<div class="editor-panel <?php echo ((isset($content[$field['_Content_type_name']]) && $content[$field['_Content_type_name']] == 2))? '' : 'hidden' ?>">
-					<textarea class="common form-control" <?php echo (isset($content[$field['_Content_type_name']]) && $content[$field['_Content_type_name']] == 2)? 'name="'.$field['Field'].'"' : '' ?> data-name="<?php echo $field['Field'] ?>"><?php echo isset($content[$field['Field']])?$content[$field['Field']]:'' ?></textarea>
+					<textarea class="common form-control" <?php echo (isset($content[$field['_Content_type_name']]) && $content[$field['_Content_type_name']] == 2)? 'name="'.$field['Field'].'"' : '' ?> data-name="<?php echo $field['Field'] ?>"><?php echo (isset($content[$field['Field']]) && isset($content[$field['_Content_type_name']]) && $content[$field['_Content_type_name']] != 3)?$content[$field['Field']]:'' ?></textarea>
+				</div>
+
+				<div class="editor-panel <?php echo ((isset($content[$field['_Content_type_name']]) && $content[$field['_Content_type_name']] == 3))? '' : 'hidden' ?>">
+					<select class="selectpicker"  <?php echo (isset($content[$field['_Content_type_name']]) && $content[$field['_Content_type_name']] == 3)? 'name="'.$field['Field'].'"' : '' ?> data-name="<?php echo $field['Field'] ?>">
+					<?php foreach ($field['_File_list'] as $option): ?>
+						<option value="<?php echo $option ?>" <?php echo (isset($content[$field['_Content_type_name']]) && $key == $content['content_type']) ? 'selected="selected"' : '' ?>><?php echo $option ?></option>
+					<?php endforeach; ?>
+					</select>				
 				</div>
 			</td>
 			<?php $code_editor_count++ ?>

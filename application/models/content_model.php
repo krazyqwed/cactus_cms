@@ -18,12 +18,19 @@ class Content_model extends MY_Model {
 		$this->_fields['content_type']['_On_edit'] = false;
 		$this->_fields['content_type']['_On_list'] = false;
 
+		$file_list = glob(APPPATH.'/views/**/__*.php');
+
+		foreach ($file_list as $key => $f) {
+			$file_list[$key] = str_replace(APPPATH.'/views/', '', $f);
+		}
+
 		$this->_fields['content']['_Alias'] = 'Tartalom';
 		$this->_fields['content']['Type'] = '_variable';
 		$this->_fields['content']['_On_list'] = false;
 		$this->_fields['content']['_Description'] = '<a href="javascript:void(0);" class="show-on-tr-markdown markdown_full">Teljes képernyő</a>';
 		$this->_fields['content']['_Content_type_name'] = 'content_type';
-		$this->_fields['content']['_Select_options'] = array('WYSIWYG', 'Markdown', 'Nyers');
+		$this->_fields['content']['_Select_options'] = array('WYSIWYG', 'Markdown', 'Nyers', 'Fájl');
+		$this->_fields['content']['_File_list'] = $file_list;
 
 		$this->_fields['name']['_Alias'] = 'Név';
 		$this->_fields['name']['_Description'] = 'Ez a név jelenik meg az elrendezésnél';
