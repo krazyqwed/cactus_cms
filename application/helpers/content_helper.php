@@ -14,7 +14,7 @@ function content_display($part_id){
     if ($result['content_type'] == 1){
         echo $CI->markdown->parse($result['content']);
     }elseif ($result['content_type'] == 3){
-        echo file_get_contents(APPPATH.'views/'.$result['content']);
+        echo $CI->load->view($result['content'], '', true);
     }else{
         echo $result['content'];
     }
