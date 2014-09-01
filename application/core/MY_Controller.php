@@ -30,7 +30,7 @@ class MY_Controller extends MX_Controller {
 
 			if (!$this->session->userdata('user') && !in_array($this->uri->segment(2), $this->_public_actions)){
 				if ($this->login_check_stored_session()){
-					redirect('admin/lockscreen');
+					redirect('admin');
 				}else{
 					$data['v'] = 'admin/login';
 					$this->load->view('admin/_layout', $data);
