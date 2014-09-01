@@ -13,6 +13,21 @@ function elFinderBrowser (field_name, url, type, win) {
     return false;
 }
 
+function fileTreeLoadFile(path, $textarea){
+    $('.CodeMirror').append('<div class="ajax-cover"><i class="fa fa-refresh"></i></div>');
+
+    $.ajax({
+        type: "POST",
+        url: base_url + 'admin/file_tree/load',
+        data: { path: path },
+        dataType: "JSON",
+        success: function(data){
+            $('textarea.codemirror').data('CodeMirrorInstance').setValue(data.file_content);
+            $('.CodeMirror').find('.ajax-cover').remove();
+        }
+    });
+}
+
 (function($) {
     $.fn.extend( {
         limiter: function(limit, elem) {
@@ -255,6 +270,19 @@ if ($('.datatable').length){
             { 'bSearchable': false, 'aTargets': search_indexes },
         ]
     });
+}
+
+/* File tree */
+if ($('.file-tree').length){
+    var editor = CodeMirror.fromTextArea($('textarea.codemirror')[0], {
+        mode: "application/x-httpd-php",
+        tabMode: 'indent',
+        lineWrapping: false,
+        lineNumbers: true,
+        theme: "monokai"
+    });
+
+    $('textarea.codemirror').data('CodeMirrorInstance', editor);
 }
 
 /* File browser */

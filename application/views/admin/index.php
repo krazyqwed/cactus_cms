@@ -45,7 +45,7 @@
 
 	<div class="col-md-4">
 		<div class="widget">
-			<div class="widget-header"><h1>Fejlesztési napló</h1></div>
+			<div class="widget-header"><h1>Látogatók</h1></div>
 			
 			Aktív felhasználók száma:
 			<h1><?php echo $active_users ?></h1>

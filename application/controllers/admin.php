@@ -682,4 +682,41 @@ class Admin extends MY_Controller {
 	public function youtube_init(){
 		$this->load->view('admin/others/youtube');
 	}
+
+	public function file_tree($action = null){
+		if ($action == null){
+			$this->load->helper('php_file_tree');
+
+			$data['v'] = 'admin/others/file_tree';
+			$data['tree'] = php_file_tree(
+				APPPATH."views/",
+				"javascript:fileTreeLoadFile('[link]');",
+				array(),
+				array('admin', 'index.html')
+			);
+			
+			$this->front->add_style(array('res/js/admin/codemirror/codemirror.css', 'res/js/admin/codemirror/theme/monokai.css', 'res/js/admin/file_tree/default.css'));
+			$this->front->add_script(array(
+				'res/js/admin/codemirror/codemirror.js',
+				'res/js/admin/codemirror/addon/edit/matchbrackets.js',
+				'res/js/admin/codemirror/mode/clike/clike.js',
+				'res/js/admin/codemirror/mode/php/php.js',
+				'res/js/admin/codemirror/mode/xml/xml.js',
+				'res/js/admin/codemirror/mode/javascript/javascript.js',
+				'res/js/admin/codemirror/mode/css/css.js',
+				'res/js/admin/codemirror/mode/htmlmixed/htmlmixed.js',
+				'res/js/admin/file_tree/php_file_tree_jquery.js'
+			));
+
+			$this->load->view('admin/_layout', $data);
+		}elseif ($action == 'load'){
+			$file = file_get_contents($this->input->post('path'));
+			
+			echo json_encode(array('file_content' => $file));
+		}elseif ($action == 'save'){
+
+		}else{
+			header("HTTP/1.0 405 Method Not Allowed");
+		}
+	}
 }

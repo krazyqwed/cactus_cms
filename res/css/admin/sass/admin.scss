@@ -164,6 +164,7 @@ textarea{ resize: none; }
 	background-repeat: no-repeat;
 	background-position: 18px center;
 	box-shadow: 0 0 4px rgba(0,0,0,0.6), inset 0 -1px 0 rgba(0,0,0,0.1);
+	z-index: 10;
 
 	.version{
 		position: absolute;
@@ -217,6 +218,7 @@ textarea{ resize: none; }
 }
 
 #content{
+	position: relative;
 	vertical-align: top;
 	height: calc(100vh - 64px);
 	overflow: auto;
@@ -827,6 +829,57 @@ html.admin-lockscreen body {
 			width: 50px; height: 50px;
 			padding-top: 12px; padding-left: 9px;
 			border-radius: 50%;
+		}
+	}
+}
+
+/* File tree */
+.file-tree {
+	.file-tree-left {
+		position: absolute;
+		left: 0; top: 0; bottom: 0;
+		width: 20%;
+		background-color: $c-lightgray;
+		border-right: 1px solid $c-gray;
+
+		#page-header {
+			padding-top: 8px;
+			text-align: center;
+			background-color: $c-lightdarkergray;
+
+			h1 {
+				padding: 8px 0 12px 0;
+			}
+		}
+
+		.php-file-tree {
+			position: absolute;
+			top: 64px; bottom: 0; right: 0; left: 0;
+			overflow: auto;
+			margin-bottom: 0;
+
+			&::-webkit-scrollbar {
+				height: 10px;
+			}
+		}
+	}
+
+	.file-tree-right {
+		position: absolute;
+		left: 20%; top: 0; bottom: 0;
+		width: 80%;
+
+		.CodeMirror { height: 100%; }
+
+		.ajax-cover{
+			top: 0;
+			background-color: transparent;
+			z-index: 10;
+
+			i {
+				color: $c-gray;
+				top: 0; bottom: 0; left: 0; right: 0;
+			}
 		}
 	}
 }
