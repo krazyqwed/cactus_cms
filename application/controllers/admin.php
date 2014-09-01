@@ -712,9 +712,23 @@ class Admin extends MY_Controller {
 		}elseif ($action == 'load'){
 			$file = file_get_contents($this->input->post('path'));
 			
-			echo json_encode(array('file_content' => $file));
+			if ($file){
+				echo json_encode(array('success' => true, 'file_content' => $file));
+			}else{
+				echo json_encode(array('success' => false));
+			}
 		}elseif ($action == 'save'){
+			$post = $this->input->post();
 
+			if (!mb_check_encoding(file_get_contents($post['path']), 'UTF-8')) {
+				$post['content'] = utf8_encode($post['content']);
+			}
+
+			if (file_put_contents($post['path'], $post['content'])){
+				echo json_encode(array('success' => true));
+			}else{
+				echo json_encode(array('success' => false));
+			}
 		}else{
 			header("HTTP/1.0 405 Method Not Allowed");
 		}

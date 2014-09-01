@@ -13,19 +13,32 @@ function elFinderBrowser (field_name, url, type, win) {
     return false;
 }
 
-function fileTreeLoadFile(path, $textarea){
-    $('.CodeMirror').append('<div class="ajax-cover"><i class="fa fa-refresh"></i></div>');
+var file_tree_temp_path;
 
-    $.ajax({
-        type: "POST",
-        url: base_url + 'admin/file_tree/load',
-        data: { path: path },
-        dataType: "JSON",
-        success: function(data){
-            $('textarea.codemirror').data('CodeMirrorInstance').setValue(data.file_content);
-            $('.CodeMirror').find('.ajax-cover').remove();
-        }
-    });
+function fileTreeLoadFile(path, bypass){
+    if (typeof bypass == "undefined"){
+        file_tree_temp_path = path;
+        bypass = false
+    }
+
+    if ($('.file-tree .menu .indicator').hasClass('visible') && !bypass){
+        $('.file-tree .file-save-modal').modal();
+    }else{
+        $('.CodeMirror').append('<div class="ajax-cover"><i class="fa fa-refresh"></i></div>');
+
+        $.ajax({
+            type: "POST",
+            url: base_url + 'admin/file_tree/load',
+            data: { path: path },
+            dataType: "JSON",
+            success: function(data){
+                $('textarea.codemirror').data('CodeMirrorInstance').setValue(data.file_content);
+                $('.CodeMirror').find('.ajax-cover').remove();
+                $('.file-tree-right input[name="file"]').val(path);
+                $('.file-tree .menu .indicator').removeClass('visible');
+            }
+        });
+    }
 }
 
 (function($) {
@@ -282,7 +295,41 @@ if ($('.file-tree').length){
         theme: "monokai"
     });
 
+    editor.on('change', function(){
+        $('.file-tree .menu .indicator').addClass('visible');
+    });
+
     $('textarea.codemirror').data('CodeMirrorInstance', editor);
+
+    $(document).on('click', '.file-tree .save-file', function(){
+        $('.CodeMirror').append('<div class="ajax-cover"><i class="fa fa-refresh"></i></div>');
+
+        $.ajax({
+            type: "POST",
+            url: base_url + 'admin/file_tree/save',
+            data: {
+                path: $('.file-tree-right input[name="file"]').val(),
+                content: editor.getValue()
+            },
+            dataType: "JSON",
+            success: function(data){
+                $('.CodeMirror').find('.ajax-cover').remove();
+                $('.file-tree .menu .indicator').removeClass('visible');
+
+                if ($(this).hasClass('save-file-modal')){
+                    fileTreeLoadFile(file_tree_temp_path, true);
+                }
+            }
+        });
+    });
+
+    $(document).bind('keydown', function(e) {
+        if(e.ctrlKey && (e.which == 83)) {
+            e.preventDefault();
+            $('.file-tree li.save-file').trigger('click');
+            return false;
+        }
+    });
 }
 
 /* File browser */

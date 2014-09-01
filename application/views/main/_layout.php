@@ -8,7 +8,7 @@
   <meta name="description" content="{seo_description}" />
 
   <title>{seo_title}</title>
-
+  
   {display_styles}
 </head>
 

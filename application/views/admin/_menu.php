@@ -79,6 +79,12 @@
 					<span class="menu-text">SEO</span>
 				</a>
 			</li>
+			<li rel="file_tree">
+				<a href="<?php echo site_url('admin/file_tree') ?>">
+					<i class="fa fa-folder-o"></i>
+					<span class="menu-text">Fájlszerkesztő</span>
+				</a>
+			</li>
 			<li class="multi s-close">
 				<a href="javascript:void(0)" class="dropdown-toggle">
 					<i class="fa fa-file-code-o"></i>
