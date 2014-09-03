@@ -2,6 +2,8 @@ var file_tree_temp_path;
 var $console = $('.file-tree-right .console input');
 
 function fileTreeLoad(){
+    $('.file-tree-left').append('<div class="ajax-cover"><i class="fa fa-refresh"></i></div>');
+
     $.ajax({
         type: "GET",
         url: base_url + 'admin/file_tree/load_tree',
@@ -10,6 +12,7 @@ function fileTreeLoad(){
             php_file_tree_cache();
             $('.file-tree-left .tree-wrap').html(data.html);
             php_file_tree_refresh(true);
+            $('.file-tree-left .ajax-cover').remove();
         }
     });
 }
@@ -61,6 +64,12 @@ function handleConsoleEnter(command){
     var path = $console.data('caller').data('path');
     var ajaxAction = $console.data('ajaxAction');
 
+    if (path == $('.file-tree-right input[name="file"]').val() && (ajaxAction == 'rename' || ajaxAction == 'delete')){
+        $('.file-tree-right input[name="file"]').val('');
+        $('textarea.codemirror').data('CodeMirrorInstance').setValue('');
+        $('.file-tree .menu .indicator').removeClass('visible');
+    }
+
     if (ajaxAction){
         if ((ajaxAction != 'delete') || (ajaxAction == 'delete' && command.toLowerCase() == 'i')){
             $.ajax({
@@ -95,6 +104,8 @@ $().ready(function(){
     $('textarea.codemirror').data('CodeMirrorInstance', editor);
 
     $(document).on('click', '.file-tree .save-file', function(){
+        if ($('.file-tree-right input[name="file"]').val() == '') return false;
+
         $('.CodeMirror').append('<div class="ajax-cover"><i class="fa fa-refresh"></i></div>');
 
         $.ajax({
@@ -135,48 +146,57 @@ $().ready(function(){
         });
 
         $contextCaller = $(e.target);
+
+        if ($contextCaller.data('path') == $('.file-tree-right input[name="file"]').val()){
+            $('.file-context-menu .file-rename').addClass('disable');
+        }else{
+            $('.file-context-menu .file-rename').removeClass('disable');
+        }
+
         return false;
     });
 
     $contextMenu.on('click', 'a', function() {
         var $link = $(this);
 
-        if ($link.hasClass('file-rename')){
-            fileConsoleOpen();
+        if (!$link.hasClass('disable')){
+            if ($link.hasClass('file-rename')){
+                fileConsoleOpen();
 
-            $console.val($contextCaller.text());
-            $console.focus();
+                $console.val($contextCaller.text());
+                $console.focus();
 
-            $console.data('ajaxAction', 'rename');
-            $console.data('caller', $contextCaller);
-        }else if ($link.hasClass('file-create')){
-            fileConsoleOpen();
+                $console.data('ajaxAction', 'rename');
+                $console.data('caller', $contextCaller);
+            }else if ($link.hasClass('file-create')){
+                fileConsoleOpen();
 
-            $console.val('');
-            $console.focus();
+                $console.val('');
+                $console.focus();
 
-            $console.data('ajaxAction', 'create');
-            $console.data('caller', $contextCaller);
-        }else if ($link.hasClass('folder-create')){
-            fileConsoleOpen();
+                $console.data('ajaxAction', 'create');
+                $console.data('caller', $contextCaller);
+            }else if ($link.hasClass('folder-create')){
+                fileConsoleOpen();
 
-            $console.val('');
-            $console.focus();
+                $console.val('');
+                $console.focus();
 
-            $console.data('ajaxAction', 'folder_create');
-            $console.data('caller', $contextCaller);
-        }else if ($link.hasClass('file-delete')){
-            fileConsoleOpen();
+                $console.data('ajaxAction', 'folder_create');
+                $console.data('caller', $contextCaller);
+            }else if ($link.hasClass('file-delete')){
+                fileConsoleOpen();
 
-            $console.attr('placeholder', 'Biztosan törlöd a fájlt/mappát ('+$contextCaller.text()+')? I / N');
-            $console.val('');
-            $console.focus();
+                $console.attr('placeholder', 'Biztosan törlöd a fájlt/mappát ('+$contextCaller.text()+')? I / N');
+                $console.val('');
+                $console.focus();
 
-            $console.data('ajaxAction', 'delete');
-            $console.data('caller', $contextCaller);
+                $console.data('ajaxAction', 'delete');
+                $console.data('caller', $contextCaller);
+            }
+
+            $contextMenu.hide();
         }
-
-        $contextMenu.hide();
     });
 
     $('.file-tree-right').on('click', '.console .close', function(){
