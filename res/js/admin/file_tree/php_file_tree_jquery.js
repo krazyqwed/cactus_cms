@@ -30,5 +30,9 @@ function php_file_tree_refresh(from_cache){
                 $(this).children('ul').show();
             }
         });
+
+        if ($('.file-tree-right input[name="file"]').val() != ''){
+            $('.file-tree-left li > a[data-path="'+$('.file-tree-right input[name="file"]').val()+'"]').closest('li').addClass('active');
+        }
     }
 }
