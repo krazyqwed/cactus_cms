@@ -683,7 +683,7 @@ class Admin extends MY_Controller {
 		$this->load->view('admin/others/youtube');
 	}
 
-	public function file_tree($action = null){
+	public function file_tree($action = null, $command = null){
 		if ($action == null){
 			$this->load->helper('php_file_tree');
 
@@ -697,6 +697,7 @@ class Admin extends MY_Controller {
 			
 			$this->front->add_style(array('res/js/admin/codemirror/codemirror.css', 'res/js/admin/codemirror/theme/monokai.css', 'res/js/admin/file_tree/default.css'));
 			$this->front->add_script(array(
+				'res/js/admin/file_tree.js',
 				'res/js/admin/codemirror/codemirror.js',
 				'res/js/admin/codemirror/addon/edit/matchbrackets.js',
 				'res/js/admin/codemirror/mode/clike/clike.js',
@@ -709,10 +710,21 @@ class Admin extends MY_Controller {
 			));
 
 			$this->load->view('admin/_layout', $data);
+		}elseif ($action == 'load_tree'){
+			$this->load->helper('php_file_tree');
+
+			echo json_encode(array(
+				'success' => true,
+				'html' => php_file_tree(
+					APPPATH."views/",
+					"javascript:fileTreeLoadFile('[link]');",
+					array(),
+					array('admin', 'index.html')
+				)
+			));
 		}elseif ($action == 'load'){
-			$file = file_get_contents($this->input->post('path'));
-			
-			if ($file){
+			if (file_exists($this->input->post('path'))){
+				$file = file_get_contents($this->input->post('path'));
 				echo json_encode(array('success' => true, 'file_content' => $file));
 			}else{
 				echo json_encode(array('success' => false));
@@ -728,6 +740,53 @@ class Admin extends MY_Controller {
 				echo json_encode(array('success' => true));
 			}else{
 				echo json_encode(array('success' => false));
+			}
+		}elseif ($action == 'console'){
+			$post = $this->input->post();
+
+			if ($command == 'rename'){
+				if (!is_dir($post['path'])){
+					rename($post['path'], dirname($post['path']).'/'.$post['command']);
+
+					echo json_encode(array('success' => true));
+				}else{
+					rename($post['path'], dirname($post['path']).'/'.$post['command']);
+
+					echo json_encode(array('success' => true));
+				}
+			}elseif ($command == 'create'){
+				$new_path = is_dir($post['path'])? $post['path'].'/'.$post['command'] : dirname($post['path']).'/'.$post['command'];
+
+				if (!file_exists($new_path)){
+					file_put_contents($new_path, '');
+
+					echo json_encode(array('success' => true));
+				}else{
+					echo json_encode(array('success' => false));
+				}
+			}elseif ($command == 'folder_create'){
+				$new_path = is_dir($post['path'])? $post['path'].'/'.$post['command'] : dirname($post['path']).'/'.$post['command'];
+
+				if (!is_dir($new_path)){
+					mkdir($new_path);
+
+					echo json_encode(array('success' => true));
+				}else{
+					echo json_encode(array('success' => false));
+				}
+			}elseif ($command == 'delete'){
+				if (file_exists($post['path'])){
+					if (!is_dir($post['path'])){
+						unlink($post['path']);
+					}else{
+						$this->load->helper('php_file_tree');
+						php_file_tree_delete_directory($post['path']);
+					}
+
+					echo json_encode(array('success' => true));
+				}else{
+					echo json_encode(array('success' => false));
+				}
 			}
 		}else{
 			header("HTTP/1.0 405 Method Not Allowed");

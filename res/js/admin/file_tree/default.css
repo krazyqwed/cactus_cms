@@ -16,6 +16,7 @@
 		text-decoration: none;
 		vertical-align: top;
 		position: relative;
+		line-height: 15px;
 	}
 	
 	.php-file-tree a:hover {

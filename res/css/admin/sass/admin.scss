@@ -835,6 +835,12 @@ html.admin-lockscreen body {
 
 /* File tree */
 .file-tree {
+	.file-context-menu {
+		position: absolute;
+		display: none;
+		z-index: 10;
+	}
+
 	.file-tree-left {
 		position: absolute;
 		left: 0; top: 0; bottom: 0;
@@ -852,7 +858,7 @@ html.admin-lockscreen body {
 			}
 		}
 
-		.php-file-tree {
+		.tree-wrap {
 			position: absolute;
 			top: 64px; bottom: 0; right: 0; left: 0;
 			overflow: auto;
@@ -860,6 +866,23 @@ html.admin-lockscreen body {
 
 			&::-webkit-scrollbar {
 				height: 10px;
+			}
+		}
+
+		.php-file-tree {
+			display: inline-block;
+			padding-right: 16px;
+		}
+
+		li.active{
+			a { font-weight: bold; }
+
+			a:after{
+				content: "";
+				position: absolute;
+				left: -28px; right: -6px; top: -1px;
+				height: 20px;
+				background-color: rgba(0,0,0,.05);
 			}
 		}
 	}
@@ -905,7 +928,7 @@ html.admin-lockscreen body {
 
 				&.visible{ visibility: visible; }
 			}
-		}	
+		}
 
 		.CodeMirror {
 			position: absolute;
@@ -926,15 +949,53 @@ html.admin-lockscreen body {
 			}
 		}
 
-		.ajax-cover{
-			top: 0;
-			background-color: transparent;
-			z-index: 10;
 
-			i {
-				color: $c-gray;
-				top: 0; bottom: 0; left: 0; right: 0;
+	
+		.console {
+			display: none;
+			position: absolute;
+			bottom: -32px;
+			width: 100%; height: 32px;
+			background-color: $c-darkgray;
+			box-shadow: inset 0 1px 4px rgba(0,0,0,0.6);
+
+			input {
+				margin: 2px 0 0 12px;
+				width: 90%;
+				padding: 4px;
+				color: #FFF;
+				font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+				font-size: 16px;
+				background-color: transparent;
+				border: 0;
+				outline: 0;
 			}
+
+			.close {
+				position: absolute;
+				right: 12px;
+				top: 6px;
+				color: #FFF;
+			}
+		}
+
+		&.console-opened {
+			bottom: 32px;
+
+			.console {
+				display: block;
+			}
+		}
+	}
+
+	.ajax-cover{
+		top: 0;
+		background-color: transparent;
+		z-index: 10;
+
+		i {
+			color: $c-gray;
+			top: 0; bottom: 0; left: 0; right: 0;
 		}
 	}
 }

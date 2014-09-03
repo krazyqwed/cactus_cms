@@ -13,34 +13,6 @@ function elFinderBrowser (field_name, url, type, win) {
     return false;
 }
 
-var file_tree_temp_path;
-
-function fileTreeLoadFile(path, bypass){
-    if (typeof bypass == "undefined"){
-        file_tree_temp_path = path;
-        bypass = false
-    }
-
-    if ($('.file-tree .menu .indicator').hasClass('visible') && !bypass){
-        $('.file-tree .file-save-modal').modal();
-    }else{
-        $('.CodeMirror').append('<div class="ajax-cover"><i class="fa fa-refresh"></i></div>');
-
-        $.ajax({
-            type: "POST",
-            url: base_url + 'admin/file_tree/load',
-            data: { path: path },
-            dataType: "JSON",
-            success: function(data){
-                $('textarea.codemirror').data('CodeMirrorInstance').setValue(data.file_content);
-                $('.CodeMirror').find('.ajax-cover').remove();
-                $('.file-tree-right input[name="file"]').val(path);
-                $('.file-tree .menu .indicator').removeClass('visible');
-            }
-        });
-    }
-}
-
 (function($) {
     $.fn.extend( {
         limiter: function(limit, elem) {
@@ -282,53 +254,6 @@ if ($('.datatable').length){
             { 'bSortable': false, 'aTargets': sort_indexes },
             { 'bSearchable': false, 'aTargets': search_indexes },
         ]
-    });
-}
-
-/* File tree */
-if ($('.file-tree').length){
-    var editor = CodeMirror.fromTextArea($('textarea.codemirror')[0], {
-        mode: "application/x-httpd-php",
-        tabMode: 'indent',
-        lineWrapping: false,
-        lineNumbers: true,
-        theme: "monokai"
-    });
-
-    editor.on('change', function(){
-        $('.file-tree .menu .indicator').addClass('visible');
-    });
-
-    $('textarea.codemirror').data('CodeMirrorInstance', editor);
-
-    $(document).on('click', '.file-tree .save-file', function(){
-        $('.CodeMirror').append('<div class="ajax-cover"><i class="fa fa-refresh"></i></div>');
-
-        $.ajax({
-            type: "POST",
-            url: base_url + 'admin/file_tree/save',
-            data: {
-                path: $('.file-tree-right input[name="file"]').val(),
-                content: editor.getValue()
-            },
-            dataType: "JSON",
-            success: function(data){
-                $('.CodeMirror').find('.ajax-cover').remove();
-                $('.file-tree .menu .indicator').removeClass('visible');
-
-                if ($(this).hasClass('save-file-modal')){
-                    fileTreeLoadFile(file_tree_temp_path, true);
-                }
-            }
-        });
-    });
-
-    $(document).bind('keydown', function(e) {
-        if(e.ctrlKey && (e.which == 83)) {
-            e.preventDefault();
-            $('.file-tree li.save-file').trigger('click');
-            return false;
-        }
     });
 }
 

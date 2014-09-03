@@ -30,8 +30,9 @@ function php_file_tree_dir($directory, $return_link, $extensions = array(), $exc
 	// Recursive function called by php_file_tree() to list directories/files
 	
 	// Get and sort directories/files
-	if( function_exists("scandir") ) $file = scandir($directory); else $file = php4_scandir($directory);
+	$file = scandir($directory);
 	natcasesort($file);
+
 	// Make directories first
 	$files = $dirs = array();
 	foreach($file as $this_file) {
@@ -56,7 +57,7 @@ function php_file_tree_dir($directory, $return_link, $extensions = array(), $exc
 		}
 	}
 	
-	if( count($file) > 2 ) { // Use 2 instead of 0 to account for . and .. "directories"
+	if( count($file) >= 2 ) { // Use 2 instead of 0 to account for . and .. "directories"
 		$php_file_tree = "<ul";
 		if( $first_call ) { $php_file_tree .= " class=\"php-file-tree\""; $first_call = false; }
 		$php_file_tree .= ">";
@@ -64,7 +65,7 @@ function php_file_tree_dir($directory, $return_link, $extensions = array(), $exc
 			if( $this_file != "." && $this_file != ".." ) {
 				if( is_dir("$directory/$this_file") ) {
 					// Directory
-					$php_file_tree .= "<li class=\"pft-directory\"><a href=\"javascript:void(0)\">" . htmlspecialchars($this_file) . "</a>";
+					$php_file_tree .= "<li class=\"pft-directory\" rel=\"".md5($directory."/".$this_file)."\"><a href=\"javascript:void(0)\" data-path=\"".$directory."/".$this_file."\" data-folder=\"".$directory."\" data-file=\"".$this_file."\">" . htmlspecialchars($this_file) . "</a>";
 					$php_file_tree .= php_file_tree_dir("$directory/$this_file", $return_link, $extensions, $excludes, false);
 					$php_file_tree .= "</li>";
 				} else {
@@ -72,7 +73,7 @@ function php_file_tree_dir($directory, $return_link, $extensions = array(), $exc
 					// Get extension (prepend 'ext-' to prevent invalid classes from extensions that begin with numbers)
 					$ext = "ext-" . substr($this_file, strrpos($this_file, ".") + 1); 
 					$link = str_replace("[link]", "$directory/" . urlencode($this_file), $return_link);
-					$php_file_tree .= "<li class=\"pft-file " . strtolower($ext) . "\"><a href=\"$link\">" . htmlspecialchars($this_file) . "</a></li>";
+					$php_file_tree .= "<li class=\"pft-file " . strtolower($ext) . "\"><a href=\"$link\" data-path=\"".$directory."/".$this_file."\" data-folder=\"".$directory."\" data-file=\"".$this_file."\">" . htmlspecialchars($this_file) . "</a></li>";
 				}
 			}
 		}
@@ -81,12 +82,25 @@ function php_file_tree_dir($directory, $return_link, $extensions = array(), $exc
 	return $php_file_tree;
 }
 
-// For PHP4 compatibility
-function php4_scandir($dir) {
-	$dh  = opendir($dir);
-	while( false !== ($filename = readdir($dh)) ) {
-	    $files[] = $filename;
-	}
-	sort($files);
-	return($files);
+function php_file_tree_delete_directory($dir) {
+    if (!file_exists($dir)) {
+        return true;
+    }
+
+    if (!is_dir($dir)) {
+        return unlink($dir);
+    }
+
+    foreach (scandir($dir) as $item) {
+        if ($item == '.' || $item == '..') {
+            continue;
+        }
+
+        if (!php_file_tree_delete_directory($dir . DIRECTORY_SEPARATOR . $item)) {
+            return false;
+        }
+
+    }
+
+    return rmdir($dir);
 }
