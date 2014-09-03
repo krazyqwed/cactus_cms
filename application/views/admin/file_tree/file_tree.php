@@ -32,7 +32,7 @@
 				<h1>Fájlkezelő</h1>
 			</div>
 	
-			<div class="tree-wrap">
+			<div class="tree-wrap" data-path="<?php echo APPPATH.'views'; ?>">
 				<?php echo $tree ?>
 			</div>
 		</div>

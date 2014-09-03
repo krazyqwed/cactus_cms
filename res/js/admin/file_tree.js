@@ -2,7 +2,7 @@ var file_tree_temp_path;
 var $console = $('.file-tree-right .console input');
 
 function fileTreeLoad(){
-    $('.file-tree-left').append('<div class="ajax-cover"><i class="fa fa-refresh"></i></div>');
+    showAjaxCover($('.file-tree-left'));
 
     $.ajax({
         type: "GET",
@@ -12,7 +12,8 @@ function fileTreeLoad(){
             php_file_tree_cache();
             $('.file-tree-left .tree-wrap').html(data.html);
             php_file_tree_refresh(true);
-            $('.file-tree-left .ajax-cover').remove();
+            
+            hideAjaxCover($('.file-tree-left'));
         }
     });
 }
@@ -26,7 +27,7 @@ function fileTreeLoadFile(path, bypass){
     if ($('.file-tree .menu .indicator').hasClass('visible') && !bypass){
         $('.file-tree .file-save-modal').modal();
     }else{
-        $('.CodeMirror').append('<div class="ajax-cover"><i class="fa fa-refresh"></i></div>');
+        showAjaxCover($('.CodeMirror'));
 
         $('.file-tree li').removeClass('active');
 
@@ -37,11 +38,13 @@ function fileTreeLoadFile(path, bypass){
             dataType: "JSON",
             success: function(data){
                 $('textarea.codemirror').data('CodeMirrorInstance').setValue(data.file_content);
-                $('.CodeMirror').find('.ajax-cover').remove();
+                
                 $('.file-tree-right input[name="file"]').val(path);
                 $('.file-tree .menu .indicator').removeClass('visible');
 
                 $('a[data-path="'+path+'"]').closest('li').addClass('active');
+
+                hideAjaxCover($('.CodeMirror'));
             }
         });
     }
@@ -106,7 +109,7 @@ $().ready(function(){
     $(document).on('click', '.file-tree .save-file', function(){
         if ($('.file-tree-right input[name="file"]').val() == '') return false;
 
-        $('.CodeMirror').append('<div class="ajax-cover"><i class="fa fa-refresh"></i></div>');
+        showAjaxCover($('.CodeMirror'));
 
         $.ajax({
             type: "POST",
@@ -117,7 +120,7 @@ $().ready(function(){
             },
             dataType: "JSON",
             success: function(data){
-                $('.CodeMirror').find('.ajax-cover').remove();
+                hideAjaxCover($('.CodeMirror'));
                 $('.file-tree .menu .indicator').removeClass('visible');
 
                 if ($(this).hasClass('save-file-modal')){
@@ -147,11 +150,28 @@ $().ready(function(){
 
         $contextCaller = $(e.target);
 
+        $('.file-context-menu a').removeClass('disable');
+
         if ($contextCaller.data('path') == $('.file-tree-right input[name="file"]').val()){
             $('.file-context-menu .file-rename').addClass('disable');
         }else{
             $('.file-context-menu .file-rename').removeClass('disable');
         }
+
+        return false;
+    });
+
+    $(document).on('contextmenu', '.file-tree-left .tree-wrap', function(e) {
+        $contextMenu.css({
+            display: "block",
+            left: e.pageX - $('#content').offset().left,
+            top: e.pageY - $('#content').offset().top
+        });
+
+        $contextCaller = $(e.target);
+
+        $('.file-context-menu .file-rename').addClass('disable');
+        $('.file-context-menu .file-delete').addClass('disable');
 
         return false;
     });

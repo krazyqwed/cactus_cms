@@ -137,5 +137,4 @@ foreach ($parts as $part)
 	<div class="wrap">
 		<?php echo layout_parts_table_display($this->session->userdata('layout')) ?>
 	</div>
-	<div class="ajax-cover"></div>
 </div>

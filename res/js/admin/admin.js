@@ -1,3 +1,15 @@
+function showAjaxCover($element){
+    if ($element.css('position') == 'static')
+        $element.css({ 'position': 'relative' });
+
+    $element.append('<div class="ajax-cover"><i class="fa fa-refresh"></i></div>');
+}
+
+function hideAjaxCover($element){
+    $element.css({ 'position': '' });
+    $element.children('.ajax-cover').remove();
+}
+
 function elFinderBrowser (field_name, url, type, win) {
     tinymce.activeEditor.windowManager.open({
         file: base_url + 'admin/elfinder_html/mce',

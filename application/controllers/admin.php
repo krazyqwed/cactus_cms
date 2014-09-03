@@ -687,7 +687,7 @@ class Admin extends MY_Controller {
 		if ($action == null){
 			$this->load->helper('php_file_tree');
 
-			$data['v'] = 'admin/others/file_tree';
+			$data['v'] = 'admin/file_tree/file_tree';
 			$data['tree'] = php_file_tree(
 				APPPATH."views/",
 				"javascript:fileTreeLoadFile('[link]');",

@@ -49,8 +49,8 @@ $().ready(function(){
 		$alert = $(this).closest('.panel-footer').find('.alert-order');
 		$button = $(this);
 		$button.html('<i class="fa fa-refresh"></i>');
-		$cover = $('.ajax-cover');
-		$cover.css({ 'top': 0 }).html('<i class="fa fa-refresh"></i>');
+		showAjaxCover($('.menu-items'));
+		showAjaxCover($('.menu-edit'));
 
 		$.ajax({
 			type: "POST",
@@ -59,7 +59,8 @@ $().ready(function(){
 			dataType: "json",
 			success: function(data){
 				$button.html('Mentés');
-				$cover.empty().css({ 'top': '-10000px' });
+				hideAjaxCover($('.menu-items'));
+				hideAjaxCover($('.menu-edit'));
 
 				if (data.success == 1)
 

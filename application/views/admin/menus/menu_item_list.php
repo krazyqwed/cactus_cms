@@ -7,8 +7,6 @@
 				<div class="wrap">
 					<?php menu_display($menu_id, true) ?>
 				</div>
-
-				<div class="ajax-cover"></div>
 			</div>
 			<div class="panel-footer">
 				<div class="alert alert-order"></div>
@@ -27,8 +25,6 @@
 				<div class="wrap">
 					<?php echo menu_items_table_display($menu_id) ?>
 				</div>
-
-				<div class="ajax-cover"></div>
 			</div>
 		</div>
 	</div>

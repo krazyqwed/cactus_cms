@@ -81,8 +81,7 @@ $().ready(function(){
 		$alert = $(this).closest('.section').find('.alert-layout-save');
 		$button = $(this);
 		$button.html('<i class="fa fa-refresh"></i>');
-		$cover = $('.ajax-cover');
-		$cover.css({ 'top': 0 }).html('<i class="fa fa-refresh"></i>');
+		showAjaxCover($('.part-list'));
 
 		$.ajax({
 			type: "POST",
@@ -91,7 +90,7 @@ $().ready(function(){
 			dataType: "json",
 			success: function(data){
 				$button.html('Elrendezés mentése');
-				$cover.empty().css({ 'top': '-10000px' });
+				hideAjaxCover($('.part-list'));
 
 				if (data.success == 1){
 					$alert.removeClass('alert-warning').addClass('alert-success');
