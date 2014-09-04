@@ -127,7 +127,9 @@ class Front{
 			$path = str_replace('\\', '/', str_replace(FCPATH, '', realpath($s)));
 			$path = dirname($path);
 
-			preg_match_all('/(?:url\([\'"]*((?!\/\/)[a-z0-9\/._\-\\?#]+)[\'"]*\))/i', $css, $matches);
+			preg_match_all('/(?:url\([\'"]*((?!\/\/)[a-z0-9\/._\-\\?#=]+)[\'"]*\))/i', $css, $matches);
+
+			$matches[1] = array_unique($matches[1]);
 
 			$matches_original = $matches[1];
 
@@ -147,9 +149,7 @@ class Front{
 				}
 			}
 
-			foreach ($matches_original as $m){
-				$css = str_replace($matches_original, $matches[1], $css);
-			}
+			$css = str_replace($matches_original, $matches[1], $css);
 
 			$full_css .= $css;
 		}
