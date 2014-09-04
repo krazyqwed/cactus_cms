@@ -36,9 +36,9 @@ class Front{
 		return array_merge($res, $res_z);
 	}
 
-	public function display_scripts(){
+	public function display_scripts($as_array = false){
 		$this->scripts = $this->make_unique($this->scripts);
-		$scripts = '';
+		$scripts = ($as_array)?array():'';
 
 		if (!empty($this->scripts)){
 			foreach ($this->scripts as $key => $script) {
@@ -48,16 +48,20 @@ class Front{
 				}
 			}
 
-			foreach ($this->scripts as $script)
-				$scripts .= '<script type="text/javascript" src="'.base_url($script).'"></script>';
+			foreach ($this->scripts as $script){
+				if ($as_array)
+					$scripts[] = $script;
+				else
+					$scripts .= '<script type="text/javascript" src="'.base_url($script).'"></script>';
+			}
 		}
 
 		return $scripts;
 	}
 	
-	public function display_styles(){
+	public function display_styles($as_array = false){
 		$this->styles = $this->make_unique($this->styles);
-		$styles = '';
+		$styles = ($as_array)?array():'';
 
 		if (!empty($this->styles)){
 			foreach ($this->styles as $key => $style) {
@@ -67,8 +71,12 @@ class Front{
 				}
 			}
 
-			foreach ($this->styles as $style)
-				$styles .= '<link rel="stylesheet" type="text/css" href="'.base_url($style).'" />';
+			foreach ($this->styles as $style){
+				if ($as_array)
+					$styles[] = $style;
+				else
+					$styles .= '<link rel="stylesheet" type="text/css" href="'.base_url($style).'" />';
+			}
 		}
 
 		return $styles;
@@ -108,5 +116,56 @@ class Front{
 				}
 			}
 		}
+	}
+
+	public function combine_css($styles){
+		$full_css = '';
+
+		foreach ($styles as $s){
+			$css = file_get_contents($s);
+
+			$path = str_replace('\\', '/', str_replace(FCPATH, '', realpath($s)));
+			$path = dirname($path);
+
+			preg_match_all('/(?:url\([\'"]*((?!\/\/)[a-z0-9\/._\-\\?#]+)[\'"]*\))/i', $css, $matches);
+
+			$matches_original = $matches[1];
+
+			foreach ($matches[1] as $key => $m){
+				if (strpos($m, '../') !== false){
+					$path_parts = explode('/', $path);
+
+					while (stripos($m, '../') !== false){
+						unset($path_parts[count($path_parts) - 1]);
+						$m = preg_replace('/\.\.\//', '', $m, 1);
+					}
+
+					$new_path = implode('/', $path_parts);
+					$matches[1][$key] = base_url($new_path.'/'.$m);
+				}else{
+					$matches[1][$key] = base_url($path.'/'.$m);
+				}
+			}
+
+			foreach ($matches_original as $m){
+				$css = str_replace($matches_original, $matches[1], $css);
+			}
+
+			$full_css .= $css;
+		}
+
+		return $full_css;
+	}
+
+	public function combine_js($scripts){
+		$full_js = '';
+
+		foreach ($scripts as $s){
+			$js = file_get_contents($s);
+
+			$full_js .= $js . ';';
+		}
+
+		return $full_js;
 	}
 }
