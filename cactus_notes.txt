@@ -3,7 +3,7 @@
 #################################
 #   Creator: Kocsis Dávid       #
 #   Date: 2014.01.07            #
-#   Last mod.: 2014.09.04       #
+#   Last mod.: 2014.09.05       #
 #################################
 Plans for 1.x.x:
   ^ Maintenance mode switch
@@ -11,7 +11,18 @@ Plans for 1.x.x:
   - Event log
   - Visitor statistics
   - Private messages
+  - Admin multi-lang
 #################################
+
+---------------------------------
+2014.09.05 - v0.9.7
+---------------------------------
++ CSS/JS connect & minify
+
+* Performance issue fixed in hook
+* jQuery update (1.11.1)
+* TinyMCE update (4.1.4)
+---------------------------------
 
 ---------------------------------
 2014.09.04 - v0.9.6

@@ -88,9 +88,11 @@ $('input[type=text]').each(function(){
 
 /* WYSIWYG */
 if ($('.tinymce').length){
+    tinyMCE.baseURL = base_url + "res/js/admin/tinymce/";
+
     $('.tinymce').tinymce({
-        'plugins': ['codemirror', 'link', 'image', 'preview', 'youtube', 'textcolor', 'table'],
-        'toolbar': 'undo redo | styleselect | forecolor | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link image youtube | code | preview',
+        plugins: ['-codemirror', 'link', 'image', 'preview', '-youtube', 'textcolor', 'table'],
+        toolbar: 'undo redo | styleselect | forecolor | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link image youtube | code | preview',
         file_browser_callback : elFinderBrowser,
         convert_urls: false,
         menubar:false,
@@ -114,7 +116,7 @@ if ($('.tinymce').length){
         formats: {
             underline: {inline: 'span', 'classes': 'underline', exact: true }
         },
-        'codemirror': {
+        codemirror: {
             path: 'CodeMirror',
             indentOnInit: true,
             config: {

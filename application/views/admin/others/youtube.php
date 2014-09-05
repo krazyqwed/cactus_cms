@@ -117,8 +117,8 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="<?php echo base_url('res/js/jquery-1.10.2.min.js') ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('res/js/admin/bootstrap.min.js') ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('res/js/jquery-1.11.1.min.js') ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('res/js/admin/bootstrap/bootstrap.min.js') ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('res/js/admin/tinymce/plugins/youtube/tubeutil/jQuery.jQTubeUtil.js') ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('res/js/admin/tinymce/plugins/youtube/js/youtube.js') ?>"></script>
 </body>

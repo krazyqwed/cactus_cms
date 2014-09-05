@@ -2153,7 +2153,7 @@ abstract class elFinderVolumeDriver {
 				$stat['name'] = $this->rootName;
 			}
 			if (! empty($this->options['icon'])) {
-				$stat['icon'] = $this->options['icon'];
+				$stat['icon'] = base_url('res/js/admin/tinymce/plugins/elfinder/'.$this->options['icon']);
 			}
 		} else {
 			if (!isset($stat['name']) || !strlen($stat['name'])) {

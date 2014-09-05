@@ -95,11 +95,31 @@ class Front{
 						$this->add_style('res/js/admin/chosen/chosen.min.css');
 						break;
 					case '_wysiwyg':
-						$this->add_script(array('res/js/admin/tinymce/tinymce.min.js', 'res/js/admin/tinymce/jquery.tinymce.min.js'));
+						$this->add_script(array(
+							'res/js/admin/tinymce/tinymce.min.js',
+							'res/js/admin/tinymce/plugins/codemirror/plugin.min.js',
+							'res/js/admin/tinymce/plugins/youtube/plugin.min.js',
+						));
+
 						break;
 					case '_variable':
-						$this->add_style(array('res/js/admin/codemirror/codemirror.css', 'res/js/admin/select/bootstrap-select.min.css', 'res/js/admin/markdown/ghostdown.css', 'res/js/admin/prettify/prettify.css'));
-						$this->add_script(array('res/js/admin/codemirror/codemirror.js', 'res/js/admin/select/bootstrap-select.min.js', 'res/js/admin/tinymce/tinymce.min.js', 'res/js/admin/tinymce/jquery.tinymce.min.js', 'res/js/admin/markdown/ghostdown.js', 'res/js/admin/markdown/jquery.ghostdown.js', 'res/js/admin/prettify/prettify.js', 'res/js/admin/prettify/lang-php.js'));
+						$this->add_style(array(
+							'res/js/admin/codemirror/codemirror.css',
+							'res/js/admin/select/bootstrap-select.min.css',
+							'res/js/admin/markdown/ghostdown.css',
+							'res/js/admin/prettify/prettify.css'
+						));
+						$this->add_script(array(
+							'res/js/admin/codemirror/codemirror.js',
+							'res/js/admin/select/bootstrap-select.min.js',
+							'res/js/admin/tinymce/tinymce.min.js',
+							'res/js/admin/tinymce/plugins/codemirror/plugin.min.js',
+							'res/js/admin/tinymce/plugins/youtube/plugin.min.js',
+							'res/js/admin/markdown/ghostdown.js',
+							'res/js/admin/markdown/jquery.ghostdown.js',
+							'res/js/admin/prettify/prettify.js',
+							'res/js/admin/prettify/lang-php.js'
+						));
 						break;
 					case '_image':
 						$this->add_script(array('res/js/admin/fineuploader/jquery.fineuploader-4.1.0-13.min.js', 'res/js/admin/jcrop/jquery.Jcrop.min.js'));
