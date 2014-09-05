@@ -147,15 +147,17 @@ class MY_Controller extends MX_Controller {
 			$content = $this->db->where($model->_primary, $content_id)->get($model->_db_table)->row_array();
 			
 			foreach ($content as $key => $col){
-				if ($model->_fields[$key]['Type'] == '_image'){
-					if ($col != ''){
-						$content[$key] = $this->db->get_where('images', 'image_id IN ('.implode(',', explode('|', $col)).')')->result_array();
+				if (isset($model->_fields[$key])){
+					if ($model->_fields[$key]['Type'] == '_image'){
+						if ($col != ''){
+							$content[$key] = $this->db->get_where('images', 'image_id IN ('.implode(',', explode('|', $col)).')')->result_array();
+						}
 					}
-				}
 
-				if ($model->_fields[$key]['Type'] == '_file'){
-					if ($col != ''){
-						$content[$key] = $this->db->get_where('files', 'file_id IN ('.implode(',', explode('|', $col)).')')->result_array();
+					if ($model->_fields[$key]['Type'] == '_file'){
+						if ($col != ''){
+							$content[$key] = $this->db->get_where('files', 'file_id IN ('.implode(',', explode('|', $col)).')')->result_array();
+						}
 					}
 				}
 			}

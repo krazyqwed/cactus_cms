@@ -168,4 +168,32 @@ class Front{
 
 		return $full_js;
 	}
+
+	public function handle_cache($resources, $type){
+		$CI =& get_instance();
+		
+		$md5 = md5(implode(',', $resources));
+
+		if (!file_exists(FCPATH.'res/cache/'.$md5.'.'.$type)){
+			if ($type == 'css'){
+				$CI->load->library('minify/cssmin');
+
+				$content = $CI->front->combine_css($resources);
+
+				$CI->cssmin->set_memory_limit('256M');
+				$CI->cssmin->set_max_execution_time(120);
+
+				$content = $CI->cssmin->run($content);
+			}elseif ($type == 'js'){
+				$CI->load->library('minify/jsmin');
+
+				$content = $CI->front->combine_js($resources);
+				$content = $CI->jsmin->minify($content);
+			}
+
+			file_put_contents(FCPATH.'res/cache/'.$md5.'.'.$type, $content);
+		}
+
+		return 'res/cache/'.$md5.'.'.$type;
+	}
 }

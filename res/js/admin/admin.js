@@ -599,6 +599,31 @@ $('form.ajax-post').on('submit', function(e){
     });
 });
 
+/* AJAX button */
+$(document).on('click', '.ajax-link', function(e){
+    e.preventDefault();
+
+    $link = $(this);
+
+    var button_label = $link.html();
+    $link.html('<i class="fa fa-refresh"></i>');
+
+    $.ajax({
+        type: "GET",
+        url: $link.attr('href'),
+        dataType: "json",
+        success: function(data){
+            $link.html(button_label);
+
+            if (typeof data.reload_url != 'undefined')
+                window.location.href = data.reload_url;
+            if (typeof data.refresh != 'undefined')
+                window.location.reload();
+        }
+    });
+});
+
+
 /* Admin left menu */
 if ($('#site-menu .input-site-menu').data('module')){
     $activeMenu = $('#site-menu li[rel="'+$('#site-menu .input-site-menu').data('module')+'"]');

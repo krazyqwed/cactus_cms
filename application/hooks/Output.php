@@ -16,22 +16,31 @@ class Output_hook{
 
 		$output = $CI->output->get_output();
 
-		if (false){
-			$styles = $CI->front->display_styles(true);
-			file_put_contents(FCPATH.'res/style.min.css', $CI->front->combine_css($styles));
-			$link = '<link rel="stylesheet" type="text/css" href="'.base_url('res/style.min.css').'" />';
-			$output = str_replace('{display_styles}', $link, $output);
-		
-			$scripts = $CI->front->display_scripts(true);
-			file_put_contents(FCPATH.'res/script.min.js', $CI->front->combine_js($scripts));
-			$link = '<script type="text/javascript" src="'.base_url('res/script.min.js').'"></script>';
-			$output = str_replace('{display_scripts}', $link, $output);
-		}else{
-			$output = str_replace('{display_styles}', $CI->front->display_styles(), $output);
-			$output = str_replace('{display_scripts}', $CI->front->display_scripts(), $output);
+		$system_settings = $CI->db->get('system_settings')->row_array();
+
+		if (!$CI->input->is_ajax_request()){
+			if ($system_settings['minify_css'] == 1){
+				$styles = $CI->front->display_styles(true);
+
+				$file_path = $CI->front->handle_cache($styles, 'css');
+
+				$link = '<link rel="stylesheet" type="text/css" href="'.base_url($file_path).'" />';
+				$output = str_replace('{display_styles}', $link, $output);
+			}else{
+				$output = str_replace('{display_styles}', $CI->front->display_styles(), $output);
+			}
+
+			if ($system_settings['minify_js'] == 1){
+				$scripts = $CI->front->display_scripts(true);
+
+				$file_path = $CI->front->handle_cache($scripts, 'js');
+
+				$link = '<script type="text/javascript" src="'.base_url($file_path).'"></script>';
+				$output = str_replace('{display_scripts}', $link, $output);
+			}else{
+				$output = str_replace('{display_scripts}', $CI->front->display_scripts(), $output);
+			}
 		}
-
-
 
 		$CI->output->set_output($output);
 	}

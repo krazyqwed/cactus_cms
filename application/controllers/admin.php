@@ -147,6 +147,18 @@ class Admin extends MY_Controller {
 		$this->load->view('admin/_layout', $data);
 	}
 
+	public function cache_delete(){
+		foreach (glob(APPPATH.'cache/*') as $file){
+			unlink($file);
+		}
+
+		foreach (glob(FCPATH.'res/cache/*') as $file){
+			unlink($file);
+		}
+		
+		echo json_encode(array('success' => true));
+	}
+
 	public function users($action = null, $id = null){
 		$this->load->model('user_model');
 		$model = $this->user_model;
