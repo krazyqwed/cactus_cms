@@ -377,5 +377,14 @@ $config['modules_locations'] = array(
 */
 $config['admin_path'] = 'admin';
 
+
+/*
+|--------------------------------------------------------------------------
+| FirePHP lib enable
+|--------------------------------------------------------------------------
+*/
+$config['enable_firephp'] = true;
+
+
 /* End of file config.php */
 /* Location: ./application/config/config.php */

@@ -11,6 +11,12 @@ class MY_Controller extends MX_Controller {
 	public function __construct(){
 		parent::__construct();
 
+		if ($this->config->item('enable_firephp') === true){
+			$this->load->library('firephp');
+
+			$this->firephp->log('System: FirePHP started successfully!');
+		}
+
 		if ($this->is_admin()){
 			$this->_user = $this->session->userdata('user');
 
