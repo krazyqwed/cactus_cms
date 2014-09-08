@@ -194,7 +194,13 @@ class Front{
 		
 		$md5 = md5(implode(',', $resources));
 
-		if (!file_exists(FCPATH.'res/cache/'.$md5.'.'.$type)){
+		// If cache folder not exists
+		if (!file_exists($CI->config->item('minify_cache_path'))) {
+			mkdir($CI->config->item('minify_cache_path'), 0777, true);
+			file_put_contents($CI->config->item('minify_cache_path').'.gitignore', '*'.PHP_EOL.'!.gitignore');
+		}
+
+		if (!file_exists($CI->config->item('minify_cache_path').$md5.'.'.$type)){
 			if ($type == 'css'){
 				$CI->load->library('minify/cssmin');
 
@@ -211,9 +217,9 @@ class Front{
 				$content = $CI->jsmin->minify($content);
 			}
 
-			file_put_contents(FCPATH.'res/cache/'.$md5.'.'.$type, $content);
+			file_put_contents($CI->config->item('minify_cache_path').$md5.'.'.$type, $content);
 		}
 
-		return 'res/cache/'.$md5.'.'.$type;
+		return str_replace(FCPATH, '', $CI->config->item('minify_cache_path')).$md5.'.'.$type;
 	}
 }
