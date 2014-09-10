@@ -3,7 +3,7 @@
 #################################
 #   Creator: Kocsis Dávid       #
 #   Date: 2014.01.07            #
-#   Last mod.: 2014.09.05       #
+#   Last mod.: 2014.09.08       #
 #################################
 Plans for 1.x.x:
   ^ Maintenance mode switch
@@ -15,9 +15,10 @@ Plans for 1.x.x:
 #################################
 
 ---------------------------------
-2014.09.05 - v0.9.7
+2014.09.08 - v0.9.7
 ---------------------------------
 + CSS/JS connect & minify
++ FirePHP lib
 
 * Performance issue fixed in hook
 * jQuery update (1.11.1)
