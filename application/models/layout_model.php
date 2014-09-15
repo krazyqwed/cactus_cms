@@ -5,6 +5,7 @@ class Layout_model extends MY_Model {
 
 	public function __construct(){
 		parent::__construct($this->_db_table);
+		
 		parent::_post_actions();
 	}
 

@@ -129,27 +129,24 @@ class Admin extends MY_Controller {
 	}
 
 	public function index(){
+		$this->load->helper('c_session');
+
 		$data['v'] = 'admin/index';
 
 		$data['change_note'] = file_get_contents('cactus_notes.txt');
-
-		$session_files = glob(session_save_path()."/sess_*");
-		$session_count = 0;
-
-		foreach ($session_files as $key => $value) {
-			if (filemtime($value) > strtotime('-5 minutes')) {
-				$session_count++;
-			}
-		}
-
-		$data['active_users'] = $session_count;
 
 		$this->load->view('admin/_layout', $data);
 	}
 
 	public function cache_delete(){
 		foreach (glob(APPPATH.'cache/*') as $file){
-			unlink($file);
+			if (!is_dir($file))
+				unlink($file);
+		}
+
+		foreach (glob(APPPATH.'cache/session/*') as $file){
+			if (!is_dir($file))
+				unlink($file);
 		}
 
 		foreach (glob(FCPATH.'res/cache/*') as $file){

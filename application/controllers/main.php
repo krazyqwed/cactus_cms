@@ -7,7 +7,8 @@ class Main extends MX_Controller {
 	public function __construct(){
 		parent::__construct();
 
-		$this->session->userdata('timestamp', time());
+		$this->load->helper('c_session');
+		c_session_handle();
 
 		/* Alapértelmezett nyelv */
 		if (!$this->config->item('multi_language_enabled')){

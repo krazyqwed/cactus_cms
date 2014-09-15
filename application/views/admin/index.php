@@ -48,7 +48,7 @@
 			<div class="widget-header"><h1>Látogatók</h1></div>
 			
 			Aktív felhasználók száma:
-			<h1><?php echo $active_users ?></h1>
+			<h1><?php echo c_session_active_number() ?></h1>
 		</div>
 
 		<div class="widget index-documentation">
