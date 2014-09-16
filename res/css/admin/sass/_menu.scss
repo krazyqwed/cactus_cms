@@ -44,6 +44,8 @@ $c-menu-text-hover: #E6E9ED;
 }
 
 #site-menu{
+    margin-bottom: 20px; // Chrome fix...
+
     ul { list-style: none; }
 
     li { border-bottom: 1px solid $c-darkergray; }

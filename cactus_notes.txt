@@ -3,7 +3,7 @@
 #################################
 #   Creator: Kocsis Dávid       #
 #   Date: 2014.01.07            #
-#   Last mod.: 2014.09.08       #
+#   Last mod.: 2014.09.16       #
 #################################
 Plans for 1.x.x:
   ^ Maintenance mode switch
@@ -13,6 +13,16 @@ Plans for 1.x.x:
   - Private messages
   - Admin multi-lang
 #################################
+
+---------------------------------
+2014.09.16 - v0.9.8 - Bugfix pack
+---------------------------------
+- This update is all about fixing
+  small bugs everywhere
+
+* jQuery UI update (1.11.1)
+* Codemirror update (4.5.1 nightly)
+---------------------------------
 
 ---------------------------------
 2014.09.08 - v0.9.7
