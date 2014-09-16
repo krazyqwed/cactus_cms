@@ -2,12 +2,15 @@ $c-menu-text: #AAB2BD;
 $c-menu-text-hover: #E6E9ED;
 
 #menu {
-    overflow: auto;
-    float: left;
+    position: fixed;
+    overflow-x: hidden; overflow-y: auto;
     vertical-align: top;
+    margin-top: 64px;
     width: 250px; height: calc(100vh - 64px);
     background-color: $c-darkgray;
     border-right: 1px solid $c-darkergray;
+    z-index: 99;
+    -webkit-transform: translateZ(0);
 
     &:before {
         content: "";

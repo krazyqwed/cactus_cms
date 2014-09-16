@@ -4,7 +4,8 @@ $().ready(function(){
 		helper: 'clone',
 		revert: 'invalid',
 		appendTo: 'body',
-		scroll: false
+		containment: '#content',
+		scroll: true
 	});
 
 	$('ul[class^="sortable-position-"]').sortable({

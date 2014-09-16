@@ -1,4 +1,4 @@
-<div id="menu">
+<div id="menu" class="disable-body-scroll">
 	<div id="system-menu" class="clearfix">
 		<!--<a href="#" class="btn btn-primary"><i class="fa fa-user"></i></a>
 		<a href="#" class="btn btn-success"><i class="fa fa-envelope-alt"></i></a>

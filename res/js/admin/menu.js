@@ -4,6 +4,7 @@ $().ready(function(){
 		listType: 'ul',
 		handle: 'div',
 		helper:	'clone',
+		containment: '#content',
 		items: 'li',
 		opacity: .6,
 		placeholder: 'placeholder',
@@ -13,7 +14,7 @@ $().ready(function(){
 		maxLevels: 2,
 		distance: 8,
 		errorClass: 'error',
-		scroll: false
+		scroll: true
 	});
 
 	$('.btn.new-item').click(function(){
