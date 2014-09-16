@@ -10,6 +10,7 @@
         var editor = CodeMirror.fromTextArea(this.find('textarea')[0], {
                 mode: 'markdown',
                 tabMode: 'indent',
+                lineNumbers: true,
                 lineWrapping: true
             });
 

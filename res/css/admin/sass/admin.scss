@@ -216,9 +216,9 @@ textarea{ resize: none; }
 	position: relative;
 	vertical-align: top;
 	float: left;
-	margin-left: 250px; margin-top: 64px;
-	width: calc(100vw - 250px);
-	height: calc(100vh - 64px);
+	margin-top: 64px;
+	width: 100%; height: calc(100vh - 64px);
+	padding-left: 250px; 
 	background-color: $c-lightergray;
 }
 
@@ -644,7 +644,7 @@ body li{ list-style-type: none; }
 	border: 1px solid #ccc;
 
 	&.fullscreen{
-		position: fixed; z-index: 100;
+		position: fixed; z-index: 1010;
 		left: 0; right: 0; top: 0; bottom: 0;
 
 		.CodeMirror{ height: 100%; }
@@ -667,12 +667,26 @@ body li{ list-style-type: none; }
 		}
 	}
 
-	.CodeMirror{
+	.CodeMirror {
 		flex: 1 50%;
 		height: 300px;
-		padding: 8px;
 		border-right: 4px solid #CCC;
 		cursor: text;
+
+		* {
+			box-sizing: content-box;
+			-webkit-box-sizing: content-box;
+			-moz-box-sizing: content-box;
+		}
+
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0; bottom: 0;
+			width: 29px;
+			background-color: #F7F7F7;
+			border-right: 1px solid #DDD;
+		}
 	}
 
 	.rendered-markdown{

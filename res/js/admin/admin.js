@@ -64,13 +64,12 @@ function lockscreen_check(){
 $().ready(function(){
 /* Prevent body scroll on element */
 /* Credits: Troy Alford (stackoverflow) */
-$('.disable-body-scroll').on('DOMMouseScroll mousewheel', function(ev) {
-
-    if ($(this).get(0).scrollHeight > $(this).height()){
+$(document).on('DOMMouseScroll mousewheel', '.disable-body-scroll, .CodeMirror-scroll', function(ev) {
+    if ($(this).get(0).scrollHeight > $(this).outerHeight()){
         var $this = $(this),
             scrollTop = this.scrollTop,
             scrollHeight = this.scrollHeight,
-            height = $this.height(),
+            height = $this.outerHeight(),
             delta = ev.originalEvent.wheelDelta,
             up = delta > 0;
 
@@ -243,7 +242,6 @@ if ($('.markdown').length){
 
     $('.markdown_full').click(function(){
         $('.markdown').toggleClass('fullscreen');
-        //$('body').toggleClass('disable-scroll');
 
         $(this).closest('tr').find('.markdown').data('CodeMirrorInstance').refresh();
     });

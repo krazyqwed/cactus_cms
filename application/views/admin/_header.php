@@ -7,7 +7,7 @@
 	{display_styles}
 </head>
 <body class="b-<?php echo $this->_user?$this->router->fetch_class().'-'.$this->router->fetch_method():'admin-login' ?>">
-	<div id="container">
+	<div id="container" class="clearfix">
 		<div id="header">
 		<?php if($this->_user): ?>
 			<div class="profile">
