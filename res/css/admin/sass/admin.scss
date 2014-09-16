@@ -158,7 +158,7 @@ textarea{ resize: none; }
 	background-repeat: no-repeat;
 	background-position: 18px center;
 	box-shadow: 0 0 4px rgba(0,0,0,0.6), inset 0 -1px 0 rgba(0,0,0,0.1);
-	z-index: 100;
+	z-index: 1000;
 	-webkit-transform: translateZ(0);
 
 	.version {
@@ -217,7 +217,7 @@ textarea{ resize: none; }
 	vertical-align: top;
 	float: right;
 	margin-top: 64px;
-	width: calc(100vw - 262px);
+	width: calc(100vw - 250px);
 	height: calc(100vh - 64px);
 	background-color: $c-lightergray;
 }
