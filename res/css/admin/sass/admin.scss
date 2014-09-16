@@ -215,8 +215,8 @@ textarea{ resize: none; }
 #content {
 	position: relative;
 	vertical-align: top;
-	float: right;
-	margin-top: 64px;
+	float: left;
+	margin-left: 250px; margin-top: 64px;
 	width: calc(100vw - 250px);
 	height: calc(100vh - 64px);
 	background-color: $c-lightergray;
