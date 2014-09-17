@@ -870,7 +870,7 @@ html.admin-lockscreen body {
 	.file-tree-left {
 		position: absolute;
 		left: 0; top: 0; bottom: 0;
-		width: 20%;
+		width: 200px;
 		background-color: $c-lightgray;
 		border-right: 1px solid $c-gray;
 
@@ -884,14 +884,22 @@ html.admin-lockscreen body {
 			}
 		}
 
-		.tree-wrap {
+		.tree-outer-wrap {
 			position: absolute;
-			top: 64px; bottom: 0; right: 0; left: 0;
+			left: 0; right: 0; top: 54px; bottom: 0;
 			overflow: auto;
-			margin-bottom: 0;
 
 			&::-webkit-scrollbar {
-				height: 10px;
+				width: 10px; height: 10px;
+			}
+		}
+
+		.tree-wrap h2 {
+			margin: 16px 0 0 12px !important;
+			cursor: pointer;
+
+			&:first-child {
+				margin: 0 0 0 12px !important;
 			}
 		}
 
@@ -900,14 +908,19 @@ html.admin-lockscreen body {
 			padding-right: 16px;
 		}
 
+		li {
+			padding: 4px 0;
+
+			a { display: inline-block; }
+		}
+
 		li.active{
 			a { font-weight: bold; }
 
 			a:after{
 				content: "";
 				position: absolute;
-				left: -28px; right: -6px; top: -1px;
-				height: 20px;
+				left: -28px; right: -6px; top: -5px; bottom: -5px;
 				background-color: rgba(0,0,0,.05);
 			}
 		}
@@ -915,8 +928,8 @@ html.admin-lockscreen body {
 
 	.file-tree-right {
 		position: absolute;
-		left: 20%; top: 32px; bottom: 0;
-		width: 80%;
+		left: 200px; top: 32px; bottom: 0;
+		width: calc(100% - 200px);
 
 		.menu {
 			position: absolute;

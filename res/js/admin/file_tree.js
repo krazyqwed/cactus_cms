@@ -44,6 +44,8 @@ function fileTreeLoadFile(path, bypass){
 
                 $('a[data-path="'+path+'"]').closest('li').addClass('active');
 
+                $('textarea.codemirror').data('CodeMirrorInstance').setOption("mode", data.file_mime);
+                
                 hideAjaxCover($('.CodeMirror'));
             }
         });
@@ -93,7 +95,6 @@ function handleConsoleEnter(command){
 
 $().ready(function(){
     var editor = CodeMirror.fromTextArea($('textarea.codemirror')[0], {
-        mode: "application/x-httpd-php",
         tabMode: 'indent',
         lineWrapping: false,
         lineNumbers: true,
@@ -142,10 +143,16 @@ $().ready(function(){
     var $contextCaller;
   
     $(document).on('contextmenu', '.file-tree-left li > a', function(e) {
+        var offset_top = 0;
+
+        if (e.pageY + $contextMenu.outerHeight() > $('#view-content').outerHeight()){
+            offset_top = -$contextMenu.outerHeight();
+        }
+
         $contextMenu.css({
             display: "block",
-            left: e.pageX - $('#content').offset().left,
-            top: e.pageY - $('#content').offset().top
+            left: e.pageX - $('#view-content').offset().left,
+            top: e.pageY - $('#view-content').offset().top + offset_top
         });
 
         $contextCaller = $(e.target);
@@ -161,11 +168,17 @@ $().ready(function(){
         return false;
     });
 
-    $(document).on('contextmenu', '.file-tree-left .tree-wrap', function(e) {
+    $(document).on('click', '.file-tree-left .tree-wrap > h2', function(e) {
+        var offset_top = 0;
+        
+        if (e.pageY + $contextMenu.outerHeight() > $('#view-content').outerHeight()){
+            offset_top = -$contextMenu.outerHeight();
+        }
+
         $contextMenu.css({
             display: "block",
-            left: e.pageX - $('#content').offset().left,
-            top: e.pageY - $('#content').offset().top
+            left: e.pageX - $('#view-content').offset().left,
+            top: e.pageY - $('#view-content').offset().top + offset_top
         });
 
         $contextCaller = $(e.target);

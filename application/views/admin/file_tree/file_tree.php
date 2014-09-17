@@ -31,9 +31,17 @@
 			<div id="page-header">
 				<h1>Fájlkezelő</h1>
 			</div>
-	
-			<div class="tree-wrap" data-path="<?php echo APPPATH.'views'; ?>">
-				<?php echo $tree ?>
+		
+			<div class="tree-outer-wrap disable-body-scroll">
+				<div class="tree-wrap" data-path="<?php echo APPPATH.'views'; ?>">
+					<h2>View</h2>
+					<?php echo $tree_view ?>
+				</div>
+
+				<div class="tree-wrap" data-path="<?php echo 'res/css/main'; ?>">
+					<h2>CSS</h2>
+					<?php echo $tree_css ?>
+				</div>
 			</div>
 		</div>
 		<div class="file-tree-right">

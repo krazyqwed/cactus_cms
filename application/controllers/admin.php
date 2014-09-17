@@ -697,8 +697,15 @@ class Admin extends MY_Controller {
 			$this->load->helper('php_file_tree');
 
 			$data['v'] = 'admin/file_tree/file_tree';
-			$data['tree'] = php_file_tree(
+			$data['tree_view'] = php_file_tree(
 				APPPATH."views/",
+				"javascript:fileTreeLoadFile('[link]');",
+				array(),
+				array('admin', 'index.html')
+			);
+
+			$data['tree_css'] = php_file_tree(
+				"res/css/main/",
 				"javascript:fileTreeLoadFile('[link]');",
 				array(),
 				array('admin', 'index.html')
@@ -734,7 +741,11 @@ class Admin extends MY_Controller {
 		}elseif ($action == 'load'){
 			if (file_exists($this->input->post('path'))){
 				$file = file_get_contents($this->input->post('path'));
-				echo json_encode(array('success' => true, 'file_content' => $file));
+				echo json_encode(array(
+					'success' => true,
+					'file_mime' => get_mime_by_extension($this->input->post('path')),
+					'file_content' => $file
+				));
 			}else{
 				echo json_encode(array('success' => false));
 			}
