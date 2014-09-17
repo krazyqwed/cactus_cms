@@ -33,13 +33,11 @@
 			</div>
 		
 			<div class="tree-outer-wrap disable-body-scroll">
-				<div class="tree-wrap" data-path="<?php echo APPPATH.'views'; ?>">
-					<h2>View</h2>
+				<div class="tree-wrap type_view" data-path="<?php echo APPPATH.'views'; ?>">
 					<?php echo $tree_view ?>
 				</div>
 
-				<div class="tree-wrap" data-path="<?php echo 'res/css/main'; ?>">
-					<h2>CSS</h2>
+				<div class="tree-wrap type_css" data-path="<?php echo 'res/css/main'; ?>">
 					<?php echo $tree_css ?>
 				</div>
 			</div>

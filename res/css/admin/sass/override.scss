@@ -41,3 +41,15 @@ li.uploaded._file{
 	margin: auto;
 	width: 28px; height: 34px;
 }
+
+/* jQuery Dialog */
+.ui-dialog {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+
+    .ui-dialog-titlebar {
+        border: 0;
+        border-radius: 0;
+    }
+}

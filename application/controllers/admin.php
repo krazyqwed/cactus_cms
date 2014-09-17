@@ -699,16 +699,18 @@ class Admin extends MY_Controller {
 			$data['v'] = 'admin/file_tree/file_tree';
 			$data['tree_view'] = php_file_tree(
 				APPPATH."views/",
-				"javascript:fileTreeLoadFile('[link]');",
+				"javascript:fileTreeLoadFile('[link]', [bypass]);",
 				array(),
-				array('admin', 'index.html')
+				array('admin', 'index.html'),
+				'View'
 			);
 
 			$data['tree_css'] = php_file_tree(
 				"res/css/main/",
-				"javascript:fileTreeLoadFile('[link]');",
+				"javascript:fileTreeLoadFile('[link]', [bypass]);",
 				array(),
-				array('admin', 'index.html')
+				array('admin', 'index.html'),
+				'CSS'
 			);
 			
 			$this->front->add_style(array('res/js/admin/codemirror/codemirror.css', 'res/js/admin/codemirror/theme/monokai.css', 'res/js/admin/file_tree/default.css'));
@@ -731,21 +733,39 @@ class Admin extends MY_Controller {
 
 			echo json_encode(array(
 				'success' => true,
-				'html' => php_file_tree(
+				'html_view' => php_file_tree(
 					APPPATH."views/",
-					"javascript:fileTreeLoadFile('[link]');",
+					"javascript:fileTreeLoadFile('[link]', [bypass]);",
 					array(),
-					array('admin', 'index.html')
+					array('admin', 'index.html'),
+					'View'
+				),
+				'html_css' => php_file_tree(
+					"res/css/main/",
+					"javascript:fileTreeLoadFile('[link]', [bypass]);",
+					array(),
+					array('admin', 'index.html'),
+					'CSS'
 				)
 			));
 		}elseif ($action == 'load'){
 			if (file_exists($this->input->post('path'))){
 				$file = file_get_contents($this->input->post('path'));
-				echo json_encode(array(
-					'success' => true,
-					'file_mime' => get_mime_by_extension($this->input->post('path')),
-					'file_content' => $file
-				));
+				$mime = get_mime_by_extension($this->input->post('path'));
+
+				if ($mime == 'image/png' || $mime == 'image/jpeg' || $mime == 'image/gif'){
+					echo json_encode(array(
+						'success' => true,
+						'file_mime' => 'image',
+						'file_content' => base_url($this->input->post('path'))
+					));
+				}else{
+					echo json_encode(array(
+						'success' => true,
+						'file_mime' => $mime,
+						'file_content' => $file
+					));
+				}
 			}else{
 				echo json_encode(array('success' => false));
 			}
