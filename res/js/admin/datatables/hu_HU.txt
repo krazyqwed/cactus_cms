@@ -8,7 +8,7 @@
     "lengthMenu":     "Mutass _MENU_ bejegyzést",
     "loadingRecords": "Töltés...",
     "processing":     "Feldolgozás...",
-    "search":         "Keresés:",
+    "search":         " Keresés: _INPUT_",
     "zeroRecords":    "Nem található egyezés",
     "paginate": {
         "first":      "Elsõ",
