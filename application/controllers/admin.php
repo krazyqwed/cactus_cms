@@ -757,6 +757,7 @@ class Admin extends MY_Controller {
 					echo json_encode(array(
 						'success' => true,
 						'file_mime' => 'image',
+						'file_name' => basename($this->input->post('path')),
 						'file_content' => base_url($this->input->post('path'))
 					));
 				}else{

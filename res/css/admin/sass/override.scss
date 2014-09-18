@@ -1,3 +1,6 @@
+@import "fonts";
+@import "colors";
+
 .mce-panel{ border-color: #CCC !important; }
 
 /* Fine uploader */
@@ -11,13 +14,13 @@ li.uploaded._file{
 .qq-uploader {  margin-bottom: 4px; }
 
 .qq-upload-button {
-    background-color: #3bafda;
-    border-color: #28a5d4;
+	background-color: #3bafda;
+	border-color: #28a5d4;
 
-    &:hover {
-        background-color: #2494be;
-        border-color: #1e7da0;
-    }
+	&:hover {
+		background-color: #2494be;
+		border-color: #1e7da0;
+	}
 }
 
 .qq-thumbnail-wrap-outer.file{ border: 0; }
@@ -44,12 +47,45 @@ li.uploaded._file{
 
 /* jQuery Dialog */
 .ui-dialog {
-    padding: 0;
-    border: 0;
-    border-radius: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+	box-shadow: 0 0 0 4px rgba(0,0,0,.2);
+	z-index: 1040;
+	
+	.ui-corner-all { border-radius: 0; }
 
-    .ui-dialog-titlebar {
-        border: 0;
-        border-radius: 0;
-    }
+	.ui-dialog-titlebar {
+		position: absolute;
+		width: 100%;
+		border: 0;
+		border-radius: 0;
+		z-index: 1;
+	}
+	
+	.ui-state-hover, .ui-state-focus {
+		border: 1px solid #ccc;
+		background: #eee;
+		outline: 0;
+	}
+
+	.ui-dialog-title { font-size: 11px; }
+
+	.ui-widget-header { background: rgba(0,0,0,.3); }
+
+	.ui-state-default .ui-icon { background-image: url("smoothness/images/ui-icons_222222_256x240.png"); }
+
+	.ui-dialog-content {
+		min-width: 128px !important; min-height: 128px !important;
+		padding: 0; padding-top: 30px;
+		background-color: $c-lightergray;
+		display: flex !important;
+		align-items: center;
+		justify-content: center;
+
+		img {
+			max-width: 256px; max-height: 256px;
+			vertical-align: bottom;
+		}
+	}
 }

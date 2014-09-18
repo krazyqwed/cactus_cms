@@ -41,7 +41,12 @@ function fileTreeLoadFile(path, bypass){
             dataType: "JSON",
             success: function(data){
                 if (data.file_mime == 'image'){
-                    $('<div class="image-dialog"><img src="'+data.file_content+'"></div>').dialog();
+                    $('<div class="image-dialog"><img src="'+data.file_content+'"></div>').dialog({
+                        title: data.file_name,
+                        resizable: false,
+                        width: 'auto',
+                        minWidth: '150px'
+                    });
                     $('.image-dialog').closest('.ui-dialog').draggable('option', 'containment', '#view-content');
                 }else{
                     $('textarea.codemirror').data('CodeMirrorInstance').setValue(data.file_content);
@@ -258,5 +263,15 @@ $().ready(function(){
         if(keycode == '13'){
             handleConsoleEnter($console.val()); 
         }
+    });
+
+    $(document).on('mouseenter', '.cm-atom', function(){
+        if ($(this).text().match(/^#([0-9a-f]{3}){1,2}$/i)){
+            $(this).css({ 'position': 'relative' });
+            $(this).append('<div class="color" style="position: absolute; right: -32px; top: 0; width: 16px; height: 16px; background-color: '+$(this).text()+'; border: 2px solid rgba(255,255,255,.2);" />');
+        }
+    });
+    $(document).on('mouseleave', '.cm-atom', function(){
+        $(this).find('.color').remove();
     });
 });
