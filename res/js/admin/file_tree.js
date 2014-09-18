@@ -267,8 +267,18 @@ $().ready(function(){
 
     $(document).on('mouseenter', '.cm-atom', function(){
         if ($(this).text().match(/^#([0-9a-f]{3}){1,2}$/i)){
-            $(this).css({ 'position': 'relative' });
-            $(this).append('<div class="color" style="position: absolute; right: -32px; top: 0; width: 16px; height: 16px; background-color: '+$(this).text()+'; border: 2px solid rgba(255,255,255,.2);" />');
+            $(this).parent('span').css({ 'position': 'relative' });
+            $(this).append('<div class="color" style="position: absolute; right: -24px; top: 0; width: 16px; height: 16px; background-color: '+$(this).text()+'; border: 2px solid rgba(255,255,255,.2);" />');
+        }else if ($(this).text() == 'rgb'){
+            var color = 'rgb('+$(this).next('.cm-number').text()+','+$(this).next('.cm-number').next('.cm-number').text()+','+$(this).next('.cm-number').next('.cm-number').next('.cm-number').text()+')';
+
+            $(this).parent('span').css({ 'position': 'relative' });
+            $(this).append('<div class="color" style="position: absolute; right: -24px; top: 0; width: 16px; height: 16px; background-color: '+color+'; border: 2px solid rgba(255,255,255,.2);" />');
+        }else if ($(this).text() == 'rgba'){
+            var color = 'rgba('+$(this).next('.cm-number').text()+','+$(this).next('.cm-number').next('.cm-number').text()+','+$(this).next('.cm-number').next('.cm-number').next('.cm-number').text()+','+$(this).nextAll('.cm-number').andSelf().slice(0,3).next('.cm-number').next('.cm-number').next('.cm-number').text()+')';
+            
+            $(this).parent('span').css({ 'position': 'relative' });
+            $(this).append('<div class="color" style="position: absolute; right: -24px; top: 0; width: 16px; height: 16px; background-color: '+color+'; border: 2px solid rgba(255,255,255,.2);" />');
         }
     });
     $(document).on('mouseleave', '.cm-atom', function(){

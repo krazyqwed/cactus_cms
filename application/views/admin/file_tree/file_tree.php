@@ -47,7 +47,7 @@
 				<div class="indicator"></div>
 
 				<ul>
-					<li class="save-file">Mentés</li>
+					<li class="save-file"><i class="fa fa-save"></i> Mentés</li>
 				</ul>
 			</div>
 

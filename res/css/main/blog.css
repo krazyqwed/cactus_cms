@@ -6,3 +6,10 @@ code.hljs {
     background-color: #47493E;
     background-image: url("../../img/main/hex.png");
 }
+
+.color-test {
+    background-color: #47493E;
+    background-color: #474;
+  	background-color: rgb(256,128,0);
+  	background-color: rgba(0,0,0,.2); background-color: rgb(0,0,0);
+}
