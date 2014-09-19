@@ -14,15 +14,13 @@
 
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                <h1>Blog <small><?php echo $settings['slogen'] ?></small></h1>
+        <div id="header" class="row">
+            <div id="header-left" class="col-lg-6">
+                <h1>Cactus Dev</h1>
             </div>
-            <div class="col-sm-6">
+            <div id="header-right" class="col-lg-6">
                 <?php layout_render_parts('header', $parts) ?>
             </div>
-
-            <hr />
         </div>
 
         <div class="row">
@@ -48,11 +46,6 @@
             </div>
         </footer>
     </div>
-
-
-    <script type="text/javascript">
-        base_url = '<?php echo base_url() ?>';
-    </script>
     
     {display_scripts}
 </body>

@@ -40,6 +40,10 @@
 				<div class="tree-wrap type_css" data-path="<?php echo 'res/css/main'; ?>">
 					<?php echo $tree_css ?>
 				</div>
+
+				<div class="tree-wrap type_js" data-path="<?php echo 'res/js/main'; ?>">
+					<?php echo $tree_js ?>
+				</div>
 			</div>
 		</div>
 		<div class="file-tree-right">

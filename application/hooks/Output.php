@@ -30,15 +30,18 @@ class Output_hook{
 				$output = str_replace('{display_styles}', $CI->front->display_styles(), $output);
 			}
 
+			$base_string = '<script type="text/javascript">base_url = "'.base_url().'";</script>';
+
 			if ($system_settings['minify_js'] == 1){
 				$scripts = $CI->front->display_scripts(true);
 
 				$file_path = $CI->front->handle_cache($scripts, 'js');
 
-				$link = '<script type="text/javascript" src="'.base_url($file_path).'"></script>';
-				$output = str_replace('{display_scripts}', $link, $output);
+				$base_string .= '<script type="text/javascript" src="'.base_url($file_path).'"></script>';
+				$output = str_replace('{display_scripts}', $base_string, $output);
 			}else{
-				$output = str_replace('{display_scripts}', $CI->front->display_scripts(), $output);
+				$base_string .= $CI->front->display_scripts();
+				$output = str_replace('{display_scripts}', $base_string, $output);
 			}
 		}
 

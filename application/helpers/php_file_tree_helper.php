@@ -16,6 +16,11 @@
 		
 */
 
+function is_image_by_mime($mime){
+	if ($mime == 'image/png' || $mime == 'image/jpeg' || $mime == 'image/gif') return true;
+
+	return false;
+}
 
 function php_file_tree($directory, $return_link, $extensions = array(), $excludes = array(), $title = '') {
 	// Generates a valid XHTML list of all directories, sub-directories, and files in $directory
@@ -79,7 +84,7 @@ function php_file_tree_dir($directory, $return_link, $extensions = array(), $exc
 					$ext = "ext-" . substr($this_file, strrpos($this_file, ".") + 1);
 					$mime = get_mime_by_extension(FCPATH.$directory."/".$this_file);
 
-					if ($mime == 'image/png' || $mime == 'image/jpeg' || $mime == 'image/gif'){
+					if (is_image_by_mime($mime)){
 						$link = str_replace('[bypass]', 'true', $return_link);
 					}else{
 						$link = str_replace('[bypass]', 'false', $return_link);

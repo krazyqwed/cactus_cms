@@ -12,6 +12,7 @@ function fileTreeLoad(){
             php_file_tree_cache();
             $('.file-tree-left .tree-wrap.type_view').html(data.html_view);
             $('.file-tree-left .tree-wrap.type_css').html(data.html_css);
+            $('.file-tree-left .tree-wrap.type_js').html(data.html_js);
             php_file_tree_refresh(true);
             
             hideAjaxCover($('.file-tree-left'));

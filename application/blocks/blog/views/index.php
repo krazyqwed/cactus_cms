@@ -1,7 +1,11 @@
 <?php foreach ($entries as $entry): ?>
-	<article>
-		<h3><a href="<?php echo site_url('blog/'.$entry['entry_id']) ?>"><?php echo $entry['title'] ?></a></h3>
+    <article>
+        <div>
+            <h3><a href="<?php echo site_url('blog/'.$entry['entry_id']) ?>"><?php echo $entry['title'] ?></a></h3>
+            
+            <span><?php echo $entry['short_content'] ?></span>
+        </div>
 
-		<?php echo $entry['short_content'] ?>
-	</article>
+        <a class="more" href="<?php echo site_url('blog/'.$entry['entry_id']) ?>">Read more...</a>
+    </article>
 <?php endforeach; ?>

@@ -709,8 +709,16 @@ class Admin extends MY_Controller {
 				"res/css/main/",
 				"javascript:fileTreeLoadFile('[link]', [bypass]);",
 				array(),
-				array('admin', 'index.html'),
+				array(),
 				'CSS'
+			);
+
+			$data['tree_js'] = php_file_tree(
+				"res/js/main/",
+				"javascript:fileTreeLoadFile('[link]', [bypass]);",
+				array(),
+				array(),
+				'JS'
 			);
 			
 			$this->front->add_style(array('res/js/admin/codemirror/codemirror.css', 'res/js/admin/codemirror/theme/monokai.css', 'res/js/admin/file_tree/default.css'));
@@ -744,16 +752,25 @@ class Admin extends MY_Controller {
 					"res/css/main/",
 					"javascript:fileTreeLoadFile('[link]', [bypass]);",
 					array(),
-					array('admin', 'index.html'),
+					array(),
 					'CSS'
+				),
+				'html_js' => php_file_tree(
+					"res/js/main/",
+					"javascript:fileTreeLoadFile('[link]', [bypass]);",
+					array(),
+					array(),
+					'JS'
 				)
 			));
 		}elseif ($action == 'load'){
 			if (file_exists($this->input->post('path'))){
+				$this->load->helper('php_file_tree');
+				
 				$file = file_get_contents($this->input->post('path'));
 				$mime = get_mime_by_extension($this->input->post('path'));
 
-				if ($mime == 'image/png' || $mime == 'image/jpeg' || $mime == 'image/gif'){
+				if (is_image_by_mime($mime)){
 					echo json_encode(array(
 						'success' => true,
 						'file_mime' => 'image',
