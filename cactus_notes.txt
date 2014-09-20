@@ -3,7 +3,7 @@
 #################################
 #   Creator: Kocsis Dávid       #
 #   Date: 2014.01.07            #
-#   Last mod.: 2014.09.16       #
+#   Last mod.: 2014.09.20       #
 #################################
 Plans for 1.x.x:
   ^ Maintenance mode switch
@@ -13,6 +13,14 @@ Plans for 1.x.x:
   - Private messages
   - Admin multi-lang
 #################################
+
+---------------------------------
+2014.09.20 - v0.9.8b
+---------------------------------
+- Another bugfix pack
+- New Logo
+- Main site design (basic)
+---------------------------------
 
 ---------------------------------
 2014.09.16 - v0.9.8 - Bugfix pack

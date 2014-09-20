@@ -9,6 +9,9 @@
 <body class="b-<?php echo $this->_user?$this->router->fetch_class().'-'.$this->router->fetch_method():'admin-login' ?>">
 	<div id="container" class="clearfix">
 		<div id="header">
+			<div class="cms-name">Cactus CMS</div>
+			<div class="version">v<?php echo CMS_VERSION ?></div>
+			<a href="<?php echo site_url('admin'); ?>" class="main-link"></a>
 		<?php if($this->_user): ?>
 			<div class="profile">
 				<div class="username"><?php echo ($this->_user->full_name != '')? $this->_user->full_name : $this->_user->username ?></div>
@@ -18,5 +21,4 @@
 				</a>
 			</div>
 		<?php endif; ?>
-			<div class="version">v<?php echo CMS_VERSION ?></div>
 		</div>

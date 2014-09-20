@@ -154,7 +154,7 @@ if ($('.tinymce').length){
 
 /* Select */
 if ($('.selectpicker').length){
-    $('.selectpicker').selectpicker();
+    $('.selectpicker').selectpicker({ noneSelectedText: "Nincs kiválasztva" });
 }
 
 /* Multiselect */
