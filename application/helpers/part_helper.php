@@ -22,6 +22,8 @@ function part_check_visibility($part){
 					return true;
 			}
 		}
+	}elseif (isset($part['404']) && $part['404'] === true){
+		return true;
 	}
 
 	return false;

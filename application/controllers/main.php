@@ -47,19 +47,24 @@ class Main extends MX_Controller {
 	public function language($lang){
 		$this->session->set_userdata('cactus_language', $lang);
 
-		if ($this->config->item('multi_language_enabled'))
+		if ($this->config->item('multi_language_enabled')){
 			$this->index();
-		else
+		}else{
 			$this->page_404();
+		}
 	}
 
 	public function page_404(){
-		$this->load->model('setting_model');
+		$settings_model = $this->load->model('setting_model');
 		$settings = $this->db->get($this->setting_model->_db_table)->row_array();
-		$data['settings'] = $settings;
 		
-		$data['parts'] = $this->parts;
-		$data['parts']['content'][] = array('view' => 'main/page_404');
+		$data['settings'] = $settings;
+		$data['settings'] = part_get_lang_table($data['settings'], 1, $settings_model);
+		$data['settings_model'] = $settings_model;
+		
+		$data['parts'] = array();
+		$data['parts']['content'][] = array('404' => true, 'view' => 'main/page_404');
+
 		$this->load->view('main/_layout', $data);
 	}
 }
