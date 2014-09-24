@@ -28,6 +28,14 @@ class Blog_model extends MY_Model {
 		$this->_fields['url']['_Alias'] = 'URL';
 		$this->_fields['url']['_Description'] = 'blog/';
 
+		$this->_fields['author']['_Alias'] = 'Szerző';
+		$this->_fields['author']['Type'] = '_select';
+		$this->_fields['author']['_Select_relation'] = array(
+			'relation_table' => 'user_settings',
+			'key_field' => 'user_id',
+			'value_field' => 'full_name'
+		);
+
 		$this->_fields['tags']['Type'] = '_multiselect';
 		$this->_fields['tags']['_Alias'] = 'Tagek';
 		$this->_fields['tags']['_On_list'] = false;

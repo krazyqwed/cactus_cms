@@ -2,10 +2,22 @@
 
 class Blog extends MX_Controller {
 	public function index($id = null){
+		$this->load->library('markdown');
 		$model = $this->load->model('blog/blog_model');
 
+		$this->front->add_style(array(
+			'res/css/main/highlight/monokai_sublime.css',
+			'res/css/main/blog.css'
+		));
+		$this->front->add_script('res/js/main/highlight.min.js');
+
 		if ($id === null){
-			$entries = $this->db->where('active', 1)->get($model->_db_table)->result_array();
+			$entries = $this->db->query("
+				SELECT t1.*, t2.full_name FROM `".$model->_db_table."` t1
+				LEFT JOIN `user_settings` t2 ON t1.`author` = t2.`user_id`
+				WHERE t1.`active` = 1
+				ORDER BY t1.`date` DESC
+			")->result_array();
 
 			/* Language */
 			$entries = part_get_lang_table($entries, $id, $model);
@@ -14,14 +26,6 @@ class Blog extends MX_Controller {
 
 			$this->load->view('index', $data);
 		}else{
-			$this->load->library('Markdown');
-
-			$this->front->add_style(array(
-				'res/css/main/highlight/monokai_sublime.css',
-				'res/css/main/blog.css'
-			));
-			$this->front->add_script('res/js/main/highlight.min.js');
-
 			/* Join lang table because of the URL */
 			if (isset($model->db_table_lang) && $model->db_table_lang)
 				$entry = $this->db->join($model->_db_table.'_lang', $model->_db_table.'_lang.'.$model->_primary.' = '.$model->_db_table.'.'.$model->_primary, 'left')->where($model->_db_table.'.entry_id', $id)->or_where($model->_db_table.'.url', $id)->or_where($model->_db_table.'_lang.url', $id)->get($model->_db_table)->row_array();

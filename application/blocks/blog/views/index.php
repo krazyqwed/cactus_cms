@@ -1,11 +1,9 @@
 <?php foreach ($entries as $entry): ?>
     <article>
-        <div>
-            <h3><a href="<?php echo site_url('blog/'.$entry['entry_id']) ?>"><?php echo $entry['title'] ?></a></h3>
-            
-            <span><?php echo $entry['short_content'] ?></span>
-        </div>
-
-        <a class="more" href="<?php echo site_url('blog/'.$entry['entry_id']) ?>">Read more...</a>
+        <h1><?php echo $entry['title'] ?></h1>
+        <span class="date"><?php echo $entry['date'] ?> - <?php echo ($entry['full_name'] != null)?$entry['full_name']:'Ismeretlen szerző' ?></span>
+        <hr>
+        
+        <?php echo $this->markdown->parse($entry['content']) ?>
     </article>
 <?php endforeach; ?>

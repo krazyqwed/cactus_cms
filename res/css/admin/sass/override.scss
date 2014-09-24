@@ -3,6 +3,8 @@
 
 .mce-panel{ border-color: #CCC !important; }
 
+.dropdown-menu li.selected a { font-weight: bold; }
+
 /* Fine uploader */
 li.uploaded._file{
 	display: inline-block;

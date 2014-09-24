@@ -153,19 +153,31 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 			<td <?php echo is_numeric($td_colspan)?'colspan="'.$td_colspan.'"':'' ?>>
 				<select class="selectpicker" name="<?php echo $field['Field'] ?>" <?php echo (isset($field['_Select_ajax']) && $field['_Select_ajax'] && isset($field['_Select_ajax_method']))?'data-ajax="1"':'' ?> <?php echo (isset($field['_Select_ajax']) && $field['_Select_ajax'] && isset($field['_Select_ajax_method']))?'data-ajax-method="'.$field['_Select_ajax_method'].'"':'' ?>  <?php echo (isset($field['_Select_ajax']) && $field['_Select_ajax'] && isset($field['_Select_ajax_field']))?'data-ajax-field="'.$field['_Select_ajax_field'].'"':'' ?> <?php echo (isset($content[$field['Field']]) && isset($field['_Select_ajax']) && $field['_Select_ajax'] && isset($field['_Select_ajax_field'])) ? 'data-ajax-selected="'.$content[$field['Field']].'"' : '' ?>>
 				<?php
-				if (isset($field['_Select_inner_relation']) && is_array($field['_Select_inner_relation'])){
-					$positions = $this->db->get_where($field['_Select_inner_relation']['relation_table'], array($field['_Select_inner_relation']['relation_field'] => $content[$field['_Select_inner_relation']['inner_field']]))->result_array();
-					$select_layout_position = array();
+				if (isset($field['_Select_relation']) && is_array($field['_Select_relation'])){
+					$values = $this->db->get_where($field['_Select_relation']['relation_table'])->result_array();
+					$select_values = array();
 
-					foreach ($positions as $position)
-						$select_layout_position[$position['key']] = $position['name'];
+					foreach ($values as $val){
+						$select_values[$val[$field['_Select_relation']['key_field']]] = $val[$field['_Select_relation']['value_field']];
+					}
 
-					$field['_Select_options'] = $select_layout_position;
+					$field['_Select_options'] = $select_values;
+				}elseif (isset($field['_Select_where_relation']) && is_array($field['_Select_where_relation'])){
+					$values = $this->db->get_where($field['_Select_where_relation']['relation_table'], array($field['_Select_where_relation']['relation_field'] => $content[$field['_Select_where_relation']['inner_field']]))->result_array();
+					$select_values = array();
+
+					foreach ($values as $val)
+						$select_values[$val[$field['_Select_where_relation']['key_field']]] = $val[$field['_Select_where_relation']['value_field']];
+
+					$field['_Select_options'] = $select_values;
 				}
 				?>
+
 				<?php if ($field['_Select_options'] !== null): ?>
 					<?php foreach ($field['_Select_options'] as $key => $option): ?>
+						<?php if ($option != ''): ?>
 						<option value="<?php echo $key ?>" <?php echo (isset($content[$field['Field']]) && $key == $content[$field['Field']]) ? 'selected="selected"' : '' ?>><?php echo $option ?></option>
+						<?php endif; ?>
 					<?php endforeach; ?>
 				<?php else: ?>
 					<option value="">Nincs választható</option>

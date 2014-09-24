@@ -14,10 +14,12 @@ class Layout_part_model extends MY_Model {
 
 		$this->_fields['position']['_Alias'] = 'Pozíció';
 		$this->_fields['position']['Type'] = '_select';
-		$this->_fields['position']['_Select_inner_relation'] = array(
+		$this->_fields['position']['_Select_where_relation'] = array(
 			'inner_field' => 'layout_id',
 			'relation_table' => 'layout_positions',
-			'relation_field' => 'layout_id'
+			'relation_field' => 'layout_id',
+			'key_field' => 'key',
+			'value_field' => 'name'
 		);
 
 		$this->_fields['url']['_Alias'] = 'URL';
