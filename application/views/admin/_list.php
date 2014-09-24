@@ -42,7 +42,15 @@
 					<?php if (!isset($field['_Override_list_values'])): ?>
 						<td><?php echo $content[$field['Field']] ?></td>
 					<?php else: ?>
-						<td><?php echo $field['_Override_list_values'][$content[$field['Field']]] ?></td>
+						<?php if ($field['_Override_list_values'] === 'relation' && isset($field['_Select_relation'])): ?>
+							<?php
+							$value = $this->db->get_where($field['_Select_relation']['relation_table'], array($field['_Select_relation']['key_field'] => $content[$field['Field']]))->row_array();
+							?>
+
+							<td><?php echo $value[$field['_Select_relation']['value_field']] ?></td>
+						<?php else: ?>
+							<td><?php echo $field['_Override_list_values'][$content[$field['Field']]] ?></td>
+						<?php endif; ?>
 					<?php endif; ?>
 				<?php endif;?>
 			<?php endif; ?>

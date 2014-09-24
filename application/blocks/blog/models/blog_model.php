@@ -30,6 +30,7 @@ class Blog_model extends MY_Model {
 
 		$this->_fields['author']['_Alias'] = 'Szerző';
 		$this->_fields['author']['Type'] = '_select';
+		$this->_fields['author']['_Override_list_values'] = 'relation';
 		$this->_fields['author']['_Select_relation'] = array(
 			'relation_table' => 'user_settings',
 			'key_field' => 'user_id',
@@ -59,6 +60,7 @@ class Blog_model extends MY_Model {
 			  `content` text NOT NULL,
 			  `date` date NOT NULL,
 			  `url` varchar(64) NOT NULL,
+			  `author` int(10) unsigned NOT NULL,
 			  `seo_title` varchar(60) NOT NULL,
 			  `seo_description` varchar(150) NOT NULL,
 			  `active` tinyint(4) NOT NULL,

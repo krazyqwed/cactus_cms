@@ -154,7 +154,7 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 				<select class="selectpicker" name="<?php echo $field['Field'] ?>" <?php echo (isset($field['_Select_ajax']) && $field['_Select_ajax'] && isset($field['_Select_ajax_method']))?'data-ajax="1"':'' ?> <?php echo (isset($field['_Select_ajax']) && $field['_Select_ajax'] && isset($field['_Select_ajax_method']))?'data-ajax-method="'.$field['_Select_ajax_method'].'"':'' ?>  <?php echo (isset($field['_Select_ajax']) && $field['_Select_ajax'] && isset($field['_Select_ajax_field']))?'data-ajax-field="'.$field['_Select_ajax_field'].'"':'' ?> <?php echo (isset($content[$field['Field']]) && isset($field['_Select_ajax']) && $field['_Select_ajax'] && isset($field['_Select_ajax_field'])) ? 'data-ajax-selected="'.$content[$field['Field']].'"' : '' ?>>
 				<?php
 				if (isset($field['_Select_relation']) && is_array($field['_Select_relation'])){
-					$values = $this->db->get_where($field['_Select_relation']['relation_table'])->result_array();
+					$values = $this->db->get($field['_Select_relation']['relation_table'])->result_array();
 					$select_values = array();
 
 					foreach ($values as $val){
