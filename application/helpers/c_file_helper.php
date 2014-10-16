@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-function file_save($file){
+function file_save($file, $field){
 	$id = false;
 
 	foreach ($file as $key => $f){

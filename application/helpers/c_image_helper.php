@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-function image_save($image){
+function image_save($image, $field){
 	$id = false;
 
 	foreach ($image as $key => $i){

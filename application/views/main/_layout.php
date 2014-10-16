@@ -15,32 +15,24 @@
 <body>
     <div class="container">
         <div id="header" class="row">
-            <div id="header-left" class="col-lg-6">
+            <div id="header-left" class="col-xs-6">
                 <h1>Cactus Dev</h1>
             </div>
-            <div id="header-right" class="col-lg-6">
+            <div id="header-right" class="col-xs-6">
                 <?php layout_render_parts('header', $parts) ?>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-sm-9" role="content">
+            <div class="col-xs-12" role="content">
                 <?php layout_render_parts('content', $parts) ?>
             </div>
-
-            <aside class="col-sm-3">
-                <h5>Címkék</h5>
-
-                <div class="panel">
-                    
-                </div>
-            </aside>
         </div>
 
         <footer class="row">
             <hr />
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-xs-12">
                     <p><?php echo $settings['footer'] ?></p>
                 </div>
             </div>

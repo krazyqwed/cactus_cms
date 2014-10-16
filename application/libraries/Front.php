@@ -122,12 +122,12 @@ class Front{
 						));
 						break;
 					case '_image':
-						$this->add_script(array('res/js/admin/fineuploader/jquery.fineuploader-4.1.0-13.min.js', 'res/js/admin/jcrop/jquery.Jcrop.min.js'));
-						$this->add_style(array('res/js/admin/fineuploader/fineuploader-4.1.0-13.min.css', 'res/js/admin/jcrop/jquery.Jcrop.min.css'));
+						$this->add_script(array('res/js/admin/fineuploader/jquery.fineuploader.min.js', 'res/js/admin/jcrop/jquery.Jcrop.min.js'));
+						$this->add_style(array('res/js/admin/fineuploader/fineuploader.min.css', 'res/js/admin/jcrop/jquery.Jcrop.min.css'));
 						break;
 					case '_file':
-						$this->add_script(array('res/js/admin/fineuploader/jquery.fineuploader-4.1.0-13.min.js', 'res/js/admin/jcrop/jquery.Jcrop.min.js'));
-						$this->add_style(array('res/js/admin/fineuploader/fineuploader-4.1.0-13.min.css', 'res/js/admin/jcrop/jquery.Jcrop.min.css'));
+						$this->add_script(array('res/js/admin/fineuploader/jquery.fineuploader.min.js', 'res/js/admin/jcrop/jquery.Jcrop.min.js'));
+						$this->add_style(array('res/js/admin/fineuploader/fineuploader.min.css', 'res/js/admin/jcrop/jquery.Jcrop.min.css'));
 						break;
 					case '_markdown':
 						$this->add_style(array('res/js/admin/codemirror/codemirror.css', 'res/js/admin/markdown/ghostdown.css', 'res/js/admin/prettify/prettify.css'));

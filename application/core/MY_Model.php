@@ -63,7 +63,7 @@ class MY_model extends CI_Model {
 
 		foreach ($this->_fields as $field){
 			if (isset($field['Type']) && $field['Type'] == '_image' && isset($data[$field['Field']])){
-				$image_id = image_save($data[$field['Field']]);
+				$image_id = image_save($data[$field['Field']], $field['Field']);
 
 				if ($image_id)
 					$data[$field['Field']] = $image_id;
@@ -72,7 +72,7 @@ class MY_model extends CI_Model {
 			}
 
 			if (isset($field['Type']) && $field['Type'] == '_file' && isset($data[$field['Field']])){
-				$file_id = file_save($data[$field['Field']]);
+				$file_id = file_save($data[$field['Field']], $field['Field']);
 
 				if ($file_id)
 					$data[$field['Field']] = $file_id;

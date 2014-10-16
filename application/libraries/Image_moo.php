@@ -646,6 +646,11 @@ class Image_moo
 			$sy2 = $calc_height;
 		}
 
+		imagealphablending($this->temp_image, false);
+		imagesavealpha($this->temp_image, true);
+		$color = imagecolorallocatealpha($this->temp_image, 0, 0, 0, 127);
+		imagefilledrectangle($this->temp_image, 0, 0, $sx2, $sy2, $color);
+
 		// copy section
 		imagecopyresampled($this->temp_image, $this->main_image, 0, 0, $sx, $sy, $mw, $mh, $sx2, $sy2);
 
@@ -730,13 +735,12 @@ class Image_moo
 			$col = $this->_html2rgb($this->background_colour);
 			$bg = imagecolorallocate($this->temp_image, $col[0], $col[1], $col[2]);
 			imagefilledrectangle($this->temp_image, 0, 0, $tx, $ty, $bg);
-			/* TO DO
-			imagealphablending($this->temp_image, false);
-			imagesavealpha($this->temp_image, true);
-			$color = imagecolorallocatealpha($this->temp_image, 0, 0, 0, 127);
-			imagefilledrectangle($this->temp_image, 0, 0, $this->width, $this->height, $color);
-			*/
 		}
+
+		imagealphablending($this->temp_image, false);
+		imagesavealpha($this->temp_image, true);
+		$color = imagecolorallocatealpha($this->temp_image, 0, 0, 0, 127);
+		imagefilledrectangle($this->temp_image, 0, 0, $tx, $ty, $color);
 
 		// copy resized
 		imagecopyresampled($this->temp_image, $this->main_image, $px, $py, 0, 0, $tnw, $tnh, $this->width, $this->height);
@@ -805,6 +809,11 @@ class Image_moo
 			$this->set_error('Unable to create temp image sized '.$x2-$x1.' x '.$y2-$y1);
 			return $this;
 		}
+
+		imagealphablending($this->temp_image, false);
+		imagesavealpha($this->temp_image, true);
+		$color = imagecolorallocatealpha($this->temp_image, 0, 0, 0, 127);
+		imagefilledrectangle($this->temp_image, 0, 0, $x2-$x1, $y2-$y1, $color);
 
 		// copy cropped portion
 		imagecopy($this->temp_image, $this->main_image, 0, 0, $x1, $y1, $x2 - $x1, $y2 - $y1);
