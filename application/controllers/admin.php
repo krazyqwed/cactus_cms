@@ -268,7 +268,7 @@ class Admin extends MY_Controller {
 	public function blocks($action = null, $id = null){
 		$model = $this->load->model('block_model');
 
-		if ($action === 'edit' && $id !== null){
+		if ($action == 'edit' && $id !== null){
 			$block = $this->db->where($model->_primary, $id)->get($model->_db_table)->row_array();
 
 			$model->get_block_controllers($block['block_folder']);
@@ -277,7 +277,11 @@ class Admin extends MY_Controller {
 				$model->get_controller_methods($block['block_folder'], $block['controller']);
 			}
 		}
-		
+
+		if ($action == 'delete' && $id !== null){
+			$this->db->query("DELETE FROM `layout_parts` WHERE `part_type` = 'block' AND `part_id` = ".$id);
+		}
+
 		$this->_action('blocks', $model, $action, $id);
 	}
 
@@ -303,6 +307,10 @@ class Admin extends MY_Controller {
 	public function menus($action = null, $id = null){
 		$model = $this->load->model('menu_model');
 		$model_item = $this->load->model('menu_item_model');
+
+		if ($action == 'delete' && $id !== null){
+			$this->db->query("DELETE FROM `layout_parts` WHERE `part_type` = 'menu' AND `part_id` = ".$id);
+		}
 
 		if ($action == 'order'){
 			$items = json_decode($this->input->post('data'), true);
@@ -392,6 +400,11 @@ class Admin extends MY_Controller {
 	public function contents($action = null, $id = null){
 		$this->load->model('content_model');
 		$model = $this->content_model;
+
+		if ($action == 'delete' && $id !== null){
+			$this->db->query("DELETE FROM `layout_parts` WHERE `part_type` = 'content' AND `part_id` = ".$id);
+			echo $this->db->last_query();
+		}
 
 		$this->_action('contents', $model, $action, $id);
 	}
