@@ -15,14 +15,14 @@ class Setting_model extends MY_Model {
 		$this->_fields['footer']['_Description'] = 'Lábléc szöveg';
 
 		$this->_fields['banner_image']['Type'] = '_image';
-		$this->_fields['banner_image']['_Image_size'] = array(700, 250);
+		$this->_fields['banner_image']['_Image_ratio'] = image_ratio(700, 250);
 		$this->_fields['banner_image']['_Image_multiple'] = true;
 		$this->_fields['banner_image']['_Image_manual_crop'] = true;
 		$this->_fields['banner_image']['_Alias'] = 'Banner kép';
 		$this->_fields['banner_image']['_Description'] = 'Több kép feltöltése';
 
 		$this->_fields['logo_image']['Type'] = '_image';
-		$this->_fields['logo_image']['_Image_size'] = array(150, 75);
+		$this->_fields['logo_image']['_Image_ratio'] = image_ratio(200, 100);
 		$this->_fields['logo_image']['_Image_manual_crop'] = true;
 		$this->_fields['logo_image']['_Alias'] = 'Logo kép';
 		$this->_fields['logo_image']['_Description'] = 'Egyedi logo feltöltése';
@@ -33,7 +33,7 @@ class Setting_model extends MY_Model {
 		$this->_fields['file_sandbox']['_Description'] = 'Fájlok feltöltése';
 
 		$this->_fields['content_image']['Type'] = '_elfinder';
-		$this->_fields['content_image']['_Image_size'] = array(200, 150);
+		$this->_fields['content_image']['_Image_ratio'] = image_ratio(200, 150);
 		$this->_fields['content_image']['_Alias'] = 'Tartalom kép';
 		$this->_fields['content_image']['_Description'] = 'Egyedi kép kiválasztása a médiatárból';
 

@@ -140,8 +140,10 @@ function image_display($image, $dim = null, $show_cropped = null, $custom_placeh
 
 		$image_dim = getimagesize($original_path);
 
-		if ($image_dim[0] != $dim[0] || $image_dim[1] != $dim[1])
-			$CI->image_moo->load($original_path)->resize($dim[0], $dim[1])->save($new_path);
+		if (($image_dim[0] != $dim[0] || $image_dim[1] != $dim[1]) && $image_dim[0] > $dim[0] && $image_dim[1] > $dim[1])
+			$CI->image_moo->load($original_path)->resize_crop($dim[0], $dim[1])->save($new_path);
+		else if ($image_dim[0] != $dim[0] || $image_dim[1] != $dim[1])
+			$CI->image_moo->load($original_path)->resize($dim[0], $dim[1], true)->save($new_path);
 
 		return base_url($new_url);
 	}elseif (!file_exists('./'.urldecode($image)) && $image != ''){
@@ -186,8 +188,10 @@ function image_display($image, $dim = null, $show_cropped = null, $custom_placeh
 		$url = 'upload/public/img/'.$filename;
 		$new_path = './'.$url;
 
-		if ($image['width'] != $dim[0] || $image['height'] != $dim[1])
+		if (($image['width'] != $dim[0] || $image['height'] != $dim[1]) && $image['width'] > $dim[0] && $image['height'] > $dim[1])
 			$CI->image_moo->load($original_path)->resize_crop($dim[0], $dim[1])->save($new_path);
+		else if ($image['width'] != $dim[0] || $image['height'] != $dim[1])
+			$CI->image_moo->load($original_path)->resize($dim[0], $dim[1], true)->save($new_path);
 
 		return base_url($url);
 	}else{
@@ -199,5 +203,13 @@ function image_display($image, $dim = null, $show_cropped = null, $custom_placeh
 		}else{
 			return $custom_placeholder;
 		}
+	}
+}
+
+function image_ratio($w = 1, $h = 1){
+	if ($w > $h){
+		return array('width' => 1, 'height' => $h / $w);
+	}else{
+		return array('width' => $w / $h, 'height' => 1);
 	}
 }

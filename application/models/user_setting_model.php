@@ -15,7 +15,7 @@ class User_setting_model extends MY_Model{
 		
 		$this->_fields['profile_image']['Type'] = '_image';
 		$this->_fields['profile_image']['_Alias'] = 'Profil kép';
-		$this->_fields['profile_image']['_Image_size'] = array(150, 150);
+		$this->_fields['profile_image']['_Image_ratio'] = image_ratio(150, 150);
 		$this->_fields['profile_image']['_Image_manual_crop'] = true;
 		$this->_fields['profile_image']['_Description'] = 'Ezt a képet látja a többi felhasználó';
 
@@ -28,8 +28,8 @@ class User_setting_model extends MY_Model{
 
 		$this->_fields['lockscreen_image']['Type'] = '_image';
 		$this->_fields['lockscreen_image']['_Alias'] = 'Automatikus lezárás háttere';
-		$this->_fields['lockscreen_image']['_Description'] = 'Minimális méret 1920x1080';
-		$this->_fields['lockscreen_image']['_Image_size'] = array(1920, 1080);
+		$this->_fields['lockscreen_image']['_Description'] = 'Érdemes minimum a monitorod felbontásának megfelelő mértű képet feltölteni';
+		$this->_fields['lockscreen_image']['_Image_ratio'] = image_ratio(1920, 1080);
 		$this->_fields['lockscreen_image']['_Image_manual_crop'] = false;
 
 		parent::_post_actions();

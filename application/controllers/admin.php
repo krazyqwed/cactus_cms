@@ -681,6 +681,8 @@ class Admin extends MY_Controller {
 		    // To return a name used for uploaded file you can use the following line.
 		    $result["uploadName"] = $this->upload->getUploadName();
 		    $result["uploadMime"] = $this->upload->getUploadMime(true);
+		    $result["uploadWidth"] = $this->upload->getUploadDimension('width');
+		    $result["uploadHeight"] = $this->upload->getUploadDimension('height');
 
 		    echo json_encode($result);
 		}else{

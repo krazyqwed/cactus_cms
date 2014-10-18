@@ -292,19 +292,18 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 			</td>
 		<?php elseif ($field['Type'] == '_image'): ?>
 			<?php
-				if (isset($field['_Image_size']) && $field['_Image_size'][0] > 150 && $field['_Image_size'][1] > 150){
-					$ratio = $field['_Image_size'][1] / $field['_Image_size'][0];
-					$thumbsize = array(150, round(150 * $ratio));
+				$thumb_max_width = 150;
+				$thumb_max_height = 150;
 
-					if ($ratio < 1 && $thumbsize[1] > 150) $thumbsize[1] = 150;
-				}else{
-					$thumbsize = array($field['_Image_size'][0], $field['_Image_size'][1]);
-				}
+				$ratio = $field['_Image_ratio'];
+
+				$thumb_width = floor($ratio['width'] * $thumb_max_width);
+				$thumb_height = floor($ratio['height'] * $thumb_max_height);
 			?>
 
 			<td <?php echo is_numeric($td_colspan)?'colspan="'.$td_colspan.'"':'' ?>>
-				<input class="js-crop-tmb-width" type="hidden" value="<?php echo isset($field['_Image_size'])?$thumbsize[0]:'150' ?>" />
-				<input class="js-crop-tmb-height" type="hidden" value="<?php echo isset($field['_Image_size'])?$thumbsize[1]:'150' ?>" />
+				<input class="js-crop-tmb-width" type="hidden" value="<?php echo $thumb_width ?>" />
+				<input class="js-crop-tmb-height" type="hidden" value="<?php echo $thumb_height ?>" />
 
 				<input class="field-name" type="hidden" value="<?php echo $field['Field'] ?>" />
 
@@ -322,11 +321,11 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 
 					<div class="qq-thumbnail-wrap-outer">
 					<?php if ($image['cropped'] == 1): ?>
-						<div class="qq-thumbnail-wrap" style="width: <?php echo isset($field['_Image_size'])?$thumbsize[0]:'150' ?>px; height: <?php echo isset($field['_Image_size'])?$thumbsize[1]:'150' ?>px;">
+						<div class="qq-thumbnail-wrap" style="width: <?php echo $thumb_width ?>px; height: <?php echo $thumb_height ?>px;">
 					<?php else: ?>
-						<div class="qq-thumbnail-wrap" style="width: <?php echo isset($field['_Image_size'])?$thumbsize[0]:'150' ?>px; height: <?php echo isset($field['_Image_size'])?$thumbsize[1]:'150' ?>px;">
+						<div class="qq-thumbnail-wrap" style="width: <?php echo $thumb_width ?>px; height: <?php echo $thumb_height ?>px;">
 					<?php endif; ?>
-							<img class="qq-thumbnail-selector" src="<?php echo image_display($image['image_id'], array($thumbsize[0], $thumbsize[1])); ?>" />
+							<img class="qq-thumbnail-selector" src="<?php echo image_display($image['image_id'], array($thumb_width, $thumb_height)); ?>" />
 						</div>
 					</div>
 
@@ -335,7 +334,7 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 
 					<a class="btn btn-danger btn-sm qq-upload-delete-selector qq-upload-delete" href="#"><i class="qq-upload-cancel-selector fa fa-times fa-fw fa-fixed-height qq-hide"></i></a>
 				
-				<?php if (isset($field['_Image_manual_crop']) && $field['_Image_manual_crop'] && ($image['width'] >= $field['_Image_size'][0] || $image['height'] >= $field['_Image_size'][1])): ?>
+				<?php if (isset($field['_Image_manual_crop']) && $field['_Image_manual_crop'] && ($image['width'] >= $thumb_width || $image['height'] >= $thumb_height)): ?>
 					<a class="btn btn-primary btn-sm qq-upload-crop" href="javascript:void(0)"><i class="fa fa-crop fa-fw fa-fixed-height"></i></a>
 				<?php endif; ?>
 
@@ -344,7 +343,7 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 			<?php endforeach; ?>
 			<?php endif; ?>
 
-				<div data-width="<?php echo isset($field['_Image_size'])?$thumbsize[0]:'150' ?>" data-height="<?php echo isset($field['_Image_size'])?$thumbsize[1]:'150' ?>" class="thumbnail-fine-uploader-image <?php echo (isset($field['_Image_multiple']) && $field['_Image_multiple'])?'multiple':'' ?> <?php echo (isset($field['_Image_manual_crop']) && $field['_Image_manual_crop'])?'crop':'' ?>"></div>
+				<div class="thumbnail-fine-uploader-image <?php echo (isset($field['_Image_multiple']) && $field['_Image_multiple'])?'multiple':'' ?> <?php echo (isset($field['_Image_manual_crop']) && $field['_Image_manual_crop'])?'crop':'' ?>"></div>
 
 				<div class="crop-thumbnail-wrap-outer">
 					<div class="crop-thumbnail-wrap">

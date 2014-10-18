@@ -365,19 +365,28 @@ if ($('.thumbnail-fine-uploader-image').length){
                         var fieldName = $this.closest('td').find('input.field-name').val();
                         container.find('input.filename').attr('name', fieldName + '[new-img-'+id+'][filename]');
 
+                        var containerTd = $this.closest('td');
+                        var rwidth = containerTd.find('input.js-crop-tmb-width').val();
+                        var rheight = containerTd.find('input.js-crop-tmb-height').val();
+
                         if (!$this.hasClass('crop'))
                             container.find('input.x1, input.y1, input.x2, input.y2').remove();
 
                         container.find('input.filename').val(responseJSON.uploadName);
 
                         $this.closest('td').find('button.crop-close').trigger('click');
+
+                        if (responseJSON.uploadWidth <= rwidth || responseJSON.uploadHeight <= rheight){
+                            container.addClass('center-img');
+
+                            var $file = $(this.getItemByFileId(id));
+                            $file.find(".qq-upload-crop").remove();
+                        }
                     }
                 },
                 onSubmitDelete: function(id, name){
                     var container = $this.find('li[qq-file-id="'+id+'"]');
-
-                    if ($activeContainer != null && $activeContainer.get(0) == container.get(0))
-                        container.closest('td').find('.crop-thumbnail-wrap-outer').css({ 'display': 'none' });
+                    container.closest('td').find('button.crop-close').trigger('click');
                 }
             },
             text: {

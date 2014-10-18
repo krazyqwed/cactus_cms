@@ -12,6 +12,8 @@ public $allowedExtensions = array();
     protected $uploadName;
     protected $uploadFolder;
 
+    private $uploadDim;
+
     function __construct(){
         $this->sizeLimit = $this->toBytes(ini_get('upload_max_filesize'));
     }
@@ -32,6 +34,19 @@ public $allowedExtensions = array();
      */
     public function getUploadName(){
         return $this->uploadName;
+    }
+
+    /**
+     * Get dimensions of the uploaded file
+     */
+    public function getUploadDimension($dim = false){
+        if ($dim == 'width'){
+            return $this->uploadDim[0];
+        }elseif ($dim == 'height'){
+            return $this->uploadDim[1];
+        }
+    
+        return $this->uploadDim;
     }
 
     /**
@@ -183,6 +198,7 @@ public $allowedExtensions = array();
                         $CI->config->load('image');
 
                         $dim = getimagesize($target);
+                        $this->uploadDim = $dim;
 
                         if ($dim[0] != $CI->config->item('image_max_width') || $dim[1] != $CI->config->item('image_max_height'))
                             $CI->image_moo->load($target)->resize($CI->config->item('image_max_width'), $CI->config->item('image_max_height'))->save($target, true);

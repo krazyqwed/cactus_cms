@@ -25,6 +25,13 @@ li.uploaded._file{
 	}
 }
 
+li.center-img img.qq-thumbnail-selector{
+	position: absolute;
+	left: 0; right: 0;
+	top: 0; bottom: 0;
+	margin: auto;
+}
+
 .qq-thumbnail-wrap-outer.file{ border: 0; }
 
 .qq-thumbnail-selector-file{
