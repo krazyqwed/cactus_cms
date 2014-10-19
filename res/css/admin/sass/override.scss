@@ -180,3 +180,7 @@ li.center-img img.qq-thumbnail-selector{
 
 .ui-datepicker .ui-datepicker-prev-hover { left: 2px; }
 .ui-datepicker .ui-datepicker-next-hover { right: 2px; }
+
+.ui-datepicker {
+	z-index: 6 !important;
+}
