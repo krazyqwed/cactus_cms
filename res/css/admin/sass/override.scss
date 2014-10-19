@@ -5,6 +5,10 @@
 
 .dropdown-menu li.selected a { font-weight: bold; }
 
+.input-group-btn > .btn {
+	padding: 7px 12px 6px 12px;
+}
+
 /* Fine uploader */
 li.uploaded._file{
 	display: inline-block;
@@ -111,3 +115,68 @@ li.center-img img.qq-thumbnail-selector{
 		background-image: url('smoothness/images/ui-icons_222222_256x240.png');
 	}
 }
+
+/* jQuery Widget */
+.ui-widget-header {
+	background: $c-success;
+	border: 1px solid $c-dark-success;
+}
+
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+	border: 1px solid $c-active-dark-success;
+	background: $c-active-success;
+	color: $c-default;
+}
+
+.ui-state-hover .ui-icon,
+.ui-state-focus .ui-icon {
+	background-image: url("smoothness/images/ui-icons_ffffff_256x240.png");
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+	border: 1px solid $c-dark-default;
+	background: $c-default;
+	color: $c-primary;
+}
+
+.ui-datepicker-calendar .ui-state-hover,
+.ui-datepicker-calendar .ui-widget-content .ui-state-hover,
+.ui-datepicker-calendar .ui-widget-header .ui-state-hover {
+	border: 1px solid $c-active-dark-default;
+	background: $c-active-default;
+	color: $c-primary;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+	border: 1px solid $c-active-dark-primary;
+	background: $c-active-primary;
+	color: $c-default;
+}
+
+.ui-corner-all,
+.ui-corner-bottom,
+.ui-corner-right,
+.ui-corner-left,
+.ui-corner-br,
+.ui-corner-bl,
+.ui-corner-tr,
+.ui-corner-tl {
+	border-radius: 0;
+}
+
+.ui-datepicker .ui-datepicker-prev-hover,
+.ui-datepicker .ui-datepicker-next-hover {
+	top: 2px;
+}
+
+.ui-datepicker .ui-datepicker-prev-hover { left: 2px; }
+.ui-datepicker .ui-datepicker-next-hover { right: 2px; }

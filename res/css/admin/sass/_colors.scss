@@ -8,6 +8,28 @@ $c-success: #8CC152;
 $c-primary: #3BAFDA;
 $c-warning: #F6BB42;
 $c-info: #37BC9B;
+$c-default: #FFF;
+
+$c-dark-danger: darken($c-danger, 5%);
+$c-dark-success: darken($c-success, 5%);
+$c-dark-primary: darken($c-primary, 5%);
+$c-dark-warning: darken($c-warning, 5%);
+$c-dark-info: darken($c-info, 5%);
+$c-dark-default: #EEE;
+
+$c-active-danger: darken($c-danger, 10%);
+$c-active-success: darken($c-success, 10%);
+$c-active-primary: darken($c-primary, 10%);
+$c-active-warning: darken($c-warning, 10%);
+$c-active-info: darken($c-info, 10%);
+$c-active-default: #E6E6E6;
+
+$c-active-dark-danger: darken($c-dark-danger, 12%);
+$c-active-dark-success: darken($c-dark-success, 12%);
+$c-active-dark-primary: darken($c-dark-primary, 12%);
+$c-active-dark-warning: darken($c-dark-warning, 12%);
+$c-active-dark-info: darken($c-dark-info, 12%);
+$c-active-dark-default: #ADADAD;
 
 $c-lightergray: #F2F0EF;
 $c-lightgray: #E7E3E1;
