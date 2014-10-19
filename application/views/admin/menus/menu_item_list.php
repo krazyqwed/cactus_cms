@@ -13,7 +13,7 @@
 
 				<a href="javascript:void(0)" class="btn btn-success order-save" rel="<?php echo site_url('admin/menus/order/'.$menu_id) ?>">Mentés</a>
 
-				<a href="javascript:void(0)" class="btn btn-info new-item">Új menüpont</a>
+				<a href="javascript:void(0)" class="btn btn-primary new-item">Új menüpont</a>
 			</div>
 		</div>
 	</div>

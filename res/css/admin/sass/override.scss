@@ -9,6 +9,19 @@
 	padding: 7px 12px 6px 12px;
 }
 
+.bootstrap-select .btn:focus {
+	border-color: #66afe9;
+	outline: 0 !important;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6);
+}
+
+.dropdown-menu>li>a:hover,
+.dropdown-menu>li>a:focus {
+	color: $c-default;
+	background-color: $c-primary;
+}
+
 /* Fine uploader */
 li.uploaded._file{
 	display: inline-block;
@@ -56,7 +69,7 @@ li.center-img img.qq-thumbnail-selector{
 	width: 28px; height: 34px;
 }
 
-/* jQuery Dialog */
+/* jQuery UI */
 .ui-dialog {
 	padding: 0;
 	border: 0;
@@ -101,7 +114,6 @@ li.center-img img.qq-thumbnail-selector{
 	}
 }
 
-/* jQuery Spinner */
 .ui-spinner-button {
 	width: 22px; 
 
@@ -113,10 +125,10 @@ li.center-img img.qq-thumbnail-selector{
 	.ui-icon {
 		left: 3px;
 		background-image: url('smoothness/images/ui-icons_222222_256x240.png');
+		opacity: .4;
 	}
 }
 
-/* jQuery Widget */
 .ui-widget-header {
 	background: $c-success;
 	border: 1px solid $c-dark-success;
@@ -173,6 +185,12 @@ li.center-img img.qq-thumbnail-selector{
 	border-radius: 0;
 }
 
+.ui-datepicker {
+	margin-left: 4px;
+	z-index: 6 !important;
+	outline: 4px solid rgba(0,0,0,.2);
+}
+
 .ui-datepicker .ui-datepicker-prev-hover,
 .ui-datepicker .ui-datepicker-next-hover {
 	top: 2px;
@@ -181,6 +199,28 @@ li.center-img img.qq-thumbnail-selector{
 .ui-datepicker .ui-datepicker-prev-hover { left: 2px; }
 .ui-datepicker .ui-datepicker-next-hover { right: 2px; }
 
-.ui-datepicker {
-	z-index: 6 !important;
+.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {
+	background-image: url("smoothness/images/ui-icons_222222_256x240.png");
+	opacity: 1;
+}
+
+.ui-state-active .ui-icon {
+	background-image: url("smoothness/images/ui-icons_ffffff_256x240.png");
+	opacity: 1;
+}
+
+
+/* Chosen */
+.chosen-container-multi .chosen-choices li.search-choice {
+	padding: 4px 20px 4px 5px;
+	background-image: none;
+}
+
+.chosen-container-multi .chosen-choices li.search-choice .search-choice-close {
+	top: 5px;
+}
+
+.chosen-container .chosen-results li.highlighted {
+	background-color: $c-primary;
+	background-image: none;
 }
