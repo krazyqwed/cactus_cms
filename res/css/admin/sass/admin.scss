@@ -285,8 +285,8 @@ textarea{ resize: none; }
 
 	th{
 		padding: 4px;
-		color: #FFF;
-		background-color: #428BCA;
+		color: $c-default;
+		background-color: $c-dark-primary;
 	}
 
 	td{

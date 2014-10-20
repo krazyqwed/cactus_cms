@@ -3,16 +3,21 @@
 #################################
 #   Creator: Kocsis Dávid       #
 #   Date: 2014.01.07            #
-#   Last mod.: 2014.09.20       #
+#   Last mod.: 2014.10.20       #
 #################################
 Plans for 1.x.x:
   ^ Maintenance mode switch
   
   - Event log
-  - Visitor statistics
-  - Private messages
-  - Admin multi-lang
+  - Private messages (?)
+  - Admin multi-lang (?)
 #################################
+
+---------------------------------
+2014.10.20 - v0.9.9a
+---------------------------------
+- Small CSS theme fixes
+---------------------------------
 
 ---------------------------------
 2014.10.18 - v0.9.9
