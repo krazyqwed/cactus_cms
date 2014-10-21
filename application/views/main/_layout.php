@@ -31,10 +31,8 @@
 
         <footer class="row">
             <hr />
-            <div class="row">
-                <div class="col-xs-12">
-                    <p><?php echo $settings['footer'] ?></p>
-                </div>
+            <div class="col-xs-12">
+                <p><?php echo $settings['footer'] ?></p>
             </div>
         </footer>
     </div>

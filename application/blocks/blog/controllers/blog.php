@@ -26,11 +26,11 @@ class Blog extends MX_Controller {
 
 			$this->load->view('index', $data);
 		}else{
-			/* Join lang table because of the URL */
-			if (isset($model->db_table_lang) && $model->db_table_lang)
-				$entry = $this->db->join($model->_db_table.'_lang', $model->_db_table.'_lang.'.$model->_primary.' = '.$model->_db_table.'.'.$model->_primary, 'left')->where($model->_db_table.'.entry_id', $id)->or_where($model->_db_table.'.url', $id)->or_where($model->_db_table.'_lang.url', $id)->get($model->_db_table)->row_array();
-			else
-				$entry = $this->db->where('active', 1)->where('entry_id', $id)->get($model->_db_table)->row_array();
+			$entry = $this->db->query("
+				SELECT t1.*, t2.full_name FROM `".$model->_db_table."` t1
+				LEFT JOIN `user_settings` t2 ON t1.`author` = t2.`user_id`
+				WHERE t1.`entry_id` = ".$id."
+			")->row_array();
 
 			if ($entry){
 				/* Language */
