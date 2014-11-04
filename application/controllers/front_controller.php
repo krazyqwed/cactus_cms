@@ -70,4 +70,21 @@ class Front_Controller extends MX_Controller {
 
 		$this->load->view('main/_layout', $data);
 	}
+
+	public function file_download($file){
+		$file = $this->db->get_where('files', array('file_id' => $file))->row_array();
+
+		if ($file){
+			$original_filename = 'upload/public/file/'.$file['filename'].'.'.$file['ext'];
+			$new_filename = $file['visible_name'];
+
+			header("Content-Length: " . filesize($original_filename));
+			header('Content-Disposition: attachment; filename="' . $new_filename . '"');
+
+			readfile($original_filename);
+			exit;
+		}else{
+			redirect('');
+		}
+	}
 }

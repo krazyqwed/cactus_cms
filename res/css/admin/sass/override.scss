@@ -23,8 +23,12 @@
 }
 
 /* Fine uploader */
+tr._image ul.qq-list, tr._file ul.qq-list{
+	padding-left: 0;
+}
+
 li.uploaded._file{
-	display: inline-block;
+	float: left;
 	width: 49%;
 
 	&:nth-of-type(2n){ float: right; }
@@ -40,6 +44,13 @@ li.uploaded._file{
 		background-color: #2494be;
 		border-color: #1e7da0;
 	}
+}
+
+.qq-upload-rename-selector {
+	display: inline-block;
+	margin-right: 12px;
+	height: 30px;
+	float: right;
 }
 
 li.center-img img.qq-thumbnail-selector{

@@ -13,3 +13,7 @@ code.hljs {
   	background-color: rgb(256,128,0);
   	background-color: rgba(0,0,0,.2); background-color: rgb(0,0,0);
 }
+
+.well {
+    font-size: 16px;
+}

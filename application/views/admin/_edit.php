@@ -45,8 +45,6 @@
 		</span>
 		<ul class="qq-upload-list-selector qq-upload-list">
 			<li>
-				<input type="hidden" class="filename" />
-
 				<div class="qq-progress-bar-container-selector">
 					<div class="qq-progress-bar-selector qq-progress-bar"></div>
 				</div>
@@ -60,8 +58,10 @@
 
 				<span class="qq-edit-filename-icon-selector qq-edit-filename-icon"></span>
 				<span class="qq-upload-file-selector qq-upload-file"></span>
+				<span class="qq-upload-file-input-selector qq-upload-file-input"><input type="hidden" class="filename" /></span>
 
 				<a class="btn btn-danger btn-sm qq-upload-delete-selector qq-upload-delete" href="#"><i class="qq-upload-cancel-selector fa fa-times fa-fw fa-fixed-height"></i></a>
+				<a href="javascript:void(0);" class="btn btn-info btn-sm qq-upload-rename-selector qq-upload-rename" href="#"><i class="fa fa-pencil-square-o fa-fw fa-fixed-height qq-hide"></i></a>
 
 				<span class="qq-upload-status-text-selector qq-upload-status-text"></span>
 			</li>
@@ -308,6 +308,7 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 				<input class="field-name" type="hidden" value="<?php echo $field['Field'] ?>" />
 
 			<?php if (isset($content[$field['Field']]) && $content[$field['Field']]): ?>
+				<ul class="qq-list clearfix">
 			<?php foreach ($content[$field['Field']] as $image): ?>
 				<li class="uploaded <?php echo $field['Type'] ?>" rel="<?php echo $image['image_id'] ?>">
 					<input type="hidden" class="imageid" name="<?php echo $field['Field'] ?>[<?php echo $image['image_id'] ?>][imageid]" value="<?php echo $image['image_id'] ?>">
@@ -341,6 +342,7 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 					<span class="qq-upload-status-text-selector qq-upload-status-text"></span>
 				</li>
 			<?php endforeach; ?>
+				</ul>
 			<?php endif; ?>
 
 				<div class="thumbnail-fine-uploader-image <?php echo (isset($field['_Image_multiple']) && $field['_Image_multiple'])?'multiple':'' ?> <?php echo (isset($field['_Image_manual_crop']) && $field['_Image_manual_crop'])?'crop':'' ?>"></div>
@@ -359,6 +361,7 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 				<input class="field-name" type="hidden" value="<?php echo $field['Field'] ?>" />
 
 			<?php if (isset($content[$field['Field']]) && $content[$field['Field']]): ?>
+				<ul class="qq-list clearfix">
 			<?php foreach ($content[$field['Field']] as $file): ?>
 				<li class="uploaded <?php echo $field['Type'] ?>" rel="<?php echo $file['file_id'] ?>">
 					<input type="hidden" class="fileid" name="<?php echo $field['Field'] ?>[<?php echo $file['file_id'] ?>][fileid]" value="<?php echo $file['file_id'] ?>">
@@ -370,13 +373,18 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 					</div>
 
 					<span class="qq-edit-filename-icon-selector qq-edit-filename-icon"></span>
-					<span class="qq-upload-file-selector qq-upload-file"><?php echo $file['filename'].'.'.$file['ext'] ?></span>
-
-					<a class="btn btn-danger btn-sm qq-upload-delete-selector qq-upload-delete" href="#"><i class="qq-upload-cancel-selector fa fa-times fa-fw fa-fixed-height qq-hide"></i></a>
+					<span class="qq-upload-file-selector qq-upload-file">
+						<span class="name"><?php echo ($file['visible_name'] != '')? $file['visible_name'] : $file['filename'].'.'.$file['ext'] ?></span>
+						<input type="hidden" data-name="<?php echo $field['Field'] ?>[<?php echo $file['file_id'] ?>][filename]" value="<?php echo ($file['visible_name'] != '')? $file['visible_name'] : $file['filename'].'.'.$file['ext'] ?>" />
+					</span>
+					
+					<a class="btn btn-danger btn-sm qq-upload-delete-selector qq-upload-delete" href="#"><i class="fa fa-times fa-fw fa-fixed-height qq-hide"></i></a>
+					<a href="javascript:void(0);" class="btn btn-info btn-sm qq-upload-rename-selector qq-upload-rename" href="#"><i class="fa fa-pencil-square-o fa-fw fa-fixed-height qq-hide"></i></a>
 
 					<span class="qq-upload-status-text-selector qq-upload-status-text"></span>
 				</li>
 			<?php endforeach; ?>
+				</ul>
 			<?php endif; ?>
 
 				<div class="thumbnail-fine-uploader-file <?php echo (isset($field['_File_multiple']) && $field['_File_multiple'])?'multiple':'' ?>"></div>

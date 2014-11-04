@@ -8,6 +8,10 @@ function file_save($file, $field){
 			$id[] = file_save_final($f);
 		}elseif (isset($f['fileid'])){
 			$id[] = $f['fileid'];
+
+			if (isset($f['filename']) && $f['filename'] != ''){
+				file_update($f);
+			}
 		}
 
 		if ($key == 'delete-file'){
@@ -56,13 +60,24 @@ function file_save_final($file){
 	$data = array(
 		'filename' => $filename,
 		'ext' => $ext,
+		'mime' => file_get_mime($final_path),
 		'filesize' => $filesize,
-		'mime' => file_get_mime($final_path)
+		'visible_name' => $file['filename']
 	);
 
 	$CI->db->insert('files', $data);
 
 	return $CI->db->insert_id();
+}
+
+function file_update($file){
+	$CI =& get_instance();
+
+	$data = array(
+		'visible_name' => $file['filename']
+	);
+
+	$CI->db->where('file_id', $file['fileid'])->update('files', $data);
 }
 
 function file_get_mime($path){
@@ -75,4 +90,32 @@ function file_get_mime($path){
 	}
 
 	return $info;
+}
+
+function file_url($file, $visible_name = false){
+	$CI =& get_instance();
+
+	if (file_exists('./'.urldecode($file)) && $file != ''){
+		$original_path = './'.urldecode($file);
+		$new_url = 'upload/public/file/'.md5($original_path).end(explode('.', $file));
+
+		return base_url($new_url);
+	}
+
+	if (!is_array($file) && is_numeric($file))
+		$file = $CI->db->get_where('files', array('file_id' => $file))->row_array();
+	elseif (!is_array($file) && $file != '')
+		$file = $CI->db->get_where('files', array('filename' => $file))->row_array();
+
+	if ($file){
+		$new_url = 'file_download/'.$file['file_id']; // 'upload/public/file/'.$file['filename'].'.'.$file['ext'];
+
+		if ($visible_name){
+			return array(base_url($new_url), $file['visible_name'] != ''?$file['visible_name']:$file['filename'].'.'.$file['ext']);
+		}else{
+			return base_url($new_url);
+		}
+	}else{
+		return false;
+	}
 }

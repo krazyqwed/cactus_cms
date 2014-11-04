@@ -23,6 +23,11 @@ class Blog_model extends MY_Model {
 		//$this->_fields['content']['_Function'] = 'blog_field';
 		$this->_fields['content']['_Description'] = '<a href="javascript:void(0);" class="markdown_full">Teljes képernyő</a>';
 
+		$this->_fields['files']['Type'] = '_file';
+		$this->_fields['files']['_File_multiple'] = true;
+		$this->_fields['files']['_Alias'] = 'Csatolt fájlok';
+		$this->_fields['files']['_Description'] = 'Fájlok feltöltése';
+
 		$this->_fields['date']['_Alias'] = 'Dátum';
 
 		$this->_fields['url']['_Alias'] = 'URL';
@@ -58,6 +63,7 @@ class Blog_model extends MY_Model {
 			  `title` varchar(256) NOT NULL,
 			  `short_content` text NOT NULL,
 			  `content` text NOT NULL,
+			  `files` text NOT NULL,
 			  `date` date NOT NULL,
 			  `url` varchar(64) NOT NULL,
 			  `author` int(10) unsigned NOT NULL,

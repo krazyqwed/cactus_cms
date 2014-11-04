@@ -33,6 +33,15 @@ class Blog extends MX_Controller {
 			")->row_array();
 
 			if ($entry){
+				/* Files */
+				$files = explode('|', $entry['files']);
+
+				$file_list = array();
+
+				foreach ($files as $file){
+					$file_list[] = file_url($file, true);
+				}
+
 				/* Language */
 				$entry = part_get_lang_table($entry, $id, $model);
 
@@ -40,7 +49,10 @@ class Blog extends MX_Controller {
 				$this->seo->set_title($entry['seo_title']);
 				$this->seo->set_description($entry['seo_description']);
 
-				$data = array( 'entry' => $entry );
+				$data = array(
+					'entry' => $entry,
+					'files' => $file_list
+				);
 
 				$this->load->view('blog', $data);
 			}else{

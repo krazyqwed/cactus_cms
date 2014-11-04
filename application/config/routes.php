@@ -40,6 +40,7 @@
 
 $route['default_controller'] = 'main';
 $route['404_override'] = 'main/page_404';
+$route['file_download/(:any)'] = 'main/file_download/$1';
 
 
 /* Load routes from database */

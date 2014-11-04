@@ -581,6 +581,31 @@ if ($('.thumbnail-fine-uploader-file').length){
 
         $(this).closest('li').remove();
     });
+
+    $(document).on('click', 'li.uploaded._file .qq-upload-rename', function(e){
+        var $text = $(this).closest('li').find('.qq-upload-file');
+
+        if ($text.find('.name').is(':visible')){
+            $text.find('.name').hide();
+            $text.find('input').attr('type', 'text').attr('name', $text.find('input').attr('data-name'));
+        }else{
+            $text.find('input').attr('type', 'hidden').attr('name', '');
+            $text.find('.name').show();
+        }
+    });
+
+    $(document).on('click', 'tr._file li.qq-upload-success .qq-upload-rename', function(e){
+        var $text = $(this).closest('li').find('.qq-upload-file');
+        var $input = $(this).closest('li').find('.qq-upload-file-input');
+
+        if ($text.is(':visible')){
+            $text.hide();
+            $input.find('input').attr('type', 'text');
+        }else{
+            $input.find('input').attr('type', 'hidden');
+            $text.show();
+        }
+    });
 }
 
 /* AJAX form post */
