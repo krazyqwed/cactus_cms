@@ -1,10 +1,10 @@
 <?php foreach ($entries as $entry): ?>
     <article>
-        <div class="thumb">
+        <div class="thumb thumb-<?php echo rand(1, 8); ?>">
             <div class="tags">
-                <!--<div class="tag php"><div>PHP</div></div>-->
-                <div class="tag js"><div>JS</div></div>
-                <div class="tag css"><div>CSS</div></div>
+            <?php foreach ($entry['tags'] as $key => $tag): ?>
+                <div class="tag <?php echo $key ?>"><div><?php echo $tag ?></div></div>
+            <?php endforeach; ?>
             </div>
         </div>
 

@@ -22,6 +22,21 @@ class Blog extends MX_Controller {
 			/* Language */
 			$entries = part_get_lang_table($entries, $id, $model);
 
+			/* Tags */
+			foreach ($entries as $key => $entry) {
+				$tags = json_decode($entry['tags']);
+
+				$tag_list = array();
+
+				foreach ($tags as $tag){
+					$tag = $this->db->query("SELECT name FROM tags WHERE tag_id = ".$tag)->row_array();
+					$tag_selector = str_replace(array(' ', ',', '.', '-'), '_',strtolower($tag['name']));
+					$tag_list[$tag_selector] = $tag['name'];
+				}
+
+				$entries[$key]['tags'] = $tag_list;
+			}
+
 			$data = array( 'entries' => $entries );
 
 			$this->load->view('index', $data);
@@ -42,6 +57,17 @@ class Blog extends MX_Controller {
 					$file_list[] = file_url($file, true);
 				}
 
+				/* Tags */
+				$tags = json_decode($entry['tags']);
+
+				$tag_list = array();
+
+				foreach ($tags as $tag){
+					$tag = $this->db->query("SELECT name FROM tags WHERE tag_id = ".$tag)->row_array();
+					$tag_selector = str_replace(array(' ', ',', '.', '-'), '_', strtolower($tag['name']));
+					$tag_list[$tag_selector] = $tag['name'];
+				}
+
 				/* Language */
 				$entry = part_get_lang_table($entry, $id, $model);
 
@@ -51,7 +77,8 @@ class Blog extends MX_Controller {
 
 				$data = array(
 					'entry' => $entry,
-					'files' => $file_list
+					'files' => $file_list,
+					'tags' => $tag_list
 				);
 
 				$this->load->view('blog', $data);
