@@ -96,10 +96,18 @@ body {
 	position: relative;
 	margin: -30px -30px 30px -30px;
 	height: 300px;
-	background-image: url('../../img/main/post-bg.jpg');
 	background-position: center;
 	border-bottom: 4px solid #DDD;
 }
+#blog article .thumb.thumb-1 { background-image: url('../../img/main/post-bg-1.jpg'); }
+#blog article .thumb.thumb-2 { background-image: url('../../img/main/post-bg-2.jpg'); }
+#blog article .thumb.thumb-3 { background-image: url('../../img/main/post-bg-3.jpg'); }
+#blog article .thumb.thumb-4 { background-image: url('../../img/main/post-bg-4.jpg'); }
+#blog article .thumb.thumb-5 { background-image: url('../../img/main/post-bg-5.jpg'); }
+#blog article .thumb.thumb-6 { background-image: url('../../img/main/post-bg-6.jpg'); }
+#blog article .thumb.thumb-7 { background-image: url('../../img/main/post-bg-7.jpg'); }
+#blog article .thumb.thumb-8 { background-image: url('../../img/main/post-bg-8.jpg'); }
+
 @media (max-width: 767px) {
 	#blog article .thumb {
 		height: 200px;
