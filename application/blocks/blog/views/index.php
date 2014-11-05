@@ -1,6 +1,8 @@
+<?php $i = 0; ?>
 <?php foreach ($entries as $entry): ?>
+    <?php $i == 7? $i = 1 : ++$i; ?>
     <article>
-        <div class="thumb thumb-<?php echo rand(1, 8); ?>">
+        <div class="thumb thumb-<?php echo $i ?>">
             <div class="tags">
             <?php foreach ($entry['tags'] as $key => $tag): ?>
                 <div class="tag <?php echo $key ?>"><div><?php echo $tag ?></div></div>
