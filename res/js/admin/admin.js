@@ -555,7 +555,7 @@ if ($('.thumbnail-fine-uploader-file').length){
                     if (responseJSON.success){
                         var container = $this.find('li[qq-file-id="'+id+'"]');
                         container.find('.qq-thumbnail-selector').attr('src', base_url + 'upload/cache/' + responseJSON.uploadName);
-                        container.find('.qq-thumbnail-selector-file').addClass(responseJSON.uploadMime.replace('/', '_'));
+                        container.find('.qq-thumbnail-selector-file').addClass(responseJSON.uploadMime.replace(/\//g, '_').replace(/\./g, '_'));
                         container.find('.qq-upload-file-selector').text(responseJSON.uploadName);
                         
                         var fieldName = $this.closest('td').find('input.field-name').val();
@@ -588,6 +588,7 @@ if ($('.thumbnail-fine-uploader-file').length){
         if ($text.find('.name').is(':visible')){
             $text.find('.name').hide();
             $text.find('input').attr('type', 'text').attr('name', $text.find('input').attr('data-name'));
+            $text.find('input').focus();
         }else{
             $text.find('input').attr('type', 'hidden').attr('name', '');
             $text.find('.name').show();

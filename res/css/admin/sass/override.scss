@@ -23,11 +23,16 @@
 }
 
 /* Fine uploader */
-tr._image ul.qq-list, tr._file ul.qq-list{
+tr._image ul.qq-list, tr._file ul.qq-list {
 	padding-left: 0;
 }
 
-li.uploaded._file{
+.qq-upload-file .form-control, .qq-upload-file-input .form-control {
+	display: inline-block;
+	width: auto;
+}
+
+li.uploaded._file {
 	float: left;
 	width: 49%;
 
@@ -35,6 +40,20 @@ li.uploaded._file{
 }
 
 .qq-uploader {  margin-bottom: 4px; }
+
+.qq-upload-list li.qq-upload-success {
+	margin: 12px 0;
+	color: #669234;
+	background-color: #f0f7e8;
+	border: 1px dashed #8dc152;
+}
+
+.qq-upload-list li.qq-upload-fail {
+	margin: 12px 0;
+	color: #bd2c16;
+	background-color: #f8eae7;
+	border: 1px dashed #bd2c16;
+}
 
 .qq-upload-button {
 	background-color: #3bafda;
@@ -65,11 +84,19 @@ li.center-img img.qq-thumbnail-selector{
 .qq-thumbnail-selector-file{
 	width: 48px; height: 54px;
 	background-image: url('../../img/admin/mime.png');
+	background-position: -144px -108px;
 }
 .qq-thumbnail-selector-file.application_zip{ background-position: 0 0; }
-.qq-thumbnail-selector-file.application_msword, .qq-thumbnail-selector-file.text_plain{ background-position: -48px 0; }
-.qq-thumbnail-selector-file.image_jpeg, .qq-thumbnail-selector-file.image_png{ background-position: -192px 0; }
-.qq-thumbnail-selector-file.application_pdf{ background-position: -48px 0; }
+.qq-thumbnail-selector-file.application_msword,
+.qq-thumbnail-selector-file.text_plain,
+.qq-thumbnail-selector-file.application_vnd_openxmlformats-o,
+.qq-thumbnail-selector-file.application_vnd_openxmlformats-officedocument_wordprocessingml_document{ background-position: -48px 0; }
+.qq-thumbnail-selector-file.image_jpeg,
+.qq-thumbnail-selector-file.image_png{ background-position: -192px 0; }
+.qq-thumbnail-selector-file.application_pdf{ background-position: -48px -54px; }
+.qq-thumbnail-selector-file.text_html{ background-position: 0 -108px; }
+.qq-thumbnail-selector-file.text_css{ background-position: -48px -108px; }
+.qq-thumbnail-selector-file.application_x-javascript{ background-position: -96px -108px; }
 
 .qq-thumbnail-wrap{ position: relative; }
 

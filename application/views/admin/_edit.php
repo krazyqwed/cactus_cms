@@ -58,7 +58,7 @@
 
 				<span class="qq-edit-filename-icon-selector qq-edit-filename-icon"></span>
 				<span class="qq-upload-file-selector qq-upload-file"></span>
-				<span class="qq-upload-file-input-selector qq-upload-file-input"><input type="hidden" class="filename" /></span>
+				<span class="qq-upload-file-input-selector qq-upload-file-input"><input type="hidden" class="filename form-control" /></span>
 
 				<a class="btn btn-danger btn-sm qq-upload-delete-selector qq-upload-delete" href="#"><i class="qq-upload-cancel-selector fa fa-times fa-fw fa-fixed-height"></i></a>
 				<a href="javascript:void(0);" class="btn btn-info btn-sm qq-upload-rename-selector qq-upload-rename" href="#"><i class="fa fa-pencil-square-o fa-fw fa-fixed-height qq-hide"></i></a>
@@ -368,14 +368,14 @@ if ($this->config->item('multi_language_enabled') && $db_table_lang && isset($co
 
 					<div class="qq-thumbnail-wrap-outer file">
 						<div class="qq-thumbnail-wrap" style="">
-							<div class="qq-thumbnail-selector-file <?php echo str_replace('/', '_', $file['mime']) ?>"></div>
+							<div class="qq-thumbnail-selector-file <?php echo str_replace(array('/', '.'), '_', $file['mime']) ?>"></div>
 						</div>
 					</div>
 
 					<span class="qq-edit-filename-icon-selector qq-edit-filename-icon"></span>
 					<span class="qq-upload-file-selector qq-upload-file">
 						<span class="name"><?php echo ($file['visible_name'] != '')? $file['visible_name'] : $file['filename'].'.'.$file['ext'] ?></span>
-						<input type="hidden" data-name="<?php echo $field['Field'] ?>[<?php echo $file['file_id'] ?>][filename]" value="<?php echo ($file['visible_name'] != '')? $file['visible_name'] : $file['filename'].'.'.$file['ext'] ?>" />
+						<input class="form-control" type="hidden" data-name="<?php echo $field['Field'] ?>[<?php echo $file['file_id'] ?>][filename]" value="<?php echo ($file['visible_name'] != '')? $file['visible_name'] : $file['filename'].'.'.$file['ext'] ?>" />
 					</span>
 					
 					<a class="btn btn-danger btn-sm qq-upload-delete-selector qq-upload-delete" href="#"><i class="fa fa-times fa-fw fa-fixed-height qq-hide"></i></a>
