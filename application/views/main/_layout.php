@@ -6,6 +6,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="description" content="{seo_description}" />
+  <link rel="icon" type="image/png" href="<?php echo base_url('res/img/shared/favicon.png') ?>" />
 
   <title>{seo_title}</title>
   

@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>CMS</title>
+	<link rel="icon" type="image/png" href="<?php echo base_url('res/img/shared/favicon.png') ?>" />
 
 	{display_styles}
 </head>

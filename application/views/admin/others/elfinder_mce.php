@@ -5,8 +5,8 @@
 		<title>elFinder 2.0</title>
 
 		<!-- jQuery and jQuery UI (REQUIRED) -->
-		<script type="text/javascript" src="<?php echo base_url('res/js/jquery-1.11.1.min.js') ?>"></script>
-		<script type="text/javascript" src="<?php echo base_url('res/js/jquery-ui-1.10.4.min.js') ?>"></script>
+		<script type="text/javascript" src="<?php echo base_url('res/js/shared/jquery-1.11.1.min.js') ?>"></script>
+		<script type="text/javascript" src="<?php echo base_url('res/js/shared/jquery-ui.min.js') ?>"></script>
 
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url('res/css/admin/smoothness/jquery-ui-1.10.4.custom.min.css') ?>" />
 
