@@ -32,7 +32,7 @@ class MY_Controller extends MX_Controller {
 				$this->session->set_userdata('last_page_url', $url);
 			}
 
-			$this->load->helper('permission_helper');
+			$this->load->helper('permission');
 
 			if (!$this->session->userdata('user') && !in_array($this->uri->segment(2), $this->_public_actions)){
 				if ($this->login_check_stored_session()){

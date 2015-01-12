@@ -10,9 +10,10 @@ class MY_URI extends MX_URI {
 
 			$uri = explode('/', $this->uri_string);
 
-			foreach ($langs as $key => $lang){
-				if ((isset($uri[0]) && ($uri[0] == $key || $uri[0] == $this->config->item('admin_path'))) || ($uri == $key || $uri == $this->config->item('admin_path')))
-					unset($uri[0]);
+			if ($uri[0] != $this->config->item('admin_path')){
+				foreach ($langs as $key => $lang){
+					if (isset($uri[0]) && $uri[0] == $key) unset($uri[0]);
+				}
 			}
 
 			$uri_string = implode('/', $uri);
