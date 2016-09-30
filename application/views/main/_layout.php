@@ -20,10 +20,6 @@
                 <h1>Cactus Dev</h1>
             </div>
             <div id="header-right" class="col-xs-6">
-                <!--<div class="avatar">
-                    <img src="<?php echo image_display($main_author['profile_image'], array(72,82)) ?>" alt="Author image" />
-                </div>-->
-                
                 <?php layout_render_parts('header', $parts) ?>
             </div>
         </div>

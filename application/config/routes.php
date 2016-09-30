@@ -48,16 +48,18 @@ require_once(BASEPATH .'database/DB'. EXT);
 $db =& DB();
 $result = $db->get('routes')->result();
 
-foreach( $result as $row ){
-    $route[$row->slug]			= $row->controller;
-    $route[$row->slug.'/:any']	= $row->controller;
-}
+if ($result) {
+  foreach ($result as $row) {
+    $route[$row->slug] = $row->controller;
+    $route[$row->slug.'/:any'] = $row->controller;
+  }
 
-$result = $db->get('routes_lang')->result();
+  $result = $db->get('routes_lang')->result();
 
-foreach( $result as $row ){
-    $route[$row->slug]			= $row->controller;
-    $route[$row->slug.'/:any']	= $row->controller;
+  foreach ($result as $row) {
+    $route[$row->slug] = $row->controller;
+    $route[$row->slug.'/:any'] = $row->controller;
+  }
 }
 
 /* End of file routes.php */

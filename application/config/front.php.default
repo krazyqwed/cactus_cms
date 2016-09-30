@@ -18,15 +18,10 @@ $config['admin_default_styles'] = array(
 );
 
 $config['main_default_scripts'] = array(
-  'res/js/shared/jquery.min.js',
-  'res/js/shared/bootstrap.min.js',
-  'res/js/shared/jquery-ui.min.js',
   array('res/js/main/main.js', 9999)
 );
 
 $config['main_default_styles'] = array(
-  'res/css/main/normalize.css',
-  'res/css/main/bootstrap.min.css',
-  'res/css/main/fonts.css',
   array('res/css/main/main.css', 9999)
 );
+

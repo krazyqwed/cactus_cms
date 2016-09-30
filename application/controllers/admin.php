@@ -716,7 +716,7 @@ class Admin extends MY_Controller {
 				APPPATH."views/",
 				"javascript:fileTreeLoadFile('[link]', [bypass]);",
 				array(),
-				array('admin', 'index.html'),
+				array('admin', 'index.html', '.gitignore'),
 				'View'
 			);
 
@@ -724,7 +724,7 @@ class Admin extends MY_Controller {
 				"res/css/main/",
 				"javascript:fileTreeLoadFile('[link]', [bypass]);",
 				array(),
-				array(),
+				array('.gitignore'),
 				'CSS'
 			);
 
@@ -732,7 +732,7 @@ class Admin extends MY_Controller {
 				"res/js/main/",
 				"javascript:fileTreeLoadFile('[link]', [bypass]);",
 				array(),
-				array(),
+				array('.gitignore'),
 				'JS'
 			);
 			

@@ -70,9 +70,9 @@ function php_file_tree_dir($directory, $return_link, $extensions = array(), $exc
 		}
 
 		if( $first_call ) { $php_file_tree .= " class=\"php-file-tree\""; $first_call = false; }
-		$php_file_tree .= ">";
+		$php_file_tree .= '>';
 		foreach( $file as $this_file ) {
-			if( $this_file != "." && $this_file != ".." ) {
+			if( $this_file != '.' && $this_file != '..' ) {
 				if( is_dir("$directory/$this_file") ) {
 					// Directory
 					$php_file_tree .= "<li class=\"pft-directory\" rel=\"".md5($directory."/".$this_file)."\"><a href=\"javascript:void(0)\" data-path=\"".$directory."/".$this_file."\" data-folder=\"".$directory."\" data-file=\"".$this_file."\">" . htmlspecialchars($this_file) . "</a>";

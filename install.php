@@ -183,15 +183,6 @@ include('install/template.php');
   ");
 
   $conn->query("
-    INSERT INTO `layout_parts` (`layout_part_id`, `layout_id`, `position`, `url`, `css_id`, `css_class`, `part_type`, `part_id`, `weight`, `name`, `description`, `active`) VALUES
-    (1, 2, 'header', '*', '', '', 'menu', 1, 0, 'Felső menü', '', 1),
-    (2, 2, 'content', 'cikkek/[any]', '', '', 'block', 3, 0, 'Cikkek', '', 1),
-    (3, 1, 'header', '*', '', '', 'menu', 1, 0, 'Felső menü', '', 1),
-    (4, 1, 'content', '*', '', '', 'block', 3, 0, 'Cikkek', '', 1),
-    (5, 2, 'content', 'teszt/tartalom', '', '', 'content', 5, 1, 'Teszt tartalom', '', 1);
-  ");
-
-  $conn->query("
     CREATE TABLE IF NOT EXISTS `layout_positions` (
       `layout_position_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
       `layout_id` int(10) unsigned NOT NULL,
@@ -339,6 +330,11 @@ include('install/template.php');
       `content_image` text NOT NULL,
       PRIMARY KEY (`setting_id`)
     ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+  ");
+
+  $conn->query("
+    INSERT INTO `settings` (`setting_id`, `slogen`, `footer`, `banner_image`, `logo_image`, `file_sandbox`, `content_image`) VALUES
+    (NULL, 'Lorem', 'Ipsum', '', '', '', '');
   ");
 
   $conn->query("
