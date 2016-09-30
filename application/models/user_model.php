@@ -69,37 +69,4 @@ class User_model extends MY_Model{
 		else
 			return false;
 	}
-
-	public function _create_table(){
-		$this->db->query("
-			CREATE TABLE IF NOT EXISTS `".$this->_db_table."` (
-			  `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-			  `username` varchar(64) NOT NULL,
-			  `password` varchar(32) NOT NULL,
-			  `role_id` int(10) unsigned NOT NULL,
-			  `remember_token` varchar(32) NOT NULL,
-			  `last_login` datetime NOT NULL,
-			  PRIMARY KEY (`user_id`)
-			) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-		");
-
-		$this->db->simple_query("
-			DROP TRIGGER IF EXISTS `create_user`;
-			DELIMITER ;;
-			CREATE TRIGGER `create_user` AFTER INSERT ON `".$this->_db_table."` FOR EACH ROW BEGIN
-				INSERT INTO user_settings (user_id) VALUES (NEW.user_id);
-			END;;
-			DELIMITER ;
-		");
-
-		$this->db->simple_query("
-			DROP TRIGGER IF EXISTS `delete_user`;
-			DELIMITER ;;
-			CREATE TRIGGER `delete_user` AFTER DELETE ON `".$this->_db_table."` FOR EACH ROW BEGIN
-				DELETE FROM user_settings WHERE user_id = OLD.user_id;
-				DELETE FROM user_permissions WHERE user_id = OLD.user_id;
-			END;;
-			DELIMITER ;
-		");
-	}
 }

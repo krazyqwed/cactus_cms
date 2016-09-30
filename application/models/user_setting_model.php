@@ -34,20 +34,4 @@ class User_setting_model extends MY_Model{
 
 		parent::_post_actions();
 	}
-
-	public function _create_table(){
-		$this->db->query("
-			CREATE TABLE IF NOT EXISTS `".$this->_db_table."` (
-			  `user_setting_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-			  `user_id` int(10) unsigned NOT NULL,
-			  `full_name` varchar(128) NOT NULL,
-			  `email` varchar(128) NOT NULL,
-			  `profile_image` text NOT NULL,
-			  `lockscreen_enable` tinyint(1) NOT NULL,
-			  `lockscreen_timeout` int(10) unsigned NOT NULL,
-			  `lockscreen_image` text NOT NULL,
-			  PRIMARY KEY (`user_setting_id`)
-			) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-		");
-	}
 }

@@ -43,20 +43,6 @@ class Block_model extends MY_Model {
 		parent::_post_actions();
 	}
 
-	public function _create_table(){
-		$this->db->query("
-			CREATE TABLE IF NOT EXISTS `".$this->_db_table."` (
-			  `block_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-			  `block_folder` varchar(256) NOT NULL,
-			  `controller` varchar(64) NOT NULL,
-			  `method` varchar(64) NOT NULL,
-			  `name` varchar(64) NOT NULL,
-			  `description` text NOT NULL,
-			  PRIMARY KEY (`block_id`)
-			) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-		");
-	}
-
 	public function get_block_controllers($block = null, $return = false){
 		if ($block === null){
 			$this->_fields['controller']['_Select_disabled'] = true;

@@ -9,10 +9,6 @@ class MY_model extends CI_Model {
 	public function __construct($db_table = null){
 		$this->load->driver('cache', array('adapter' => 'file', 'backup' => 'file'));
 
-		if (!is_null($db_table) && !$this->cache->get('table_cache__'.$db_table)){
-			$this->_create_table();
-		}
-
 		parent::__construct();
 
 		if (!is_null($db_table)){

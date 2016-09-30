@@ -28,16 +28,4 @@ class Role_permission_model extends MY_Model {
 
 		parent::_post_actions();
 	}
-
-	public function _create_table(){
-		$this->db->query("
-			CREATE TABLE IF NOT EXISTS `".$this->_db_table."` (
-			  `role_permission_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-			  `role_id` int(10) unsigned NOT NULL,
-			  `permission_id` int(10) unsigned NOT NULL,
-			  `enabled` tinyint(1) NOT NULL,
-			  PRIMARY KEY (`role_permission_id`)
-			) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-		");
-	}
 }

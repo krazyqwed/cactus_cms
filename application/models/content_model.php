@@ -49,19 +49,4 @@ class Content_model extends MY_Model {
 
 		parent::_post_actions();
 	}
-
-	public function _create_table(){
-		$this->db->query("
-			CREATE TABLE IF NOT EXISTS `".$this->_db_table."` (
-			  `content_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Tartalom ID',
-			  `title` varchar(128) NOT NULL,
-			  `content_type` tinyint(4) NOT NULL,
-			  `content` text NOT NULL,
-			  `name` varchar(64) NOT NULL,
-			  `description` text NOT NULL,
-			  `categories` text NOT NULL,
-			  PRIMARY KEY (`content_id`)
-			) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-		");
-	}
 }

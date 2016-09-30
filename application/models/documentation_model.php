@@ -24,19 +24,6 @@ class Documentation_model extends MY_Model {
 		parent::_post_actions();
 	}
 
-	public function _create_table(){
-		$this->db->query("
-			CREATE TABLE IF NOT EXISTS `".$this->_db_table."` (
-			  `entry_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-			  `title` varchar(256) NOT NULL,
-			  `content` text NOT NULL,
-			  `date` date NOT NULL,
-			  `active` tinyint(4) NOT NULL,
-			  PRIMARY KEY (`entry_id`)
-			) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-		");
-	}
-
 	public function blog_field($content, $field){
 		$data = array(
 			'field_name' => $field,
